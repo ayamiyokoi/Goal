@@ -1,3 +1,4 @@
+
 # GOAL
 
 ## サイト概要
@@ -24,7 +25,8 @@
 退勤前。毎日の振り返りに。
 
 ## 設計書
-https://app.diagrams.net/#G1mVlmBYjfJq6ZZePdlRl0D2c7nvXFu8r9
+ER図 → https://app.diagrams.net/#G1mVlmBYjfJq6ZZePdlRl0D2c7nvXFu8r9
+テーブル定義書 → [テーブル定義書.pdf](https://github.com/ayamiyokoi/Goal/files/6746308/default.pdf)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1TOPK_gVS4T0N312qz90Q7C0_RiVps25AU5pYav1eWcI/edit#gid=0
