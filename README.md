@@ -1,4 +1,3 @@
-
 # GOAL
 
 ## サイト概要
@@ -26,7 +25,7 @@
 
 ## 設計書
 ER図 → https://app.diagrams.net/#G1mVlmBYjfJq6ZZePdlRl0D2c7nvXFu8r9<br>
-テーブル定義書 → [テーブル定義書.pdf](https://github.com/ayamiyokoi/Goal/files/6746308/default.pdf)
+テーブル定義書 → [テーブル定義書.xlsx](https://github.com/ayamiyokoi/Goal/files/6746332/default.xlsx)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1TOPK_gVS4T0N312qz90Q7C0_RiVps25AU5pYav1eWcI/edit#gid=0
