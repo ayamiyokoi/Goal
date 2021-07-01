@@ -24,7 +24,7 @@
 退勤前。毎日の振り返りに。
 
 ## 設計書
-横井綾美
+https://app.diagrams.net/#G1mVlmBYjfJq6ZZePdlRl0D2c7nvXFu8r9
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1TOPK_gVS4T0N312qz90Q7C0_RiVps25AU5pYav1eWcI/edit#gid=0
