@@ -25,7 +25,7 @@
 退勤前。毎日の振り返りに。
 
 ## 設計書
-ER図 → https://app.diagrams.net/#G1mVlmBYjfJq6ZZePdlRl0D2c7nvXFu8r9
+ER図 → https://app.diagrams.net/#G1mVlmBYjfJq6ZZePdlRl0D2c7nvXFu8r9<br>
 テーブル定義書 → [テーブル定義書.pdf](https://github.com/ayamiyokoi/Goal/files/6746308/default.pdf)
 
 ## チャレンジ要素一覧
