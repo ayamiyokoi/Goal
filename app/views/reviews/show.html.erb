@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @review.user_id %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @review.tag_id %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @review.rate %>
+</p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @review.review %>
+</p>
+
+<p>
+  <strong>Today:</strong>
+  <%= @review.today_id %>
+</p>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @review.plan %>
+</p>
+
+<p>
+  <strong>Tomorrow:</strong>
+  <%= @review.tomorrow_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @review.title %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @review.topic %>
+</p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>

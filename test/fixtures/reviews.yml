@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  tag_id: 1
+  rate: 1
+  review: MyText
+  today_id: 1
+  plan: MyText
+  tomorrow_id: 1
+  title: MyString
+  topic: MyText
+
+two:
+  user_id: 1
+  tag_id: 1
+  rate: 1
+  review: MyText
+  today_id: 1
+  plan: MyText
+  tomorrow_id: 1
+  title: MyString
+  topic: MyText
