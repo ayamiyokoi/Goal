@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about'
   resources :follows, only: [:index, :create, :destroy]
-  resources :events, :reviews, :groups
+  resources :events, :reviews
+  resources :groups, except: [:new] do
+    member do
+      get :join
+    end
+  end
   resources :tasks
   resources :goals, except: [:new, :show]
   get 'notifications/destroy_all' => 'notifications#destroy_all'

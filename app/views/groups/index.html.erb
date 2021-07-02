@@ -15,7 +15,7 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
-        <td><%= group.group_image %></td>
+        <td><%= attachment_image_tag group, :group_image, size: '100x100', format: 'jpeg' %></td>
         <td><%= link_to 'Show', group %></td>
         <td><%= link_to 'Edit', edit_group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -25,5 +25,7 @@
 </table>
 
 <br>
+<h1>New Group</h1>
 
-<%= link_to 'New Group', new_group_path %>
+<%= render 'form', group: @group %>
+
