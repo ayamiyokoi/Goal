@@ -1,2 +1,16 @@
-<h1>Tags#index</h1>
-<p>Find me in app/views/tags/index.html.erb</p>
+<p>タグ一覧</p>
+<% if @tags.present? %>
+      <% @tags.each do |tag| %>
+      <%= tag.name %>
+      <% end %>
+      <% end %>
+<p>タグ新規追加</p>
+<%= form_with model: @tag do |f| %>
+ <div class="field">
+    <%= f.label 'タグ名' %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit "登録", class: 'form-submit'%>
+  </div>
+  <% end %>
