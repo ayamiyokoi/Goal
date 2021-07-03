@@ -1,0 +1,25 @@
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @task.body %>
+</p>
+
+<%= form_with(model: @task, local: true) do |form| %>
+<div class="field">
+    <%= form.label '完了した日' %>
+    <%= form.datetime_field :date %>
+  </div>
+  <div class="field">
+    <%= form.hidden_field :finished, value:true %>
+  </div>
+  <div class="actions">
+    <p>本当に処理済みですか？</p>
+    <%= form.submit "はい", class: "btn btn-success" %>
+    <%= link_to "いいえ", tasks_path %>
+  </div>
+  
+<% end %>

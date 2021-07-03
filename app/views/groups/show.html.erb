@@ -1,3 +1,8 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -11,14 +16,19 @@
 </p>
 <p>グループメンバー</p>
 <p><% @group.users.each do |user| %>
-    
+
         <%= user.name %>
         <%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
         <%= link_to 'Show', user %>
     <% end %></p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to '編集する', edit_group_path(@group), class: "btn btn-primary" %> |
+<%= link_to '一覧に戻る', groups_path, class: "btn btn-primary" %>
 <% unless @group.users.include?(current_user) %>
-<%= link_to '参加する', join_group_path(@group) %>
+<%= link_to '参加する', join_group_path(@group), class: "btn btn-primary" %>
+<% else %>
+<%= link_to 'チャットする', group_chats_path(params[:id]), class: "btn btn-primary" %>
 <% end %>
+    </div>
+  </div>
+</div>

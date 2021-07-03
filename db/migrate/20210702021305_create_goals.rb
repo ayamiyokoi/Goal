@@ -4,7 +4,7 @@ class CreateGoals < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.string :name
       t.datetime :date
-      t.boolean :achieved
+      t.boolean :achieved, default: false, null: false
 
       t.timestamps
     end

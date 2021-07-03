@@ -5,7 +5,6 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
     @group = Group.new
-    @group.users << current_user
   end
 
   # GET /groups/1 or /groups/1.json
@@ -19,7 +18,7 @@ class GroupsController < ApplicationController
   # POST /groups or /groups.json
   def create
     @group = Group.new(group_params)
-
+    @group.users << current_user
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: "Group was successfully created." }

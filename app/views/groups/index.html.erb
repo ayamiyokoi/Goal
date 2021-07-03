@@ -1,3 +1,7 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
 <p id="notice"><%= notice %></p>
 
 <h1>Groups</h1>
@@ -16,16 +20,24 @@
       <tr>
         <td><%= group.name %></td>
         <td><%= attachment_image_tag group, :group_image, size: '100x100', format: 'jpeg' %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'グループ詳細画面へ', group, class: "btn btn-primary" %></td>
+        <td><%= link_to '編集', edit_group_path(group), class: "btn btn-success" %></td>
+        <td><%= link_to '削除', group, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+ </div>
+  </div>
+  
+<div class="row">
+  <div class="col">
+    
 
-<br>
-<h1>New Group</h1>
+<h1>グループ作成</h1>
 
 <%= render 'form', group: @group %>
 
+    </div>
+  </div>
+</div>

@@ -1,2 +1,31 @@
-<h1>Chats#index</h1>
-<p>Find me in app/views/chats/index.html.erb</p>
+<div class="container">
+  グループチャット
+<div class="chats">
+  <div class="chat">
+    <% if @chats.present? %>
+      <% @chats.each do |chat| %>
+        <div class="chat-box">
+          <div class="chat-face">
+            <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg" %>
+          </div>
+          <div class="chat-hukidashi"> <strong><%= chat.chat %></strong> <br>
+            <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
+          </div>
+        </div>
+        <% if m.user ==current_user %>
+        <%= link_to '削除する', group_chat_path(m, id: m.id), method: :delete, class: "btn btn-primary" %>
+        <% end %>
+
+      <% end %>
+    <% end %>
+  </div>
+  <div class="posts">
+    <%= form_with model: [@group, @chat] do |f| %>
+      <%= f.text_field :chat, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
+        <%= f.hidden_field :group_id, value: @group.id %>
+          <%= f.submit "投稿",class: 'form-submit'%>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'グループ一覧画面へ', groups_path, class: "btn btn-success" %>
+</div>
