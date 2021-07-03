@@ -11,7 +11,13 @@ Rails.application.routes.draw do
     end
     resources :chats, only: [:index, :create, :destroy]
   end
-  resources :tasks
+  
+  resources :tasks, except: [:new] do
+    member do
+      get :confirm
+    end
+  end
+  
   resources :goals, except: [:new, :show]
   get 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: [:index]

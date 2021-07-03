@@ -12,28 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
+    <%= form.label 'タスク名' %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
+    <%= form.label 'タスク詳細' %>
     <%= form.text_area :body %>
   </div>
 
   <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
+    <%= form.label '期限' %>
+    <%= form.datetime_field :date %>
   </div>
 
   <div class="field">
-    <%= form.label :finished %>
-    <%= form.check_box :finished %>
+    <%= form.radio_button :finished, :true %>
+  <%= form.label :finished, "処理済み", {value: :true, style: "display: inline-block;"} %>
+  <%= form.radio_button :finished, :false %>
+  <%= form.label :finished, "未処理", {value: :false, style: "display: inline-block;"} %>
   </div>
 
   <div class="actions">

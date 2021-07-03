@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
     t.string "name"
     t.text "body"
     t.datetime "date"
-    t.boolean "finished"
+    t.boolean "finished", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :goals, dependent: :destroy
+  has_many :tasks, dependent: :destroy
 end
