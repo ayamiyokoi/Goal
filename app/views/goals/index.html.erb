@@ -1,2 +1,70 @@
-<h1>Goals#index</h1>
-<p>Find me in app/views/goals/index.html.erb</p>
+<div class="container">
+   <div class="row">
+    <h4>目標入力</h4>
+    <%= form_with model: @goal do |f| %>
+       <div class="field">
+    <%= f.label '目標' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label '期限' %>
+    <%= f.date_field :date %>
+  </div>
+  <div class="field">
+    <%= f.radio_button :achieved, :true %>
+  <%= f.label :achieved, "達成", {value: :true, style: "display: inline-block;"} %>
+  <%= f.radio_button :achieved, :false %>
+  <%= f.label :achieved, "未達成", {value: :false, style: "display: inline-block;"} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "投稿", class: 'form-submit'%>
+  </div>
+
+    <% end %>
+</div>
+
+  <div class="row">
+    <h4>目標一覧</h4>
+<div class="goals">
+  <div class="goal">
+    <% if @goals.present? %>
+      <% @goals.each do |goal| %>
+      <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>目標</th>
+            <th>期限</th>
+            <th>ステータス</th>
+            <th>目標設定日</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= goal.name %></td>
+            <td><%= goal.date.strftime("%Y-%m-%d") %></td>
+            <td>
+              <% if goal.achieved == true %>
+              達成
+              <% else %>
+              未達成
+              <% end %>
+            </td>
+            <td><%= goal.created_at.strftime("%Y-%m-%d") %></td>
+            <th><%= link_to '編集', edit_goal_path(goal), class: "btn btn-success" %></th>
+            <th><%= link_to '削除する', goal_path(goal), class: "btn btn-danger" %></th>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <% end %>
+    <% end %>
+  </div>
+  </div>
+</div>
+</div>

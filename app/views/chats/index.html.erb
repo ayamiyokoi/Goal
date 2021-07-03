@@ -1,14 +1,15 @@
-<div class="container">グループチャット
+<div class="container">
+  グループチャット
 <div class="chats">
   <div class="chat">
     <% if @chats.present? %>
-      <% @chats.each do |m| %>
+      <% @chats.each do |chat| %>
         <div class="chat-box">
           <div class="chat-face">
-            <%= attachment_image_tag m.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg" %>
+            <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg" %>
           </div>
-          <div class="chat-hukidashi"> <strong><%= m.chat %></strong> <br>
-            <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+          <div class="chat-hukidashi"> <strong><%= chat.chat %></strong> <br>
+            <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
           </div>
         </div>
         <% if m.user ==current_user %>

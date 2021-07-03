@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
     t.integer "user_id"
     t.string "name"
     t.datetime "date"
-    t.boolean "achieved"
+    t.boolean "achieved", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
