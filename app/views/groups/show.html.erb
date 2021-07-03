@@ -7,8 +7,18 @@
 
 <p>
   <strong>Group image:</strong>
-  <%= @group.group_image %>
+  <%= attachment_image_tag @group, :group_image, size: '100x100', format: 'jpeg' %>
 </p>
+<p>グループメンバー</p>
+<p><% @group.users.each do |user| %>
+    
+        <%= user.name %>
+        <%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= link_to 'Show', user %>
+    <% end %></p>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+<% unless @group.users.include?(current_user) %>
+<%= link_to '参加する', join_group_path(@group) %>
+<% end %>

@@ -10,6 +10,43 @@
   </head>
 
   <body>
+     <% if user_signed_in? %>
+     <li>
+        <%= link_to 'アバウト', about_path %>
+      </li>
+      <li>
+        <%= link_to 'タスク', tasks_path %>
+      </li>
+      <li>
+        <%= link_to 'グループ', groups_path %>
+      </li>
+      <li>
+        <%= link_to '通知', notifications_path %>
+      </li>
+      <li>
+        <%= link_to '振り返り', reviews_path %>
+      </li>
+      <li>
+        <%= link_to 'カレンダー', events_path %>
+      </li>
+      <li>
+        <%= link_to '目標', goals_path %>
+      </li>
+      <li>
+        <%= link_to 'フォロー', follows_path %>
+      </li>
+      
+      <li>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "新規登録", new_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+    <% end %>
     <%= yield %>
   </body>
 </html>

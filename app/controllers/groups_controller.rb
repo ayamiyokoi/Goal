@@ -1,18 +1,15 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[ show edit update destroy ]
+  before_action :set_group, only: %i[ show edit update destroy join ]
 
   # GET /groups or /groups.json
   def index
     @groups = Group.all
+    @group = Group.new
+    @group.users << current_user
   end
 
   # GET /groups/1 or /groups/1.json
   def show
-  end
-
-  # GET /groups/new
-  def new
-    @group = Group.new
   end
 
   # GET /groups/1/edit
@@ -56,6 +53,15 @@ class GroupsController < ApplicationController
     end
   end
 
+  def join
+    @group.users << current_user
+    if @group.save
+      redirect_to group_path(@group)
+    else
+      redirect_to request.referer
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -64,6 +70,6 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.require(:group).permit(:name, :group_image)
+      params.require(:group).permit(:name, :group_image, user_ids: [] )
     end
 end

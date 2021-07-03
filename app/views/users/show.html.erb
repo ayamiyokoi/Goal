@@ -1,0 +1,17 @@
+<h1>Users#show</h1>
+ <h2>画像</h2>
+<%= attachment_image_tag @user, :profile_image, size: '100x100', format: 'jpeg' %>
+
+  <div class="field">
+   name
+    <%= @user.name %>
+  </div>
+
+  <div class="field">
+    email
+    <%= @user.email %>
+  </div>
+<div>
+
+  <%= link_to '編集画面へ', edit_user_registration_path %>
+</div>
