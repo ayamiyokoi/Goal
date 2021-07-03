@@ -10,4 +10,21 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :goals, dependent: :destroy
   has_many :tasks, dependent: :destroy
+
+  # フォロー機能
+  has_many :reverse_of_follows, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_follows, source: :follower
+
+  has_many :follows, foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :follows, source: :followed
+
+  def follow(user_id)
+    follows.create(followed_id: user_id)
+  end
+  def unfollow(user_id)
+    follows.find_by(followed_id: user_id).destroy
+  end
+  def following?(user)
+    followings.include?(user)
+  end
 end
