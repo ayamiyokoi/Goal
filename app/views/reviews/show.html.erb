@@ -47,3 +47,16 @@
 
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>
+
+<h3>いいね件数: <%= @review.likes.count %></h3>
+<% if current_user.already_liked?(@review) %>
+  <%= button_to 'いいねを取り消す', review_likes_path(@review), method: :delete %>
+<% else %>
+  <%= button_to 'いいね', review_likes_path(@review), method: :post %>
+<% end %>
+<h2>いいねしたユーザー</h2>
+<% @review.liked_users.each do |user| %>
+  <li><%= user.name %></li>
+<% end %>
+
+<%= link_to "ホームへ戻る", root_path %>

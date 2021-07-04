@@ -15,3 +15,10 @@
 
   <%= link_to '編集画面へ', edit_user_registration_path %>
 </div>
+<h3>いいねしている投稿</h3>
+<% @user.liked_reviews.each do |review| %>
+  <%= review.user.name %>
+  <%= review.topic %>
+<% end %>
+<%= link_to "ユーザー一覧へ", users_path %>
+<%= link_to "ホームへ戻る", root_path %>

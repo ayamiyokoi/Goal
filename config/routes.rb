@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :users, :only => [:index, :show] do
     resource :follows, only: [:show, :create, :destroy]
   end
-  resources :events, :reviews
+  resources :events
+  resources :reviews do
+    resource :likes, only: [:create, :destroy]
+  end
   resources :groups, except: [:new] do
     member do
       get :join
@@ -22,7 +25,7 @@ Rails.application.routes.draw do
   resources :goals, except: [:new, :show]
   get 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: [:index]
-  resources :likes, only: [:create, :destroy]
+  
   resources :tags, only: [:index, :create, :update, :destroy]
   resources :comments, only: [:index, :create, :update, :destroy]
 
