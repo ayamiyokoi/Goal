@@ -1,12 +1,16 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+
 
 <h1>Events</h1>
-
+<div id="calendar"></div>
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Title string</th>
+
+      <th>Title</th>
       <th>Body</th>
       <th>Start</th>
       <th>End</th>
@@ -17,8 +21,8 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.user_id %></td>
-        <td><%= event.title_string %></td>
+
+        <td><%= event.title %></td>
         <td><%= event.body %></td>
         <td><%= event.start %></td>
         <td><%= event.end %></td>
@@ -31,5 +35,9 @@
 </table>
 
 <br>
-
+<div>
 <%= link_to 'New Event', new_event_path %>
+</div>
+ </div>
+  </div>
+</div>

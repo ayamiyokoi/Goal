@@ -4,6 +4,12 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml { render :xml => @events }
+      format.json { render :json => @events }
+    end
   end
 
   # GET /events/1 or /events/1.json
@@ -13,6 +19,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    
   end
 
   # GET /events/1/edit
@@ -22,7 +29,7 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
-
+    @event.user_id = current_user.id
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: "Event was successfully created." }
@@ -64,6 +71,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:user_id, :title_string, :body, :start, :end)
+      params.require(:event).permit(:title, :body, :start, :end)
     end
 end

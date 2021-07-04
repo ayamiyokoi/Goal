@@ -25,10 +25,15 @@ Rails.application.routes.draw do
   resources :goals, except: [:new, :show]
   get 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: [:index]
-  
+
   resources :tags, only: [:index, :create, :update, :destroy]
   resources :comments, only: [:index, :create, :update, :destroy]
-
+  # カレンダーAPI
+  namespace :api, { format: 'json' } do
+    namespace :v1 do
+        resources :events
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
