@@ -7,9 +7,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
-  <body>
+  <body data-turbolinks="false">
      <% if user_signed_in? %>
      <li>
         <%= link_to 'アバウト', about_path %>
