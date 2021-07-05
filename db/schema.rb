@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
-    t.string "title_string"
+    t.string "title"
     t.text "body"
     t.datetime "start"
     t.datetime "end"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.integer "following_id"
+    t.integer "followed_id"
     t.integer "follower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,9 +98,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
     t.integer "tag_id"
     t.integer "rate"
     t.text "review"
-    t.integer "today_id"
     t.text "plan"
-    t.integer "tomorrow_id"
     t.string "title"
     t.text "topic"
     t.datetime "created_at", null: false

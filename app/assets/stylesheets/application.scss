@@ -12,5 +12,20 @@
  *
  *= require_tree .
  *= require_self
+ *= require fullcalendar
  */
 @import "bootstrap";
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color: white;
+    background-color: #e3f2fd;
+}
+.navbar-light .navbar-brand:hover{
+    color: white;
+    background-color: #e3f2fd;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+}

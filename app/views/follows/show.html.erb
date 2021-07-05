@@ -1,0 +1,59 @@
+<div class="container">
+
+<ul class="nav nav-tabs">
+<li class="nav-item"><a href="#follower" class="nav-link active" data-toggle="tab">フォロワー</a></li>
+<li class="nav-item"><a href="#following" class="nav-link" data-toggle="tab">フォロー中</a></li>
+</ul>
+
+  <div class="tab-content">
+  <div id="follower" class="tab-pane active">
+    <h2>フォロワー</h2>
+<% if @users_followers.exists? %>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users_followers.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td>フォロー数: <%= user.followings.count %></td>
+        <td>フォロワー数: <%= user.followers.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
+</div>
+<div id="following" class="tab-pane">
+<h2>フォロー中</h2>
+<% if @users_followings.exists? %>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users_followings.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td>フォロー数: <%= user.followings.count %></td>
+        <td>フォロワー数: <%= user.followers.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
+</div>
+  </div>
+
+</div>
