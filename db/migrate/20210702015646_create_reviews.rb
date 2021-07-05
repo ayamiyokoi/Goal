@@ -5,9 +5,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.integer :tag_id
       t.integer :rate
       t.text :review
-      t.integer :today_id
       t.text :plan
-      t.integer :tomorrow_id
       t.string :title
       t.text :topic
 

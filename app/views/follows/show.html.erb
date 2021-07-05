@@ -1,8 +1,17 @@
-<h2>Follower Users</h2>
+<div class="container">
+
+<ul class="nav nav-tabs">
+<li class="nav-item"><a href="#follower" class="nav-link active" data-toggle="tab">フォロワー</a></li>
+<li class="nav-item"><a href="#following" class="nav-link" data-toggle="tab">フォロー中</a></li>
+</ul>
+
+  <div class="tab-content">
+  <div id="follower" class="tab-pane active">
+    <h2>フォロワー</h2>
 <% if @users_followers.exists? %>
   <thead>
     <tr>
-      <th>name</th>
+      <th>名前</th>
       <th></th>
       <th></th>
     </tr>
@@ -20,12 +29,13 @@
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
-
-<h2>Follow Users</h2>
+</div>
+<div id="following" class="tab-pane">
+<h2>フォロー中</h2>
 <% if @users_followings.exists? %>
   <thead>
     <tr>
-      <th>name</th>
+      <th>名前</th>
       <th></th>
       <th></th>
     </tr>
@@ -43,3 +53,7 @@
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
+</div>
+  </div>
+
+</div>

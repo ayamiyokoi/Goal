@@ -98,9 +98,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
     t.integer "tag_id"
     t.integer "rate"
     t.text "review"
-    t.integer "today_id"
     t.text "plan"
-    t.integer "tomorrow_id"
     t.string "title"
     t.text "topic"
     t.datetime "created_at", null: false
