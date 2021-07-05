@@ -1,35 +1,11 @@
 <div class="container">
   <h4>グループチャット</h4>
 <div class="chats">
-  <div class="chat">
-    <% if @chats.present? %>
-      <% @chats.each do |chat| %>
-        <div class="chat-box row">
-          <div class="chat-face col-1">
-            <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg" %>
-          </div>
-          <div class="chat-hukidashi col-11"> <strong><%= chat.chat %></strong>
-            <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
-
-
-        <% if chat.user ==current_user %>
-          <%= link_to group_chat_path(chat, id: chat.id), method: :delete do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
-        <% end %>
-</div>
-</div>
-
-
-      <% end %>
-    <% end %>
+  <div id="chat">
+    <%= render partial: 'chats/index', locals: { chats: @chats} %>
   </div>
-  <div class="posts">
-    <%= form_with model: [@group, @chat] do |f| %>
-      <%= f.text_field :chat, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
-        <%= f.hidden_field :group_id, value: @group.id %>
-          <%= f.submit "投稿",class: 'form-submit'%>
-    <% end %>
+  <div id="posts">
+    <%= render partial: 'chats/form', locals: {group: @group, chat: @chat} %>
   </div>
 </div>
 <%= link_to 'グループ一覧画面へ', groups_path, class: "btn btn-outline-success" %>
