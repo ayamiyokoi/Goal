@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.review_id = review.id
     comment.save
-    redirect_to review_path(review)
+    # redirect_to review_path(review)
   end
 
   def update
