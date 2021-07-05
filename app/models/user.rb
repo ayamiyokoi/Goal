@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :goals, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # フォロー機能
   has_many :reverse_of_follows, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy
@@ -28,12 +29,10 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   # いいね機能
   has_many :likes, dependent: :destroy
   has_many :liked_reviews, through: :likes, source: :review
-  def already_liked?(review)
-    self.likes.exists?(like_id: like.id)
-  end
   
+
 end

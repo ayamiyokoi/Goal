@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :events
   resources :reviews do
     resource :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :update, :destroy]
   end
   resources :groups, except: [:new] do
     member do
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   
   resources :tags, only: [:index, :create, :update, :destroy]
-  resources :comments, only: [:index, :create, :update, :destroy]
+  
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
