@@ -1,6 +1,9 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
 
+ <p id="notice"><%= notice %></p>
 
+<div class="col-12">
 <p>
   <strong>タグ:</strong>
   <%= @review.tag_id %>
@@ -33,16 +36,43 @@
 
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>
-
+</div>
+<div class="col-12">
 <h3>いいね件数: <%= @review.likes.count %></h3>
 <% if current_user.already_liked?(@review) %>
-  <%= button_to 'いいねを取り消す', review_likes_path(@review), method: :delete %>
+  <%= link_to '♥', review_likes_path(@review), method: :delete %>
 <% else %>
-  <%= button_to 'いいね', review_likes_path(@review), method: :post %>
+  <%= link_to '♡', review_likes_path(@review), method: :post %>
 <% end %>
+</div>
 <h2>いいねしたユーザー</h2>
 <% @review.liked_users.each do |user| %>
   <li><%= user.name %></li>
+  <li><%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
+       </li>
 <% end %>
 
 <%= link_to "ホームへ戻る", root_path %>
+
+<div class="comments">
+<p>コメント件数：<%= @review.comments.count %></p>
+<% @review.comments.each do |comment| %>
+  <p><%= attachment_image_tag comment.user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
+        </p>
+  <%= comment.user.name %>
+  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+   <% if comment.user == current_user %>
+  <div class="comment-delete">
+    <%= link_to "削除", review_comment_path(comment.review, comment), method: :delete %>
+  </div>
+  <% end %>
+<% end %>
+</div>
+<div class="new-comment">
+<%= form_with(model:[@review, @comment], local: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+</div>
+ </div>
+</div>
