@@ -15,42 +15,32 @@
 
 
   <div class="field">
-    <%= form.label :tag_id %>
+    <%= form.label 'タグ' %>
     <%= form.number_field :tag_id %>
   </div>
 
   <div class="field">
-    <%= form.label :rate %>
+    <%= form.label '達成率' %>
     <%= form.number_field :rate %>
   </div>
 
   <div class="field">
-    <%= form.label :review %>
+    <%= form.label '本日の振り返り(反省）' %>
     <%= form.text_area :review %>
   </div>
 
   <div class="field">
-    <%= form.label :today_id %>
-    <%= form.number_field :today_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :plan %>
+    <%= form.label '明日の目標' %>
     <%= form.text_area :plan %>
   </div>
 
   <div class="field">
-    <%= form.label :tomorrow_id %>
-    <%= form.number_field :tomorrow_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
+    <%= form.label '本日のトピック題名' %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :topic %>
+    <%= form.label '本日のトピック' %>
     <%= form.text_area :topic %>
   </div>
 
