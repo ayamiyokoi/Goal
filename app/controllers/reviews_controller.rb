@@ -8,7 +8,8 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1 or /reviews/1.json
   def show
-    @comment = Comment
+    @comment = Comment.new
+    @comments = @review.comments.order(created_at: :desc)
   end
 
   # GET /reviews/new

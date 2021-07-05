@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :set_review, only: %i[ create destroy ]
+
   def create
     @like = current_user.likes.create(review_id: params[:review_id])
   end
@@ -8,4 +10,9 @@ class LikesController < ApplicationController
     @like.destroy
   end
 
+     private
+
+  def set_review
+       @review = Review.find(params[:review_id])
+  end
 end

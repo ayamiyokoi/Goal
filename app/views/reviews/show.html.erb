@@ -60,10 +60,10 @@
     <%= render partial: 'comments/index', locals: { review: @review} %>
   </div>
 <div class="new-comment">
-<%= form_with(model:[@review, @comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
+  <div id="comment_new">
+    <%= render partial: 'comments/form', locals: { review: @review, comment: @comment} %>
+  </div>
+
 </div>
  </div>
 </div>
