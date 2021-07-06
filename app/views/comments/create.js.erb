@@ -1,2 +1,2 @@
-$("#comments_area").html("<%= j(render 'index', { review: @review, comment: @comment }) %>")
+$("#comments_area").html("<%= j(render 'form', { review: @review, comment: @comment }) %>")
 $("textarea").val('')

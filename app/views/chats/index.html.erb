@@ -2,10 +2,10 @@
   <h4>グループチャット</h4>
 <div class="chats">
   <div id="chat">
-    <%= render partial: 'chats/index', locals: { chats: @chats} %>
+    <%= render partial: 'index', locals: { chats: @chats} %>
   </div>
   <div id="posts">
-    <%= render partial: 'chats/form', locals: {group: @group, chat: @chat} %>
+    <%= render partial: 'form', locals: {group: @group, chat: @chat} %>
   </div>
 </div>
 <%= link_to 'グループ一覧画面へ', groups_path, class: "btn btn-outline-success" %>
