@@ -1,5 +1,7 @@
 {
   "name": "GOAL",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "fullcalendar": "^5.8.0"
+  }
 }
