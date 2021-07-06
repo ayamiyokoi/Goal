@@ -3,6 +3,7 @@ class LikesController < ApplicationController
 
   def create
     @like = current_user.likes.create(review_id: params[:review_id])
+    @review.create_notification_like(current_user)
   end
 
   def destroy
