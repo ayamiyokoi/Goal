@@ -6,10 +6,12 @@ Rails.application.routes.draw do
     resource :follows, only: [:show, :create, :destroy]
   end
   resources :events
+  get '/reviews/topics' => 'reviews#topics'
   resources :reviews do
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :update, :destroy]
   end
+
   resources :groups, except: [:new] do
     member do
       get :join

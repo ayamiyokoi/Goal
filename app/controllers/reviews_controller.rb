@@ -6,6 +6,10 @@ class ReviewsController < ApplicationController
     @reviews = Review.all
   end
 
+  def topics
+    @reviews = Review.all
+  end
+
   # GET /reviews/1 or /reviews/1.json
   def show
     @comment = Comment.new
@@ -57,6 +61,8 @@ class ReviewsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
