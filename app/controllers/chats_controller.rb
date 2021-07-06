@@ -1,20 +1,13 @@
 class ChatsController < ApplicationController
 
   def index
-    @chats = Chat.where(group_id: params[:group_id])
-    @chat = Chat.new
-    @group = Group.find(params[:group_id])
   end
 
   def create
-    @chat = Chat.new(chat_params)
+    @group = Group.find(params[:group_id])
+    @chat = @group.chat.build(chat_params)
     @chat.user_id = current_user.id
-    @chat.group_id = params[:group_id]
-    if @chat.save
-      redirect_to group_chats_path(params[:group_id])
-    else
-      redirect_to '/'
-    end
+    @chat.save
   end
 
   # def update
@@ -22,12 +15,7 @@ class ChatsController < ApplicationController
   # end
 
   def destroy
-    @chat = Chat.find(params[:group_id], params[:id])
-    if @chat.destroy
-      redirect_to request.referer
-    else
-      redirect_to '/'
-    end
+    @chats = Chat.find_by(id: params[:id], group_id: params[:group_id]).destroy
   end
 
   private

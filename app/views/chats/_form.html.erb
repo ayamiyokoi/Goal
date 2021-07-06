@@ -1,0 +1,5 @@
+<%= form_with model: [group, chat] do |f| %>
+      <%= f.text_field :chat, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
+        <%= f.hidden_field :group_id, value: group.id %>
+          <%= f.submit "投稿",class: 'form-submit'%>
+    <% end %>

@@ -12,7 +12,7 @@
   <body data-turbolinks="false">
      <% if user_signed_in? %>
      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="#">GOAL</a>
+     <%= link_to 'GOAL', root_path, class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -29,6 +29,15 @@
         <%= link_to 'グループ', groups_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
+        <%= link_to 'トピック一覧', reviews_topics_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'ユーザー一覧', users_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <% if unchecked_notifications.any? %>
+          <i class="fa fa-circle" style="color: gold;"></i>
+        <% end %>
         <%= link_to '通知', notifications_path, class: "nav-link" %>
       </li>
 

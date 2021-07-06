@@ -24,6 +24,10 @@
     color: white;
     background-color: #e3f2fd;
 }
+body{
+    position: relative;
+    min-height: 500px;
+}
 .footer{
     position: absolute;
     bottom: 0;

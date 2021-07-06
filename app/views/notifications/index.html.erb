@@ -1,2 +1,16 @@
-<h1>Notifications#index</h1>
-<p>Find me in app/views/notifications/index.html.erb</p>
+<h4>通知</h4>
+<%= link_to notifications_destroy_all_path, method: :delete do %>
+        <i class="fas fa-trash" style="color: black;"></i>
+        <h7 style="color: black;">全削除</h7>
+    <% end %>
+    <hr>
+<!--自分の投稿に対するいいね、コメントは通知に表示しない-->
+
+  <% if @notifications.exists? %>
+  <%= render 'notifications/notification', notifications: @notifications %>
+  <%= paginate @notifications %>
+  <% else %>
+  <p>
+    | 通知はありません
+  </p>
+    <% end %>

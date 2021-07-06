@@ -1,12 +1,13 @@
 class CommentsController < ApplicationController
+  before_action :set_review, only: %i[ create destroy ]
 
-  
   def create
-    review = Review.find(params[:review_id])
-    comment = current_user.comments.new(comment_params)
-    comment.review_id = review.id
-    comment.save
-    redirect_to review_path(review)
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    @comment.review_id = @review.id
+    @comment.save
+    @comment.create_notification_comment(current_user, @comment.id)
+    # redirect_to review_path(review)
   end
 
   def update
@@ -14,10 +15,13 @@ class CommentsController < ApplicationController
 
   def destroy
     Comment.find_by(id: params[:id], review_id: params[:review_id]).destroy
-    redirect_to review_path(params[:review_id])
+    # redirect_to review_path(params[:review_id])
   end
-  
+
   private
+  def set_review
+       @review = Review.find(params[:review_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:comment)

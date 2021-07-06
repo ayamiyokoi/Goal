@@ -1,0 +1,20 @@
+ <% if chats.present? %>
+      <% chats.each do |chat| %>
+        <div class="chat-box row">
+          <div class="chat-face col-1">
+            <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg" %>
+          </div>
+          <div class="chat-hukidashi col-11"> <strong><%= chat.chat %></strong>
+            <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
+
+
+        <% if chat.user ==current_user %>
+          <%= link_to group_chat_path(chat, id: chat.id), method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+         </div>
+</div>
+
+         <% end %>
+    <% end %>

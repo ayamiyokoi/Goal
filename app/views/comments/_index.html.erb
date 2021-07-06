@@ -1,0 +1,13 @@
+<p>コメント件数：<%= review.comments.count %></p>
+<% review.comments.each do |comment| %>
+  <p><%= attachment_image_tag comment.user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg" %>
+        </p>
+  <%= comment.user.name %>
+  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+   <% if comment.user == current_user %>
+  <div class="comment-delete">
+    <%= link_to "削除", review_comment_path(comment.review, comment), method: :delete, remote:true %>
+  </div>
+  <% end %>
+<% end %>
+</div>
