@@ -1,3 +1,4 @@
+<% notifications.each do |notification| %>
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 <div class="col-md-6.mx-auto">
@@ -5,12 +6,12 @@
     <span>
       <%= link_to user_path(visitor) do %>
       <%= attachment_image_tag visitor, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg" %>
-        
-        <%= image_tag avatar_url(visitor).to_s, class: "icon_mini" %>
         <strong>
           <%= visitor.name %>
         </strong>
+      <% end %>
       <%= 'さんが' %>
+
 
       <% case notification.action %>
       <% when 'follow' then %>
@@ -25,16 +26,17 @@
           <span>
             <%= link_to review_path(notification.review) do %>
             <%= attachment_image_tag notification.review.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg" %>
-        
-              <%= image_tag avatar_url(notification.review.user).to_s, class: "icon_mini" %>
               <strong>
                 <%= notification.review.user.name + 'さんの投稿' %>
               </strong>
+            <% end %>
           </span>
         <%= "にコメントしました" %>
         <p class="text-muted mb-0">
           <%= Comment.find_by(id: notification.comment_id)&.comment %>
         </p>
+        <% end %>
+      <% end %>
     </span>
   </div>
 </div>
@@ -42,3 +44,4 @@
     <%= time_ago_in_words(notification.created_at).upcase %>
   </div>
   <hr />
+  <% end %>

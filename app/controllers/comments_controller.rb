@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_review, only: %i[ create destroy ]
 
   def create
-    @comment = @review.comments.build(comment_params)
+    @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.review_id = @review.id
     @comment.save

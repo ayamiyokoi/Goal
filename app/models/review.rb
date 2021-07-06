@@ -9,9 +9,9 @@ class Review < ApplicationRecord
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
-  
+
   # いいね通知機能
-    def create_notification_like(current_user)
+  def create_notification_like(current_user)
     # すでに「いいね」されているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and review_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
     # いいねされていない場合のみ、通知レコードを作成
@@ -28,10 +28,10 @@ class Review < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-  
-  
+
+
   # コメント通知機能
-    def create_notification_comment(current_user, comment_id)
+  def create_notification_comment(current_user, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = Comment.select(:user_id).where(review_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
@@ -55,9 +55,9 @@ class Review < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-  
+
   # フォロー通知機能
-    def create_notification_follow(current_user)
+  def create_notification_follow(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
