@@ -32,6 +32,9 @@
         <%= link_to 'トピック一覧', reviews_topics_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
+        <%= link_to 'ユーザー一覧', users_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
         <% if unchecked_notifications.any? %>
           <i class="fa fa-circle" style="color: gold;"></i>
         <% end %>
