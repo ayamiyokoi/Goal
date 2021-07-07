@@ -20,19 +20,18 @@
         <%= link_to 'あなたの投稿', notification.review, style: "font-weight: bold;" %>
         <%= "にいいねしました" %>
       <% when 'comment' then %>
-      <% # binding.irb %>
         <% if notification.review.user_id == visited.id %>
-          <%= link_to "あなたの投稿", notification.review, style: "font-weight: bold;" %>
+          <%= link_to "あなたの投稿", notification.review, style: "font-weight: bold;" %><%= "にコメントしました" %>
         <% else %>
           <span>
             <%= link_to review_path(notification.review) do %>
             <%= attachment_image_tag notification.review.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg" %>
               <strong>
-                <%= notification.review.user.name + 'さんの投稿' %>
+                <%= notification.review.user.name + 'さんの投稿' %><%= "にコメントしました" %>
               </strong>
             <% end %>
           </span>
-        <%= "にコメントしました" %>
+        
         <p class="text-muted mb-0">
           <%= Comment.find_by(id: notification.comment_id)&.comment %>
         </p>
