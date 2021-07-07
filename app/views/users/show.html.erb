@@ -17,7 +17,7 @@
   <%= link_to '編集画面へ', edit_user_registration_path %>
     </div>
     <div class="col-8">
-      <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
+      <h4>の振り返り</h4>
       <%= render 'reviews/index', reviews: @review %>
     </div>
   </div>

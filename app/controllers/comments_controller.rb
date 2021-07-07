@@ -6,9 +6,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.review_id = @review.id
     @comment.save
-    @commented_id = Review.select(:user_id).where(id: @review.id)
-    @comment.create_notification_comment(current_user, @review.id, @commented_id, @comment.id)
-    
+    @comment.create_notification_comment(current_user, @review.id, @review.user_id, @comment.id)
     # redirect_to review_path(review)
   end
 
