@@ -66,6 +66,16 @@ class ReviewsController < ApplicationController
     end
   end
 
+  # def search
+  #   if params[:search].present?
+  #     @reviews = Review.where('body LIKE ?', "%#{params[:search]}%")
+  #     redirect_to 'reviews/search'
+  #   else
+  #     @reviews = Review.none
+  #     redirect_to 'reviews/search'
+  #   end
+  # end
+
 
 
   private

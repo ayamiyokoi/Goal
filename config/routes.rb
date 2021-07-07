@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :reviews do
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :update, :destroy]
+    get :search, on: :collection
   end
 
   resources :groups, except: [:new] do

@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
    # deviseコントローラーにストロングパラメータを追加する  
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
+  before_action :set_search
 
   protected
   
@@ -15,5 +17,10 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     user_path(resource.id)
+  end
+  
+  def set_search
+    @search = Review.ransack(params[:q])
+    @search_reviews = @search.result
   end
 end
