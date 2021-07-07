@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>ユーザー</th>
       <th>達成率</th>
       <th>本日の振り返り(反省）</th>
       <th>明日の目標</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% reviews.each do |review| %>
       <tr>
+        <th><%= attachment_image_tag review.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg" %></th>
         <td><%= review.rate %>%</td>
         <td><%= review.review %></td>
         <td><%= review.plan %></td>
