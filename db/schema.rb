@@ -86,27 +86,13 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "review_tags", force: :cascade do |t|
-    t.integer "review_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "tag_id"
     t.integer "rate"
     t.text "review"
     t.text "plan"
     t.string "title"
     t.text "topic"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
