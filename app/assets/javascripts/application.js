@@ -15,6 +15,8 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require fullcalendar
+//= require fullcalendar/locale-all
+//= require fullcalendar/gcal
 
 //= require rails-ujs
 //= require activestorage
@@ -34,11 +36,11 @@
 
             //events: '/events.json', 以下に追加
             $('#calendar').fullCalendar({
-                  googleCalendarApiKey: 'AIzaSyB-7uQdd7ffahHDIS48WdDVN3U8Nw9us6I',
-                  events: {
+                googleCalendarApiKey: 'AIzaSyB-7uQdd7ffahHDIS48WdDVN3U8Nw9us6I',
+                events: {
                        googleCalendarId: 'ja.japanese#holiday@group.v.calendar.google.com'
                 },
-                
+
                 events: '/events.json',
 
                 //カレンダー上部を年月で表示させる

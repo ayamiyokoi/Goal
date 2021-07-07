@@ -1,9 +1,12 @@
-<h1>Users#show</h1>
- <h2>画像</h2>
+<div class="container">
+  <h4>マイページ</h4>
+  <div class="row">
+    <div class="col-4">
+<h4>プロフィール</h4>
 <%= attachment_image_tag @user, :profile_image, size: '100x100', format: 'jpeg' %>
 
   <div class="field">
-   name
+   名前
     <%= @user.name %>
   </div>
 
@@ -11,14 +14,16 @@
     email
     <%= @user.email %>
   </div>
-<div>
-
   <%= link_to '編集画面へ', edit_user_registration_path %>
+    </div>
+    <div class="col-8">
+      <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
+      <%= render 'reviews/index', reviews: @review %>
+    </div>
+  </div>
+  <div class="row">
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
+
+
 </div>
-<h3>いいねしている投稿</h3>
-<% @user.liked_reviews.each do |review| %>
-  <%= review.user.name %>
-  <%= review.topic %>
-<% end %>
-<%= link_to "ユーザー一覧へ", users_path %>
-<%= link_to "ホームへ戻る", root_path %>
