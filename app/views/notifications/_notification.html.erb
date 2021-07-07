@@ -20,6 +20,7 @@
         <%= link_to 'あなたの投稿', notification.review, style: "font-weight: bold;" %>
         <%= "にいいねしました" %>
       <% when 'comment' then %>
+      <% # binding.irb %>
         <% if notification.review.user_id == visited.id %>
           <%= link_to "あなたの投稿", notification.review, style: "font-weight: bold;" %>
         <% else %>

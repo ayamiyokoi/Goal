@@ -1,2 +1,2 @@
-$("#post").html("<%= j(render 'index', { group: @group, chat: @chat }) %>")
-$("textarea").val('')
+$("#chat").html("<%= j(render 'chats/index', { chats: @chats}) %>")
+$("#chat_chat").val('')

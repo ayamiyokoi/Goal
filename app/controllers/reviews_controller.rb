@@ -7,6 +7,10 @@ class ReviewsController < ApplicationController
   end
 
   def topics
+    @reviews_mine = Review.where(user_id: current_user.id)
+    likes = Like.where(user_id: current_user.id).pluck(:review_id)
+    @reviews_liked = Review.find(likes)
+    @reviews_like = Review.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
     @reviews = Review.all
   end
 
@@ -61,6 +65,16 @@ class ReviewsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # def search
+  #   if params[:search].present?
+  #     @reviews = Review.where('body LIKE ?', "%#{params[:search]}%")
+  #     redirect_to 'reviews/search'
+  #   else
+  #     @reviews = Review.none
+  #     redirect_to 'reviews/search'
+  #   end
+  # end
 
 
 

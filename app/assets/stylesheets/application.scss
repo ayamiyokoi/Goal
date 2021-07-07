@@ -26,10 +26,16 @@
 }
 body{
     position: relative;
-    min-height: 500px;
+    min-height: 800px;
 }
-.footer{
+footer{
     position: absolute;
     bottom: 0;
     width: 100vw;
+}
+td.fc-sat {
+    background-color: #eaf4ff;
+}
+td.fc-sun {
+    background-color: #ffeaea;
 }

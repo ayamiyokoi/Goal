@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   root to: 'homes#top'
   get '/about' => 'homes#about'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   resources :reviews do
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :update, :destroy]
+    get :search, on: :collection
   end
 
   resources :groups, except: [:new] do
@@ -28,9 +30,9 @@ Rails.application.routes.draw do
   resources :goals, except: [:new, :show]
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: [:index]
-
-  resources :tags, only: [:index, :create, :update, :destroy]
-
+  get 'inquiry/index' =>'inquiry#index'
+  post 'inquiry/confirm' => 'inquiry#confirm'
+  post 'inquiry/thanks' => 'inquiry#thanks'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -9,7 +9,7 @@
 
 
         <% if chat.user ==current_user %>
-          <%= link_to group_chat_path(chat, id: chat.id), method: :delete do %>
+          <%= link_to(group_chat_path(group_id: chat.group_id, id: chat.id), method: :delete, remote: true) do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>
         <% end %>

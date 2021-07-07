@@ -23,25 +23,23 @@
 
 
 //$(function () {
+// キャッシュの開始前
     $(document).on('turbolinks:before-cache', function() {
         $('#calendar').html('');
     });
 
-    // 画面遷移を検知
+    // ページの読み込み時
     $(document).on('turbolinks:load', function () {
         if ($('#calendar').length > 0 ) {
 
-            //events: '祝日とイベント', 以下に追加
+            //events: '/events.json', 以下に追加
             $('#calendar').fullCalendar({
-                //   googleCalendarApiKey: 'AIzaSyB-7uQdd7ffahHDIS48WdDVN3U8Nw9us6I',
-                //   eventSources: [
-                //   {
-                // googleCalendarId: 'abcd1234@group.calendar.google.com'
-                // },
-                // {
+                  googleCalendarApiKey: 'AIzaSyB-7uQdd7ffahHDIS48WdDVN3U8Nw9us6I',
+                  events: {
+                       googleCalendarId: 'ja.japanese#holiday@group.v.calendar.google.com'
+                },
+                
                 events: '/events.json',
-                // }
-                // ],
 
                 //カレンダー上部を年月で表示させる
                 titleFormat: 'YYYY年 M月',
