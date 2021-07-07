@@ -7,8 +7,7 @@
     <script src="https://kit.fontawesome.com/014a69a131.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href='fullcalendar/main.css' rel='stylesheet' />
-    <script src='fullcalendar/main.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js" integrity="sha512-5vwN8yor2fFT9pgPS9p9R7AszYaNn0LkQElTXIsZFCL7ucT8zDCAqlQXDdaqgA1mZP47hdvztBMsIoFxq/FyyQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
 
   <body data-turbolinks="false">
@@ -21,6 +20,12 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+       <li class="nav-item">
+        <p style="padding-top:8px;">ようこそ<%= current_user.name %>さん</p>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'マイページ', user_path(current_user.id), class: "nav-link" %>
+      </li>
       <li class="nav-item">
         <%= link_to '振り返り', reviews_path, class: "nav-link" %>
       </li>
