@@ -44,7 +44,7 @@ td.fc-sun {
   .day {}
 
   .wday-0 {
-    backgroud-color: #fce1ed;
+    background-color: #fce1ed;
   }
   .wday-1 {}
   .wday-2 {}
@@ -52,7 +52,7 @@ td.fc-sun {
   .wday-4 {}
   .wday-5 {}
   .wday-6 {
-     backgroud-color: #e1fbfc;
+     background-color: #e1fbfc;
   }
 
   .today {}
@@ -65,5 +65,10 @@ td.fc-sun {
   .next-month { }
   .current-month {}
 
-  .has-events {}
+  .has-events {
+  }
+  .has-events div{
+    display: inline-block;
+    background-color: #adff2f;
+  }
 }

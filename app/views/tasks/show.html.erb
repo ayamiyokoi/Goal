@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-
+<div class="container">
 
 <p>
-  <strong>Name:</strong>
+  <strong>タスク名:</strong>
   <%= @task.name %>
 </p>
 
 <p>
-  <strong>Body:</strong>
+  <strong>タスク詳細:</strong>
   <%= @task.body %>
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @task.date %>
+  <strong>期限:</strong>
+  <%= l(@task.date, format: :long) %>
 </p>
 
 <p>
-  <strong>Finished:</strong>
+  <strong>ステータス:</strong>
   <% if @task.finished == true %>
               処理済み
               <% else %>
@@ -26,5 +26,6 @@
               <% end %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to '編集', edit_task_path(@task) %> |
+<%= link_to '一覧に戻る', tasks_path %>
+</div>

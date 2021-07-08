@@ -72,3 +72,5 @@ gem 'bootstrap', '~> 4.5'
 gem 'dotenv-rails'
 gem 'ransack'
 gem 'rails-i18n'
+gem "chartkick"
+gem 'groupdate'

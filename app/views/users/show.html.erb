@@ -17,6 +17,7 @@
   <%= link_to '編集画面へ', edit_user_registration_path %>
     </div>
     <div class="col-8">
+      <% unless @review == nil %>
       <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
       <table>
   <thead>
@@ -43,19 +44,19 @@
         <td><%= @review.topic %></td>
         <td><%= link_to "#{@review.comments.count} 件", review_path(@review.id) %></td>
         <td><%= link_to '詳細画面', @review %></td>
-        <% if @review.user_id == current_user.id %>
+        <% if @review.written_by?(current_user) %>
         <td><%= link_to '編集', edit_review_path(@review) %></td>
         <td><%= link_to '削除', @review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-        <td>(<%= @review.liked_users.count %>)</td>
+        <td>(<%= @review.liked_users_count %>)</td>
       </tr>
   </tbody>
 </table>
     </div>
   </div>
   <div class="row">
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <%= line_chart @data, xtitle: "日付", ytitle: "達成率", width: "800px", height: "500px" %>
   </div>
-
+<% end %>
 
 </div>
