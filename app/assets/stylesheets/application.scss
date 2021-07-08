@@ -40,3 +40,30 @@ td.fc-sat {
 td.fc-sun {
     background-color: #ffeaea;
 }
+.simple-calendar {
+  .day {}
+
+  .wday-0 {
+    backgroud-color: #fce1ed;
+  }
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {
+     backgroud-color: #e1fbfc;
+  }
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}
