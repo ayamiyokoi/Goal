@@ -12,9 +12,10 @@
  *
  *= require_tree .
  *= require_self
- *= require fullcalendar
+ *= require simple_calendar
  */
 @import "bootstrap";
+
 
 .navbar-light .navbar-nav .nav-link:hover{
     color: white;

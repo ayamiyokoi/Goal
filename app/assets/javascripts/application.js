@@ -13,10 +13,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require moment
-//= require fullcalendar
-//= require fullcalendar/locale-all
-//= require fullcalendar/gcal
+
 
 //= require rails-ujs
 //= require activestorage

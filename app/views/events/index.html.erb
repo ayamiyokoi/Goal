@@ -23,8 +23,8 @@
 
         <td><%= event.title %></td>
         <td><%= event.body %></td>
-        <td><%= event.start %></td>
-        <td><%= event.end %></td>
+        <td><%= event.start_time %></td>
+        <td><%= event.end_time %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -38,7 +38,50 @@
 <%= link_to 'New Event', new_event_path %>
 </div>
 <div class="col-12" style="margin-bottom:200px;">
-<div id="calendar"></div>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#month_calendar" class="nav-link active" data-toggle="tab">月</a>
+    </li>
+    <li class="nav-item">
+      <a href="#week_calendar" class="nav-link" data-toggle="tab">週</a>
+    </li>
+    <li class="nav-item">
+      <a href="#day_calendar" class="nav-link" data-toggle="tab">日</a>
+    </li>
+  </ul>
+  
+   <div class="tab-content">
+    <div id="month_calendar" class="tab-pane active">
+<%= month_calendar(events: @events) do |date, events| %>
+  <%= date %>
+  <% events.each do |event| %>
+    <div>
+      <%= event.title %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+<div id="week_calendar" class="tab-pane">
+<%= week_calendar(number_of_weeks: 1, events: @events) do |date, events| %>
+  <%= date %>
+  <% events.each do |event| %>
+    <div>
+      <%= event.title %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+<div id="day_calendar" class="tab-pane">
+<%= calendar(number_of_days: 2, events: @events) do |date, events| %>
+  <%= date %>
+  <% events.each do |event| %>
+    <div>
+      <%= event.title %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+</div>
 </div>
   </div>
 </div>

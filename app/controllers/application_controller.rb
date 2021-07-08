@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   
   before_action :set_search
 
+  
+
   protected
   
   def configure_permitted_parameters
@@ -23,4 +25,6 @@ class ApplicationController < ActionController::Base
     @search = Review.ransack(params[:q])
     @search_reviews = @search.result
   end
+  
+ 
 end
