@@ -1,6 +1,7 @@
 <div class="container">
-  <% unless @review == nil %>
+  
   <h4>マイページ</h4>
+  <% unless @review == nil %>
   <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
   <div class="row">
     <div class="col-7 colum">
@@ -59,6 +60,26 @@
   <div class="row">
     <%= line_chart @data, xtitle: "日付", ytitle: "達成率", width: "800px", height: "500px" %>
   </div>
+  <% else %>
+   <h5>ユーザー</h5>
+      <div clas="row">
+    <div class="col-4">
+
+      <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
+    </div>
+    <div class="col-8">
+      <div class="field">
+   名前
+    <%= @user.name %>
+  </div>
+
+  <div class="field">
+   メールアドレス
+    <%= @user.email %>
+  </div>
+  <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
+    </div>
+    </div>
 <% end %>
 
 </div>
