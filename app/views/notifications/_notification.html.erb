@@ -5,7 +5,7 @@
   <div class="form-inline">
     <span>
       <%= link_to user_path(visitor) do %>
-      <%= attachment_image_tag visitor, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg" %>
+      <%= attachment_image_tag visitor, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
         <strong>
           <%= visitor.name %>
         </strong>
@@ -31,9 +31,9 @@
               </strong>
             <% end %>
           </span>
-        
+
         <p class="text-muted mb-0">
-      
+
           <%= Comment.find_by(id: notification.comment_id)&.comment %>
         </p>
         <% end %>
