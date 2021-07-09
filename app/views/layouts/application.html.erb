@@ -28,26 +28,28 @@
       <li class="nav-item">
         <%= link_to 'マイページ', user_path(current_user.id), class: "nav-link" %>
       </li>
-      <li class="nav-item">
-        <%= link_to '振り返り', reviews_path, class: "nav-link" %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          振り返り
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to '振り返り', reviews_path, class: "dropdown-item" %>
+          <%= link_to 'トピック一覧', reviews_topics_path, class: "dropdown-item" %>
+
+        </div>
       </li>
-       <li class="nav-item">
-        <%= link_to '目標', goals_path, class: "nav-link" %>
-      </li>
-       <li class="nav-item">
-        <%= link_to 'タスク', tasks_path, class: "nav-link" %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         目標&タスク
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to '目標', goals_path, class: "dropdown-item" %>
+          <%= link_to 'タスク', tasks_path, class: "dropdown-item" %>
+
+        </div>
       </li>
       <li class="nav-item">
         <%= link_to 'カレンダー', events_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'グループ', groups_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'トピック一覧', reviews_topics_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'ユーザー一覧', users_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <% if unchecked_notifications.any? %>
@@ -55,9 +57,16 @@
         <% end %>
         <%= link_to '通知', notifications_path, class: "nav-link" %>
       </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ユーザー
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'グループ', groups_path, class: "dropdown-item" %>
+          <%= link_to 'フォロー', user_follows_path(user_id: current_user.id), class: "dropdown-item" %>
+          <%= link_to 'ユーザー一覧', users_path, class: "dropdown-item" %>
 
-      <li class="nav-item">
-        <%= link_to 'フォロー', user_follows_path(user_id: current_user.id), class: "nav-link" %>
+        </div>
       </li>
       <li class="nav-item">
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
@@ -95,9 +104,9 @@
         </div>
         </li>
     <% end %>
-    
 
-      
+
+
     </ul>
 
 
@@ -107,7 +116,7 @@
 
 
     <%= yield %>
-    
+
     <footer class="footer">
       <div>
         © Ayami Yokoi.All Rights reserved
