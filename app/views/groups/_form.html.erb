@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= form.label 'グループ名' %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "例）営業1グループ1課" %>
   </div>
 
   <div class="field">
-    <%= form.label 'グループ画像' %>
+    <%= form.label 'グループ画像' %><br>
     <%= form.attachment_field :group_image %>
   </div>
 
