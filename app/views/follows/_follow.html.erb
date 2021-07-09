@@ -1,6 +1,8 @@
 <% if follows.exists? %>
+<table>
   <thead>
     <tr>
+      <th></th>
       <th>名前</th>
       <th></th>
       <th></th>
@@ -9,6 +11,7 @@
   <tbody>
     <% follows.each do |user| %>
       <tr>
+        <td><%= attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></td>
         <td><%= user.name %></td>
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>

@@ -12,7 +12,6 @@ class ReviewsController < ApplicationController
     likes = Like.where(user_id: current_user.id).pluck(:review_id)
     @reviews_liked = Review.find(likes)
     @reviews_like = Review.sorted_by_likes
-    
     @reviews = Review.all
   end
 

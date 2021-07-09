@@ -13,7 +13,7 @@ class Review < ApplicationRecord
   end
 
   def self.sorted_by_likes
-  　 Review.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+    Review.includes(:liked_users).sort{|a,b| b.liked_users.size <=> a.liked_users.size}
   end
 
   def liked_users_count
