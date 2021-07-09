@@ -11,7 +11,7 @@
 </p>
 <p>
 
-  <%= attachment_image_tag @group, :group_image, size: '200x200', format: 'jpeg' %>
+  <%= attachment_image_tag @group, :group_image, size: '200x200', format: 'jpeg', class: "img" %>
 </p>
 </div>
 <div class="col-8">
@@ -19,7 +19,7 @@
 <p><% @group.users.each do |user| %>
 
         <%= user.name %>
-        <%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
         <%= link_to 'Show', user %>
     <% end %></p>
 </div>

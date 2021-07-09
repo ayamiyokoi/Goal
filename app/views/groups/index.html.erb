@@ -19,7 +19,7 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
-        <td><%= attachment_image_tag group, :group_image, size: '60x60', format: 'jpeg' %></td>
+        <td><%= attachment_image_tag group, :group_image, size: '60x60', format: 'jpeg', class: "img" %></td>
         <td><%= link_to 'グループ詳細画面へ', group, class: "btn btn-outline-primary" %></td>
         <td><%= link_to '編集', edit_group_path(group), class: "btn btn-outline-success" %></td>
         <td><%= link_to '削除', group, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
