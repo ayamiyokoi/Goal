@@ -8,10 +8,23 @@ class Review < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
+  def written_by?(current_user)
+    user == current_user
+  end
+
+  def self.sorted_by_likes
+    Review.includes(:liked_users).sort{|a,b| b.liked_users.size <=> a.liked_users.size}
+  end
+
+  def liked_users_count
+    liked_users.count
+  end
+
   # いいね通知機能
   def create_notification_like(current_user)
+
     # すでに「いいね」されているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and review_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and review_id = ? and action = ? ",current_user.id, user_id,  id, 'like'])
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(
@@ -25,6 +38,6 @@ class Review < ApplicationRecord
       end
       notification.save if notification.valid?
     end
-    
+
   end
 end

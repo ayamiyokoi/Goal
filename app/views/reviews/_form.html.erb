@@ -15,28 +15,29 @@
 
 
   <div class="field">
-    <%= form.label '達成率' %>
-    <%= form.number_field :rate %> %
+    <%= form.label '達成率（％）' %>
+    <%= form.number_field :rate, class: "form-control", placeholder: "例）80" %>
   </div>
+
 
   <div class="field">
     <%= form.label '本日の振り返り(反省）' %>
-    <%= form.text_area :review %>
+    <%= form.text_area :review, class: "form-control", rows: "8", placeholder: "例）予定通りに進んだ。" %>
   </div>
 
   <div class="field">
     <%= form.label '明日の目標' %>
-    <%= form.text_area :plan %>
+    <%= form.text_area :plan, class: "form-control", rows: "8", placeholder: "例）アポ2件。" %>
   </div>
 
   <div class="field">
     <%= form.label '本日のトピック題名' %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "form-control", placeholder: "例）名古屋の不動産価格上昇" %>
   </div>
 
   <div class="field">
     <%= form.label '本日のトピック' %>
-    <%= form.text_area :topic %>
+    <%= form.text_area :topic, class: "form-control", rows: "8", placeholder: "例）リニアモーターカーの開通による、再開発事業により、名古屋の地価が上昇している。" %>
   </div>
 
   <div class="actions">

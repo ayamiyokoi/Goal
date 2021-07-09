@@ -11,17 +11,20 @@
 </p>
 <p>
 
-  <%= attachment_image_tag @group, :group_image, size: '200x200', format: 'jpeg' %>
+  <%= attachment_image_tag @group, :group_image, size: '200x200', format: 'jpeg', class: "img" %>
 </p>
 </div>
 <div class="col-8">
 <p>グループメンバー</p>
-<p><% @group.users.each do |user| %>
+<div><% @group.users.each do |user| %>
 
+        <div>
+        <%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
         <%= user.name %>
-        <%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
         <%= link_to 'Show', user %>
-    <% end %></p>
+        </div>
+    <% end %>
+</div>
 </div>
 <%= link_to '編集する', edit_group_path(@group), class: "btn btn-outline-primary" %> |
 <%= link_to '一覧に戻る', groups_path, class: "btn btn-outline-primary" %>

@@ -14,12 +14,12 @@
 
 <p>
   <strong>開始日時:</strong>
-  <%= @event.start %>
+  <%= l(@event.start_time, format: :long) %>
 </p>
 
 <p>
   <strong>終了日時:</strong>
-  <%= @event.end %>
+  <%= l(@event.end_time, format: :long) %>
 </p>
 
 <%= link_to '編集', edit_event_path(@event) %> |

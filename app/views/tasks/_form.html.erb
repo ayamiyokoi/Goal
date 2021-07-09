@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label 'タスク名' %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "例）電話掛け100件" %>
   </div>
 
   <div class="field">
     <%= form.label 'タスク詳細' %>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, class: "form-control", placeholder: "例）14:00~16:00にアポ獲得のため、電話掛け" %>
   </div>
 
   <div class="field">
     <%= form.label '期限' %>
-    <%= form.datetime_field :date %>
+    <%= form.datetime_field :date, class: "form-control" %>
   </div>
 
   <div class="field">

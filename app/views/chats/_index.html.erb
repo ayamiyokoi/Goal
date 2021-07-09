@@ -2,7 +2,7 @@
       <% chats.each do |chat| %>
         <div class="chat-box row">
           <div class="chat-face col-1">
-            <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg" %>
+            <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
           </div>
           <div class="chat-hukidashi col-11"> <strong><%= chat.chat %></strong>
             <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>

@@ -3,8 +3,9 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    # 自分のタスクのみ表示
-    @tasks = Task.where(user_id: current_user.id)
+    # 自分のタスクのみ表示、処理済、未処理で判別
+    @tasks_active = Task.where(user_id: current_user.id, finished: false)
+    @tasks_done = Task.where(user_id: current_user.id, finished: true)
     @task = Task.new
   end
 

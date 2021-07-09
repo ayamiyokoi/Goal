@@ -66,9 +66,11 @@ gem "refile-mini_magick"
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem 'kaminari','~> 1.2.1'
 gem 'jquery-rails'
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
+gem "simple_calendar", "~> 2.4"
 gem 'font-awesome-sass', '~> 5.13'
 gem 'bootstrap', '~> 4.5'
 gem 'dotenv-rails'
 gem 'ransack'
+gem 'rails-i18n'
+gem "chartkick"
+gem 'groupdate'

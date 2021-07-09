@@ -12,9 +12,10 @@
  *
  *= require_tree .
  *= require_self
- *= require fullcalendar
+ *= require simple_calendar
  */
 @import "bootstrap";
+
 
 .navbar-light .navbar-nav .nav-link:hover{
     color: white;
@@ -24,18 +25,63 @@
     color: white;
     background-color: #e3f2fd;
 }
+.navbar{
+    margin-right: -2%;
+}
 body{
-    position: relative;
-    min-height: 800px;
+    // position: relative;
+    min-height: 600px;
 }
 footer{
-    position: absolute;
-    bottom: 0;
+    // position: absolute;
+    // bottom: 0;
     width: 100vw;
+    background-color: #e3f2fd;
+}
+.footer{
+    text-align: center;
+    height: 60px;
+    padding-top: 20px;
 }
 td.fc-sat {
     background-color: #eaf4ff;
 }
 td.fc-sun {
     background-color: #ffeaea;
+}
+.simple-calendar {
+  .day {}
+
+  .wday-0 {
+    background-color: #fce1ed;
+  }
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {
+     background-color: #e1fbfc;
+  }
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {
+  }
+  .has-events div{
+    display: inline-block;
+    background-color: #adff2f;
+  }
+}
+.img {
+  border-radius: 50%;
+  object-fit: cover;
 }

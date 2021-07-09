@@ -13,7 +13,7 @@
           <tr>
             <th>目標</th>
             <th>期限</th>
-            <th>ステータス</th>
+            <th>達成ステータス</th>
             <th>目標設定日</th>
             <th></th>
             <th></th>
@@ -50,14 +50,15 @@
     <%= form_with model: @goal do |f| %>
        <div class="field">
     <%= f.label '目標' %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control", placeholder: "例）今月の契約数：1件" %>
   </div>
 
   <div class="field">
     <%= f.label '期限' %>
-    <%= f.date_field :date %>
+    <%= f.date_field :date, class: "form-control" %>
   </div>
   <div class="field">
+    達成ステータス
     <%= f.radio_button :achieved, :true %>
   <%= f.label :achieved, "達成", {value: :true, style: "display: inline-block;"} %>
   <%= f.radio_button :achieved, :false %>

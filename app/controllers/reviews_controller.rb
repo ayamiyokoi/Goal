@@ -3,14 +3,15 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
-    @reviews = Review.all
+    @reviews_mine = Review.where(user_id: current_user.id)
+    @reviews_all = Review.all
   end
 
   def topics
     @reviews_mine = Review.where(user_id: current_user.id)
     likes = Like.where(user_id: current_user.id).pluck(:review_id)
     @reviews_liked = Review.find(likes)
-    @reviews_like = Review.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+    @reviews_like = Review.sorted_by_likes
     @reviews = Review.all
   end
 

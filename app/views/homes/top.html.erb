@@ -1,7 +1,17 @@
-<div style="width:100vw">
-  <img src="/assets/goal_top.jpg" width="100%">
-  <!--<p>GOAL</p>-->
-  <!--<p>→ GOALとは</p>-->
-  <!--<p>→ 始める！(新規登録）</p>-->
-  <!--<p>→ ログイン</p>-->
+<div class="top">
+  <dl class="text1">
+    <img src="/assets/logo_goal.png" width="60%">
+  </dl>
+  <dl class="text2">
+    <%= link_to about_path, class: "link" do %>
+    <img src="/assets/logo_goal.png" width="100px">とは？
+    <% end %>
+  </dl>
+  <dl class="text3">
+    <%= link_to "始める！(新規登録)", new_user_registration_path, class: "link" %>
+  </dl>
+  <dl class="text4">
+    <%= link_to 'ログイン', new_user_session_path, class: "link" %>
+  </dl>
+
 </div>

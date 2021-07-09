@@ -1,3 +1,48 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.top{
+  background-image: image-url('top_img');
+  height: auto;
+  background-size: cover;
+  width: 100vw;
+
+}
+
+div.top dl {
+  text-align: center;
+  font-family: serif;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  display: block;
+  padding: 10px;
+  opacity: 0;
+  -webkit-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+}
+
+div.top dl.active {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+.text1{
+  padding: 100px 0 50px !important;
+}
+
+.text4{
+  padding-bottom: 200px !important;
+  margin-bottom: 0;
+}
+.link{
+    color: white !important;
+}
+.link:hover{
+    text-decoration: none;
+}
