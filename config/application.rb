@@ -16,7 +16,7 @@ module GOAL
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.time_zone = 'Tokyo'
-    config.i18n.available_locales = [:jp, :en]
-    config.i18n.default_locale = :jp
+    config.i18n.available_locales = [:ja, :en]
+    config.i18n.default_locale = :ja
   end
 end

@@ -23,10 +23,10 @@
         <td><%= review.title %></td>
         <td><%= review.topic %></td>
         <td><%= link_to "#{review.comments.count} 件", review_path(review.id) %></td>
-        <td><%= link_to '詳細画面', review %></td>
+        <td><%= link_to '詳細画面', review, class: "btn btn-outline-primary" %></td>
         <% if review.user_id == current_user.id %>
-        <td><%= link_to '編集', edit_review_path(review) %></td>
-        <td><%= link_to '削除', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '編集', edit_review_path(review), class: "btn btn-outline-success" %></td>
+        <td><%= link_to '削除', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
         <% end %>
         <td>(<%= review.liked_users.count %>)</td>
       </tr>
