@@ -25,14 +25,23 @@
     color: white;
     background-color: #e3f2fd;
 }
+.navbar{
+    margin-right: -2%;
+}
 body{
-    position: relative;
-    min-height: 800px;
+    // position: relative;
+    min-height: 600px;
 }
 footer{
-    position: absolute;
-    bottom: 0;
+    // position: absolute;
+    // bottom: 0;
     width: 100vw;
+    background-color: #e3f2fd;
+}
+.footer{
+    text-align: center;
+    height: 60px;
+    padding-top: 20px;
 }
 td.fc-sat {
     background-color: #eaf4ff;
@@ -73,6 +82,6 @@ td.fc-sun {
   }
 }
 .img {
-  border-radius: 50%; 
-  object-fit: cover; 
+  border-radius: 50%;
+  object-fit: cover;
 }
