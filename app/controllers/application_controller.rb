@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # ログイン済ユーザーのみにアクセスを許可する
-  before_action :authenticate_user!, except: [:top, :about]
+  # before_action :authenticate_user!, except: [:top, :about], if: :use_before_action?
    # deviseコントローラーにストロングパラメータを追加する
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -20,7 +20,9 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
-  
+  # def use_before_action?
+  #   true
+  # end
 
   def set_search
     @search = Review.ransack(params[:q])

@@ -32,7 +32,9 @@ Rails.application.routes.draw do
   resources :goals, except: [:new, :show]
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: [:index]
-  get 'inquiry/index' =>'inquiry#index'
+  get 'inquiry/index' => 'inquiry#index'
+  post 'inquiry/create' => 'inquiry#create'
+  get 'inquiry/confirm' => 'inquiry#confirm'
   post 'inquiry/confirm' => 'inquiry#confirm'
   post 'inquiry/thanks' => 'inquiry#thanks'
 

@@ -1,22 +1,45 @@
 class InquiryController < ApplicationController
   def index
     @inquiry = Inquiry.new
-    render :action => 'index'
+  end
+
+  def create
+    
+    redirect_to inquiry_confirm_path(name: params[:inquiry][:name], email: params[:inquiry][:email], message: params[:inquiry][:message])
   end
 
   def confirm
+    @inquiry = Inquiry.new(name: params[:name], email: params[:email], message: params[:message])
+
     # 入力値のチェック
-    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
-    if @inquiry.valid?
-      render :action => 'confirm'
-    else
-      render :action => 'index'
-    end
+
+    # if @inquiry.valid?
+    #   render :action => 'confirm'
+    # else
+    #   render :action => 'index'
+    # end
   end
 
+  # def confirm
+  #   # 入力値のチェック
+  #   @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
+  #   if @inquiry.valid?
+  #     redirect_to inquiry_confirm_path
+  #   else
+  #     render :action => 'index'
+  #   end
+  # end
+
   def thanks
-    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))    
+    
+    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
     InquiryMailer.received_email(@inquiry).deliver
-    render :action => 'thanks'
   end
+
+  # private
+
+  # def use_before_action?
+  #   false
+  # end
+
 end
