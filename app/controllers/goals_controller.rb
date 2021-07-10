@@ -4,8 +4,8 @@ class GoalsController < ApplicationController
   
   def index
      # 自分の目標のみ表示、達成済、未達成で判別
-    @goals_active = Goal.where(user_id: current_user.id, finished: false)
-    @goals_done = Goal.where(user_id: current_user.id, finished: true)
+    @goals_active = Goal.where(user_id: current_user.id, achieved: false)
+    @goals_done = Goal.where(user_id: current_user.id, achieved: true)
     @goal = Goal.new
   end
   

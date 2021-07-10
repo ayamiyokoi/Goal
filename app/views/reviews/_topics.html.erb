@@ -1,4 +1,5 @@
-<div class="table">
+ <% if reviews.present? %>
+ <div class="table">
   <table>
   <thead>
     <tr>
@@ -27,6 +28,9 @@
         <% end %>
 
       </tr>
+    <% end %>
+    <% else %>
+     <p style="padding:20px;color:blue;">データが登録されていません。</p>
     <% end %>
   </tbody>
 </table>
