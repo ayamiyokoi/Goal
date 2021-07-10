@@ -1,4 +1,6 @@
-<table>
+ <% if reviews.present? %>
+ <div class="table">
+  <table>
   <thead>
     <tr>
       <th>ユーザー</th>
@@ -24,8 +26,13 @@
 
         <td><%= link_to '削除', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
         <% end %>
-        
+
       </tr>
+    <% end %>
+    <% else %>
+     <p style="padding:20px;color:blue;">データが登録されていません。</p>
     <% end %>
   </tbody>
 </table>
+<%= paginate reviews %>
+</div>

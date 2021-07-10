@@ -1,4 +1,4 @@
-
+ <% if tasks.present? %>
 <div class="table">
   <table>
   <thead>
@@ -35,6 +35,10 @@
         </td>
       </tr>
     <% end %>
+     <% else %>
+    <p style="padding:20px;color:blue;">データが登録されていません。</p>
+    <% end %>
   </tbody>
 </table>
+<%= paginate tasks %>
 </div>

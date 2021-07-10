@@ -4,8 +4,8 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     # 自分のタスクのみ表示、処理済、未処理で判別
-    @tasks_active = Task.where(user_id: current_user.id, finished: false)
-    @tasks_done = Task.where(user_id: current_user.id, finished: true)
+    @tasks_active = Task.where(user_id: current_user.id, finished: false).page(params[:page]).per(5)
+    @tasks_done = Task.where(user_id: current_user.id, finished: true).page(params[:page]).per(10)
     @task = Task.new
   end
 

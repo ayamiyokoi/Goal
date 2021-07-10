@@ -1,8 +1,8 @@
 class FollowsController < ApplicationController
   def show
     user = User.find(params[:user_id])
-    @users_followings = user.followings
-    @users_followers = user.followers
+    @users_followings = user.followings.page(params[:page]).per(10)
+    @users_followers = user.followers.page(params[:page]).per(10)
   end
 
   def create

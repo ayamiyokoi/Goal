@@ -17,7 +17,9 @@
     <tr>
       <td><%= attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></td>
       <td><%= link_to user.name, user_path(user) %></td>
-      <td><%= truncate(user.introduction, length:35) %></td>
+      <td>
+        <%= truncate(user.introduction, length:35) %>
+       </td>
       <td>フォロー数: <%= user.followings.count %></td>
       <td>フォロワー数: <%= user.followers.count %></td>
       <td>
@@ -37,5 +39,5 @@
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
-
+<%= paginate follows %>
 

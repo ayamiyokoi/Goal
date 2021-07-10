@@ -32,9 +32,11 @@ Rails.application.routes.draw do
   resources :goals, except: [:new, :show]
   delete 'notifications/destroy_all' => 'notifications#destroy_all'
   resources :notifications, only: [:index]
-  get 'inquiry/index' =>'inquiry#index'
-  post 'inquiry/confirm' => 'inquiry#confirm'
+  resources :inquiry, only: [:index, :create]
+  get 'inquiry/confirm' => 'inquiry#confirm'
+  # post 'inquiry/confirm' => 'inquiry#confirm'
   post 'inquiry/thanks' => 'inquiry#thanks'
+  get 'inquiry/thank' => 'inquiry#thank'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

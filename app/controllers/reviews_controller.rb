@@ -3,16 +3,16 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
-    @reviews_mine = Review.where(user_id: current_user.id)
-    @reviews_all = Review.all
+    @reviews_mine = Review.where(user_id: current_user.id).page(params[:page]).per(10)
+    @reviews_all = Review.all.page(params[:page]).per(10)
   end
 
   def topics
-    @reviews_mine = Review.where(user_id: current_user.id)
+    @reviews_mine = Review.where(user_id: current_user.id).page(params[:page]).per(10)
     likes = Like.where(user_id: current_user.id).pluck(:review_id)
-    @reviews_liked = Review.find(likes)
-    @reviews_like = Review.sorted_by_likes
-    @reviews = Review.all
+    @reviews_liked = Review.find(likes).page(params[:page]).per(10)
+    @reviews_like = Review.sorted_by_likes.page(params[:page]).per(10)
+    @reviews = Review.all.page(params[:page]).per(10)
   end
 
   # GET /reviews/1 or /reviews/1.json
