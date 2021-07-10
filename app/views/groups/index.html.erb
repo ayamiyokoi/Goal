@@ -1,32 +1,30 @@
 <div class="container">
+  <p id="notice"><%= notice %></p>
+  <h4>グループ一覧</h4>
   <div class="row">
     <div class="col-12">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#my_groups" class="nav-link active" data-toggle="tab">参加グループ一覧</a>
+    </li>
+    <li class="nav-item">
+      <a href="#all_groups" class="nav-link" data-toggle="tab">全グループ一覧</a>
+    </li>
+  </ul>
 
-<p id="notice"><%= notice %></p>
 
-<h4>グループ一覧</h4>
+  <div class="tab-content">
+    <div id="my_groups" class="tab-pane active">
+      <%= render 'index', groups: @groups_mine %>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>グループ名</th>
-      <th>グループ画像</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div id="all_groups" class="tab-pane">
+      <%= render 'index', groups: @groups_all %>
+    </div>
 
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.name %></td>
-        <td><%= attachment_image_tag group, :group_image, size: '60x60', format: 'jpeg', class: "img" %></td>
-        <td><%= link_to 'グループ詳細画面へ', group, class: "btn btn-outline-primary" %></td>
-        <td><%= link_to '編集', edit_group_path(group), class: "btn btn-outline-success" %></td>
-        <td><%= link_to '削除', group, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  </div>
+  
+
  </div>
 
 

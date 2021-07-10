@@ -60,7 +60,7 @@
         <% end %>
         <%= link_to '通知', notifications_path, class: "nav-link" %>
       </li>
-       <li class="nav-item dropdown">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ユーザー
         </a>
@@ -85,11 +85,15 @@
         </div>
         </li>
 
-<%= search_form_for @search, url: search_reviews_path, method: :get do |f| %>
-  <%= f.text_field :topic_cont, placeholder: '検索' %>
-  <%= f.submit ("検索する") %>
-<% end %>
+      <%= search_form_for @search, url: search_reviews_path, method: :get do |f| %>
+        <%= f.text_field :topic_cont, placeholder: '検索' %>
+        <%= f.submit ("検索する") %>
+      <% end %>
+      </ul>
+      </div>
       <% else %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
       </li>
@@ -106,15 +110,14 @@
 
         </div>
         </li>
-    <% end %>
-
-
-
+        
+        
     </ul>
 
-
+  
 
   </div>
+   <% end %>
 </nav>
 
 

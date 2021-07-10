@@ -1,5 +1,13 @@
 ---
+en:
+
+en:
+  hello: "Hello world"
+
 ja:
+  hello: 'こんにちは'
+  hoge:
+    fuga: 'fuga'
   activerecord:
     errors:
       messages:
@@ -7,6 +15,40 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+   
+    # クラス属性の名前　日本語訳
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+      group:
+        name: グループ名
+        group_image: グループ画像
+      chat:
+        chat: チャット
+      review:
+        rate: 達成率
+        review: 本日の振り返り(反省）
+        plan: 明日の目標
+        title: トピック題名
+        topic:  本日のトピック（学び）
+      comment:
+        comment: コメント
+      event:
+        title: イベント名
+        body: イベント詳細
+        start: 開始日時
+        end: 終了日時
+      goal:
+        name: 目標
+        date: 期限
+        achieved: 達成ステータス
+      task:
+        name: タスク名
+        body: タスク詳細
+        date: 期限
+        finished: 処理ステータス
+
   date:
     abbr_day_names:
     - 日
@@ -210,38 +252,6 @@ ja:
     previous: "<<"
     next: ">>"
     week: Woche
-# クラス属性の名前　日本語訳
-attributes:
-  user:
-    name: 名前
-    email: メールアドレス
-  group:
-    name: グループ名
-    group_image: グループ画像
-  chat:
-    chat: チャット
-  review:
-    rate: 達成率
-    review: 本日の振り返り(反省）
-    plan: 明日の目標
-    title: トピック題名
-    topic:  本日のトピック（学び）
-  comment:
-    comment: コメント
-  event:
-    title: イベント名
-    body: イベント詳細
-    start: 開始日時
-    end: 終了日時
-  goal:
-    name: 目標
-    date: 期限
-    achieved: 達成ステータス
-  task:
-    name: タスク名
-    body: タスク詳細
-    date: 期限
-    finished: 処理ステータス
 
 
 
