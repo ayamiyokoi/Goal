@@ -20,9 +20,7 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
-  def after_update_path_for(resource)
-    user_path(resource)
-  end
+  
 
   def set_search
     @search = Review.ransack(params[:q])

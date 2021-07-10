@@ -12,11 +12,11 @@
         </div>
       </div>
       
-      <div clas="row">
-        <div class="col-4">
+      <div class="row">
+        <div class="col-5">
           <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
         </div>
-        <div class="col-8">
+        <div class="col-7">
           <p>
             名前：<%= @user.name %>
           </p>
