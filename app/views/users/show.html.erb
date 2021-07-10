@@ -1,8 +1,11 @@
 <div class="container">
   <div class="row">
+    <div class="col-12">
   <h4>マイページ</h4>
+
     <% unless @review == nil %>
     <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
+    </div>
   </div>
   <div class="row">
     <div class="col-7 colum">

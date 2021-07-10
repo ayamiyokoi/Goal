@@ -1,30 +1,35 @@
- <% if chats.present? %>
+
+   <% if chats.present? %>
       <% chats.each do |chat| %>
-        <div class="chat-box row">
+        <div class="chat-box">
           <%if chat.user == current_user %>
-            <div class="mycomment">
-              <div class="chat-face col-1">
-            <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
-          </div>
-              <div class="chat-hukidashi col-11">
-                <p> <strong><%= chat.chat %></strong>
+            <div class="mycomment row">
+    
+              <div class="chat-fukidashi col-4 offset-4">
+                <p> <strong><%= chat.chat %></strong><br>
             <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%>
             </p>
-          <%= link_to(group_chat_path(group_id: chat.group_id, id: chat.id), method: :delete, remote: true) do %>
+            </div>
+               <div class="chat-face col-1">
+            <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
+            <%= link_to(group_chat_path(group_id: chat.group_id, id: chat.id), method: :delete, remote: true) do %>
             <i class="fas fa-trash-alt"></i>
+             <% end %>
+          </div>
+          
          
-        <% end %>
-         </div>
+       
+       
             </div>
           <% else %>
-            <div class="fukidasi">
+            <div class="fukidasi row">
                    <div class="faceicon col-1">
             <%= attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
           </div>
               <div class="chatting col-11">
                 <div class="says">
                   
-                <p><strong><%= chat.chat %></strong>
+                <p><strong><%= chat.chat %></strong><br>
             <%= chat.created_at.strftime("%Y-%m-%d %H:%M")%></p>
               </div> 
 
