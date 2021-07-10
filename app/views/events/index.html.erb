@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
+
 <div class="container">
+  <p id="notice"><%= notice %></p>
   <div class="row">
 
 <div class="col-12">
@@ -33,20 +34,21 @@
   </tbody>
 </table>
 </div>
+</div>
+<div class="row">
 <div class="col-12">
 
 <%= link_to '新しい予定の入力', new_event_path, class: "btn btn-outline-primary" %>
 </div>
-<div class="col-12" style="margin-bottom:200px;">
+</div>
+<div class="row">
+<div class="col-12" style="margin-bottom:100px;">
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a href="#month_calendar" class="nav-link active" data-toggle="tab">月</a>
     </li>
     <li class="nav-item">
       <a href="#week_calendar" class="nav-link" data-toggle="tab">週</a>
-    </li>
-    <li class="nav-item">
-      <a href="#day_calendar" class="nav-link" data-toggle="tab">日</a>
     </li>
   </ul>
 
@@ -73,17 +75,7 @@
   <% end %>
 <% end %>
 </div>
-<div id="day_calendar" class="tab-pane">
-<%= calendar(number_of_days: 2, events: @events) do |date, events| %>
-  <%= date %>
-  <% events.each do |event| %>
-    <div>
-      <%= event.title %>
-    </div>
-  <% end %>
-<% end %>
 </div>
 </div>
 </div>
-  </div>
-</div>
+
