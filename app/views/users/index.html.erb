@@ -1,35 +1,4 @@
 <div class="container">
 <h4>ユーザー一覧</h4>
-<% if @users.present? %>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>名前</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <td><%= attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></td>
-      <td><%= link_to user.name, user_path(user) %></td>
-      <td>
-        <% unless current_user == user %>
-        <% if current_user.following?(user) %>
-  <%= link_to "Unfollow", user_follows_path(user.id), method: :delete %>
-<% else %>
-  <%= link_to "Follow", user_follows_path(user.id), method: :post %>
-<% end %>
-<% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-
-
-      <% end %>
+<%= render 'follows/follow', follows: @users %>
 </div>
