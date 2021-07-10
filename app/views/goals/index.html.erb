@@ -1,49 +1,31 @@
 <div class="container">
-   
+      <h4>目標一覧</h4>
   <div class="row">
     <div class="col">
-    <h4>目標一覧</h4>
-<div class="goals">
-  <div class="goal">
-    <% if @goals.present? %>
-      <% @goals.each do |goal| %>
-      <div class="table">
-      <table>
-        <thead>
-          <tr>
-            <th>目標</th>
-            <th>期限</th>
-            <th>達成ステータス</th>
-            <th>目標設定日</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= goal.name %></td>
-            <td><%= goal.date.strftime("%Y-%m-%d") %></td>
-            <td>
-              <% if goal.achieved == true %>
-              達成
-              <% else %>
-              未達成
-              <% end %>
-            </td>
-            <td><%= goal.created_at.strftime("%Y-%m-%d") %></td>
-            <th><%= link_to '編集', edit_goal_path(goal), class: "btn btn-outline-success" %></th>
-            <th><%= link_to '削除する', goal_path(goal), class: "btn btn-outline-danger" %></th>
-          </tr>
-        </tbody>
-      </table>
-      </div>
+ 
+     <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#goal_active" class="nav-link active" data-toggle="tab">未達成目標</a>
+    </li>
+    <li class="nav-item">
+      <a href="#goal_done" class="nav-link" data-toggle="tab">達成済み目標</a>
+    </li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="goal_active" class="tab-pane active">
+      <%= render 'index', goals: @goals_active %>
+    </div>
+    <div id="goal_done" class="tab-pane">
+      <%= render 'index', goals: @goals_done %>
+    </div>
 
-      <% end %>
-    <% end %>
+  </div>
+  
+
+   
   </div>
   </div>
-  </div>
-</div>
 <div class="row">
      <div class="col">
     <h4>目標入力</h4>
