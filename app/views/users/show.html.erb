@@ -1,30 +1,35 @@
 <div class="container">
-  
+  <div class="row">
   <h4>マイページ</h4>
-  <% unless @review == nil %>
-  <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
+    <% unless @review == nil %>
+    <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
+  </div>
   <div class="row">
     <div class="col-7 colum">
-      <h5>ユーザー</h5>
-      <div clas="row">
-    <div class="col-4">
-
-      <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
-    </div>
-    <div class="col-8">
-      <div class="field">
-   名前
-    <%= @user.name %>
-  </div>
-
-  <div class="field">
-   メールアドレス
-    <%= @user.email %>
-  </div>
-  <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
-    </div>
+      <div class="row">
+        <div class="col-12">
+          <h5>ユーザー</h5>
+        </div>
       </div>
+      
+      <div clas="row">
+        <div class="col-4">
+          <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
+        </div>
+        <div class="col-8">
+          <p>
+            名前：<%= @user.name %>
+          </p>
+          <p>
+            メールアドレス：<%= @user.email %>
+          </p>
+           <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+      
     </div>
+    
+    
     <div class="col-4 offset-md-1 colum">
       <h5>達成率</h5>
 
@@ -32,19 +37,25 @@
       <p style="font-size:20px;">本日の目標達成率：<strong style="font-size:30px;"><%= @review.rate %>%</strong></p>
     </div>
     </div>
-    <div class="row">
+  <div class="row">
     <div class="col-12 colum">
       <h5>本日の振り返り(反省)</h5>
       <p><%= @review.review %></p>
     </div>
+  </div>
+  <div class="row">
     <div class="col-12 colum">
       <h5>明日の目標</h5>
       <p><%= @review.plan %></p>
     </div>
+  </div>
+  <div class="row">
     <div class="col-12 colum">
       <h5>本日のトピック:<%= @review.title %></h5>
       <p><%= @review.topic %></p>
     </div>
+  </div>
+  <div class="row">
     <div class="col-12">
       <p>コメント数：<%= link_to "#{@review.comments.count} 件", review_path(@review.id) %>
          いいね数：<%= @review.liked_users_count %>
@@ -55,14 +66,14 @@
         <% end %>
       </p>
     </div>
-</div>
+  </div>
 
   <div class="row">
     <%= line_chart @data, xtitle: "日付", ytitle: "達成率", width: "800px", height: "500px" %>
   </div>
-  <% else %>
-   <h5>ユーザー</h5>
-      <div clas="row">
+    <% else %>
+  <h4>ユーザー</h4>
+  <div clas="row">
     <div class="col-4">
 
       <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
@@ -80,6 +91,6 @@
   <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
     </div>
     </div>
-<% end %>
+    <% end %>
 
 </div>

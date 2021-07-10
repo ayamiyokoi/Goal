@@ -31,8 +31,8 @@
               <% end %>
             </td>
             <td><%= goal.created_at.strftime("%Y-%m-%d") %></td>
-            <th><%= link_to '編集', edit_goal_path(goal), class: "btn btn-success" %></th>
-            <th><%= link_to '削除する', goal_path(goal), class: "btn btn-danger" %></th>
+            <th><%= link_to '編集', edit_goal_path(goal), class: "btn btn-outline-success" %></th>
+            <th><%= link_to '削除する', goal_path(goal), class: "btn btn-outline-danger" %></th>
           </tr>
         </tbody>
       </table>
@@ -47,29 +47,7 @@
 <div class="row">
      <div class="col">
     <h4>目標入力</h4>
-    <%= form_with model: @goal do |f| %>
-       <div class="field">
-    <%= f.label '目標' %>
-    <%= f.text_field :name, class: "form-control", placeholder: "例）今月の契約数：1件" %>
-  </div>
-
-  <div class="field">
-    <%= f.label '期限' %>
-    <%= f.date_field :date, class: "form-control" %>
-  </div>
-  <div class="field">
-    達成ステータス
-    <%= f.radio_button :achieved, :true %>
-  <%= f.label :achieved, "達成", {value: :true, style: "display: inline-block;"} %>
-  <%= f.radio_button :achieved, :false %>
-  <%= f.label :achieved, "未達成", {value: :false, style: "display: inline-block;"} %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "投稿", class: 'form-submit'%>
-  </div>
-
-    <% end %>
+   <%= render 'form', goal: @goal %>
 </div>
 </div>
 </div>

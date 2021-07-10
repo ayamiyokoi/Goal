@@ -13,7 +13,7 @@
     <% @users.each do |user| %>
     <tr>
       <td><%= attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></td>
-      <td><%= user.name %></td>
+      <td><%= link_to user.name, user_path(user) %></td>
       <td>
         <% unless current_user == user %>
         <% if current_user.following?(user) %>

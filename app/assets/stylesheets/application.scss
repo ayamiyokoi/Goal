@@ -28,60 +28,36 @@
 .navbar{
     margin-right: -2%;
 }
-body{
-    // position: relative;
-    min-height: 600px;
-}
-footer{
-    // position: absolute;
-    // bottom: 0;
-    width: 100vw;
-    background-color: #e3f2fd;
-}
-.footer{
-    text-align: center;
-    height: 60px;
-    padding-top: 20px;
-}
+
 td.fc-sat {
     background-color: #eaf4ff;
 }
 td.fc-sun {
     background-color: #ffeaea;
 }
-.simple-calendar {
-  .day {}
 
-  .wday-0 {
-    background-color: #fce1ed;
-  }
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {
-     background-color: #e1fbfc;
-  }
-
-  .today {}
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month {}
-  .next-month { }
-  .current-month {}
-
-  .has-events {
-  }
-  .has-events div{
-    display: inline-block;
-    background-color: #adff2f;
-  }
-}
 .img {
   border-radius: 50%;
   object-fit: cover;
+}
+.footerFixed{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+footer{
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  height: 60px;
+  padding-top: 20px;
+  background-color: #e3f2fd;
+}
+.container{
+  padding: 40px;
+}
+.row{
+  padding-top: 20px;
 }

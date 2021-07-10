@@ -1,3 +1,39 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.simple-calendar {
+  .day {}
+
+  .wday-0 {
+    background-color: #fce1ed;
+  }
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {
+     background-color: #e1fbfc;
+  }
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {
+  }
+  .has-events div{
+    display: inline-block;
+    background-color: #adff2f;
+  }
+  .calendar-heading{
+    text-align: center;
+    font-size: 30px;
+  }
+}
