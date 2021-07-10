@@ -3,8 +3,8 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
-    @groups_all = Group.all
-    @groups_mine = current_user.groups
+    @groups_all = Group.all.page(params[:page]).per(10)
+    @groups_mine = current_user.groups.page(params[:page]).per(10)
     @group = Group.new
   end
 
