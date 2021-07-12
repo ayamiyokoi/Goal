@@ -46,3 +46,28 @@ div.top dl.active {
 .link:hover{
     text-decoration: none;
 }
+.about{
+  font-size: 30px;
+}
+.box{
+  background-color: #e3f2fd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.about-link{
+    color: blue !important;
+}
+.about-link:hover{
+    text-decoration: none;
+}
+.que{
+  border-bottom: dashed 3px white ;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+.use{
+  padding: 10px;
+  color: blue;
+  display: inline-block;
+}
