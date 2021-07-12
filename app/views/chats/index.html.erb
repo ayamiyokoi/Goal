@@ -3,18 +3,13 @@
     <div class="col">
       <h4>グループチャット</h4>
       <div class="chats">
-        <div id="chat">
-          <%= render partial: 'index', locals: { chats: @chats} %>
-        </div>
         <div id="posts">
           <%= render partial: 'form', locals: {group: @group, chat: @chat} %>
         </div>
+        <div id="chat">
+          <%= render partial: 'index', locals: { chats: @chats} %>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <%= link_to 'グループ一覧画面へ', groups_path, class: "btn btn-outline-success" %>
     </div>
   </div>
 </div>
