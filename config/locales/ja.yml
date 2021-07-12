@@ -1,7 +1,6 @@
 
 ja:
-  # sign_up: '登録'
-  #     characters minimum: '文字以上'
+
   activerecord:
     errors:
       messages:
@@ -9,15 +8,18 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-   
+
     # クラス属性の名前 日本語訳
     attributes:
       user:
+        Image: プロフィール画像
         name: 名前
         email: メールアドレス
         password: パスワード
         password_confirmation: 確認用パスワード
-        # remenber_me: ログインしたままにする
+        remember_me: 次回から自動的にログイン
+        introduction: 自己紹介
+        current_password: 現在のパスワード
       group:
         name: グループ名
         group_image: グループ画像
@@ -45,7 +47,6 @@ ja:
         body: タスク詳細
         date: 期限
         finished: 処理ステータス
-
   date:
     abbr_day_names:
     - 日
