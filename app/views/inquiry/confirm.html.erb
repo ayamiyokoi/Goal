@@ -3,7 +3,7 @@
   <h1>お問い合わせ</h1>
 </div>
 
-<%= form_with model: @inquiry, url: inquiry_thanks_path, method: :post do |f| %>
+<%= form_with model: @inquiry, url: inquiry_thanks_path, local: true do |f| %>
   <table class="table">
     <tr>
       <th>名前</th>
@@ -29,5 +29,5 @@
   </table>
   <%= f.submit '送信', :class => 'btn btn-primary' %>
 <% end %>
-  
+
 </div>
