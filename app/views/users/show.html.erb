@@ -80,6 +80,7 @@
   </div>
 
   <div class="row">
+    <%= link_to '前の一週間', user_path(current_user.id, week_id: params[:week_id].to_i - 1) %>
     <%= line_chart @data, xmin: @from, xmax: @to %>
     <%= link_to '次の一週間', user_path(current_user.id, week_id: params[:week_id].to_i + 1) %>
   </div>
