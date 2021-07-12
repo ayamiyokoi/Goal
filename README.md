@@ -1,5 +1,5 @@
 # GOAL
-
+[![Rails Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop-rails)
 ## サイト概要
 会員登録したユーザーだけが使える、目標達成に近づくための振り返りが行えるサイト。<br>
 目標を設定し、毎日の成果の振り返りを記入する。<br>
