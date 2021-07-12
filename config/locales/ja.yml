@@ -1,13 +1,7 @@
----
-en:
-
-en:
-  hello: "Hello world"
 
 ja:
-  hello: 'こんにちは'
-  hoge:
-    fuga: 'fuga'
+  # sign_up: '登録'
+  #     characters minimum: '文字以上'
   activerecord:
     errors:
       messages:
@@ -16,11 +10,14 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
    
-    # クラス属性の名前　日本語訳
+    # クラス属性の名前 日本語訳
     attributes:
       user:
         name: 名前
         email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        # remenber_me: ログインしたままにする
       group:
         name: グループ名
         group_image: グループ画像

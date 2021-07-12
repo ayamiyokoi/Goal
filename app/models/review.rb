@@ -19,6 +19,8 @@ class Review < ApplicationRecord
   def liked_users_count
     liked_users.count
   end
+  
+  
 
   # いいね通知機能
   def create_notification_like(current_user)
