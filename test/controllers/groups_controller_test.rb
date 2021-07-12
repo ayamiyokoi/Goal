@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class GroupsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create group" do
-    assert_difference('Group.count') do
+    assert_difference("Group.count") do
       post groups_url, params: { group: { group_image: @group.group_image, name: @group.name } }
     end
 
@@ -39,7 +41,7 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy group" do
-    assert_difference('Group.count', -1) do
+    assert_difference("Group.count", -1) do
       delete group_url(@group)
     end
 

@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class ReviewsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create review" do
-    assert_difference('Review.count') do
+    assert_difference("Review.count") do
       post reviews_url, params: { review: { plan: @review.plan, rate: @review.rate, review: @review.review, tag_id: @review.tag_id, title: @review.title, today_id: @review.today_id, tomorrow_id: @review.tomorrow_id, topic: @review.topic, user_id: @review.user_id } }
     end
 
@@ -39,7 +41,7 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy review" do
-    assert_difference('Review.count', -1) do
+    assert_difference("Review.count", -1) do
       delete review_url(@review)
     end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Chartkick.options = {
   xtitle: "日付",
   ytitle: "達成率",

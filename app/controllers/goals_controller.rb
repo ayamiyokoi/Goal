@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[ edit update destroy ]
   
@@ -15,7 +17,7 @@ class GoalsController < ApplicationController
     if @goal.save
       redirect_to request.referer
     else
-      redirect_to '/'
+      redirect_to "/"
     end
   end
 
@@ -26,7 +28,7 @@ class GoalsController < ApplicationController
     if @goal.update(goal_params)
       redirect_to goals_path
     else
-      redirect_to '/'
+      redirect_to "/"
     end
   end
   
@@ -37,7 +39,6 @@ class GoalsController < ApplicationController
   
   
   private
-  
   def set_goal
       @goal = Goal.find(params[:id])
   end
