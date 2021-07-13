@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -128,6 +126,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "stage", default: 0
     t.string "name"
     t.text "introduction"
     t.text "profile_image_id"

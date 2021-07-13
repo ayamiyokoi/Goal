@@ -34,6 +34,13 @@ class ReviewsController < ApplicationController
 
   # POST /reviews or /reviews.json
   def create
+    review = Review.where(user_id: current_user.id, created_at: Time.current.at_beginning_of_day..Time.current.at_end_of_day)
+    if review.exists?
+      review.update(review_params)
+      format.html { redirect_to @review, notice: "Review was successfully updated." }
+      format.json { render :show, status: :ok, location: @review }
+    else
+
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     respond_to do |format|
@@ -44,6 +51,7 @@ class ReviewsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
+    end
     end
   end
 
