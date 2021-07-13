@@ -20,8 +20,7 @@ class GoalsController < ApplicationController
       if Goal.where(user_id: current_user.id).count == 2**current_user.stage
         #今のステージから1上がる
         current_user.stage = current_user.stage + 1
-        byebug
-        current_user.update(user_params)
+        current_user.save
       end
       redirect_to request.referer
     else
@@ -55,7 +54,4 @@ class GoalsController < ApplicationController
     params.require(:goal).permit(:name, :date, :achieved)
   end
 
-  def user_params
-    params.require(:user).permit(:name, :profile_image, :introduction, :level)
-  end
 end
