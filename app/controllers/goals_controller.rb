@@ -15,12 +15,11 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_params)
     @goal.user_id = current_user.id
     if @goal.save
-      #目標設定の個数が２のべき乗ごとにステージが上がる設定
-      #自分の目標の数が２の自分のステージ乗であるなら
-      if Goal.where(user_id: current_user.id).count == 2**current_user.stage
+      if Goal.stage_up?(current_user)
         #今のステージから1上がる
         current_user.stage = current_user.stage + 1
         current_user.save
+        flash[:notice] = "ステージ「＋１」アップ 、現在のステージは#{current_user.stage}になりました。"
       end
       redirect_to request.referer
     else

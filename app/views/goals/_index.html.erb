@@ -1,5 +1,5 @@
  <% if goals.present? %>
-      <% goals.each do |goal| %>
+
       <div class="table">
       <table>
         <thead>
@@ -13,6 +13,7 @@
           </tr>
         </thead>
         <tbody>
+           <% goals.each do |goal| %>
           <tr>
             <td><%= goal.name %></td>
             <td><%= goal.date.strftime("%Y-%m-%d") %></td>
@@ -27,11 +28,12 @@
             <th><%= link_to '編集', edit_goal_path(goal), class: "btn btn-outline-success" %></th>
             <th><%= link_to '削除する', goal_path(goal), class: "btn btn-outline-danger" %></th>
           </tr>
+          <% end %>
         </tbody>
       </table>
       </div>
 
-      <% end %>
+
     <% else %>
     <p style="padding:20px;color:blue;">データが登録されていません。</p>
     <% end %>

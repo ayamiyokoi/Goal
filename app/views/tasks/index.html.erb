@@ -1,8 +1,8 @@
 <div class="container">
-  
+
 <p id="notice"><%= notice %></p>
   <div class="row">
-    <div class="col-12">  
+    <div class="col-12">
       <h4>タスク一覧</h4>
         <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -12,7 +12,7 @@
             <a href="#task_done" class="nav-link" data-toggle="tab">処理済みタスク</a>
           </li>
         </ul>
-    
+
         <div class="tab-content">
           <div id="task_active" class="tab-pane active">
             <%= render 'index', tasks: @tasks_active %>
@@ -22,8 +22,8 @@
           </div>
         </div>
     </div>
-  
-   
+</div>
+
   <div class="row">
     <div class="col-12">
       <h4>新しいタスク</h4>
