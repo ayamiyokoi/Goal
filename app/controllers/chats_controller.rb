@@ -1,5 +1,6 @@
-class ChatsController < ApplicationController
+# frozen_string_literal: true
 
+class ChatsController < ApplicationController
   def index
     @group = Group.find(params[:group_id])
     @chat = Chat.new
@@ -25,9 +26,7 @@ class ChatsController < ApplicationController
   end
 
   private
-
-  def chat_params
-    params.require(:chat).permit(:chat)
-  end
-
+    def chat_params
+      params.require(:chat).permit(:chat)
+    end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   before_action :set_review, only: %i[ create destroy ]
 
@@ -12,7 +14,6 @@ class LikesController < ApplicationController
   end
 
      private
-
   def set_review
        @review = Review.find(params[:review_id])
   end

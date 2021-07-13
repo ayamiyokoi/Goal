@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class GoalsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
@@ -10,5 +12,4 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
     get goals_edit_url
     assert_response :success
   end
-
 end

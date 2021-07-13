@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :review
@@ -16,7 +18,7 @@ class Comment < ApplicationRecord
       review_id: review_id,
       comment_id: comment_id,
       visited_id: visited_id,
-      action: 'comment'
+      action: "comment"
     )
     # 自分が自分の投稿に対してコメントする場合は、通知済みとする
     if notification.visitor_id == notification.visited_id
@@ -24,6 +26,4 @@ class Comment < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
-
 end
