@@ -24,6 +24,9 @@
             名前：<%= @user.name %>
           </p>
           <p>
+            現在のステージ：<%= @user.stage %>
+          </p>
+          <p>
             メールアドレス：<%= @user.email %>
           </p>
           <p class="introduction">
@@ -86,8 +89,6 @@
   </div>
     <% else %>
   <h4>ユーザー</h4>
-  <div clas="row">
-    <div class="col-4">
 
       <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
     </div>
@@ -96,6 +97,9 @@
    名前
     <%= @user.name %>
   </div>
+   <p>
+            現在のステージ：<%= @user.stage %>
+          </p>
 
   <div class="field">
    メールアドレス

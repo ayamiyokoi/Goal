@@ -1,27 +1,22 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container">
+  <p id="notice"><%= notice %></p>
   <h4>イベント詳細</h4>
-<p>
-  <strong>イベント名:</strong>
-  <%= @event.title %>
-</p>
-
-<p>
-  <strong>イベント詳細:</strong>
-  <%= @event.body %>
-</p>
-
-<p>
-  <strong>開始日時:</strong>
-  <%= l(@event.start_time, format: :long) %>
-</p>
-
-<p>
-  <strong>終了日時:</strong>
-  <%= l(@event.end_time, format: :long) %>
-</p>
-
-<%= link_to '編集', edit_event_path(@event) %> |
-<%= link_to 'カレンダーに戻る', events_path %>
+  <p>
+    <strong>イベント名:</strong>
+    <%= @event.title %>
+  </p>
+  <p>
+    <strong>イベント詳細:</strong>
+    <%= @event.body %>
+  </p>
+  <p>
+    <strong>開始日時:</strong>
+    <%= l(@event.start_time, format: :long) %>
+  </p>
+  <p>
+    <strong>終了日時:</strong>
+    <%= l(@event.end_time, format: :long) %>
+  </p>
+  <%= link_to '編集', edit_event_path(@event) %> |
+  <%=link_to 'カレンダーに戻る', events_path %>
 </div>
