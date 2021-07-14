@@ -15,13 +15,11 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_params)
     @goal.user_id = current_user.id
     if @goal.save
-      #目標設定の個数が２のべき乗ごとにステージが上がる設定
-      #自分の目標の数が２の自分のステージ乗であるなら
-      if Goal.where(user_id: current_user.id).count == 2**current_user.stage
+      if Goal.stage_up?(current_user)
         #今のステージから1上がる
         current_user.stage = current_user.stage + 1
-        byebug
-        current_user.update(user_params)
+        current_user.save
+        flash[:notice] = "ステージ「＋１」アップ 、現在のステージは#{current_user.stage}です。"
       end
       redirect_to request.referer
     else
@@ -34,6 +32,11 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
+      if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review(user_id: current_user.id).count > 3**current_user.level
+          current_user.level = current_user.level + 1
+          current_user.save
+          flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
+      end
       redirect_to goals_path
     else
       redirect_to "/"
@@ -55,7 +58,4 @@ class GoalsController < ApplicationController
     params.require(:goal).permit(:name, :date, :achieved)
   end
 
-  def user_params
-    params.require(:user).permit(:name, :profile_image, :introduction, :level)
-  end
 end

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-  <h4>マイページ</h4>
+      <h4>マイページ</h4>
 
     <% unless @review == nil %>
     <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
@@ -25,6 +25,9 @@
           </p>
           <p>
             現在のステージ：<%= @user.stage %>
+          </p>
+          <p>
+            現在のレベル：<%= @user.level %>
           </p>
           <p>
             メールアドレス：<%= @user.email %>
@@ -65,7 +68,7 @@
   </div>
   <div class="row">
     <div class="col-12 colum">
-      <h5>本日のトピック:<%= @review.title %></h5>
+      <h5>本日のトピック: <%= @review.title %></h5>
       <p><%= @review.topic %></p>
     </div>
   </div>
@@ -98,8 +101,11 @@
     <%= @user.name %>
   </div>
    <p>
-            現在のステージ：<%= @user.stage %>
-          </p>
+       現在のステージ：<%= @user.stage %>
+  </p>
+  <p>
+    現在のレベル：<%= @user.level %>
+  </p>
 
   <div class="field">
    メールアドレス
