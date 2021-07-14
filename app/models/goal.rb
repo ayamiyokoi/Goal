@@ -2,6 +2,8 @@
 
 class Goal < ApplicationRecord
   belongs_to :user
+  validates :name, :presence => {:message => "を入力してください"}
+  validates :date, :presence => {:message => "を入力してください"}
 
   def self.stage_up?(current_user)
    #目標設定の個数が２のべき乗ごとにステージが上がる設定
