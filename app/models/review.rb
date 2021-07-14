@@ -6,6 +6,12 @@ class Review < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+
+  validates :rate, :presence => {:message => "を入力してください"}
+  validates :review, :presence => {:message => "を入力してください"}
+  validates :plan, :presence => {:message => "を入力してください"}
+  validates :title, :presence => {:message => "を入力してください"}
+  validates :topic, :presence => {:message => "を入力してください"}
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
@@ -21,8 +27,8 @@ class Review < ApplicationRecord
   def liked_users_count
     liked_users.count
   end
-  
-  
+
+
 
   # いいね通知機能
   def create_notification_like(current_user)

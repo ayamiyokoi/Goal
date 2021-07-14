@@ -19,7 +19,7 @@ class GoalsController < ApplicationController
         #今のステージから1上がる
         current_user.stage = current_user.stage + 1
         current_user.save
-        flash[:notice] = "ステージ「＋１」アップ 、現在のステージは#{current_user.stage}になりました。"
+        flash[:notice] = "ステージ「＋１」アップ 、現在のステージは#{current_user.stage}です。"
       end
       redirect_to request.referer
     else
@@ -32,6 +32,11 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
+      if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review(user_id: current_user.id).count > 3**current_user.level
+          current_user.level = current_user.level + 1
+          current_user.save
+          flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
+      end
       redirect_to goals_path
     else
       redirect_to "/"

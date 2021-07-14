@@ -4,7 +4,8 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :review
   has_many :notifications, dependent: :destroy
-
+  
+  validates :comment, :presence => {:message => "コメントを入力してください"}e
 
   # コメント通知機能
   def create_notification_comment(current_user, review_id, commented_id, comment_id)
