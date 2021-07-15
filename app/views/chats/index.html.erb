@@ -3,6 +3,9 @@
     <div class="col">
       <h4>グループチャット</h4>
       <div class="chats">
+        <div id="chats_error">
+    <%= render 'layouts/errors', model: @chat %>
+  </div>
         <div id="posts">
           <%= render partial: 'form', locals: {group: @group, chat: @chat} %>
         </div>

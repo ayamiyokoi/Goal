@@ -11,7 +11,9 @@ class ChatsController < ApplicationController
   def create
     @chat = @group.chats.build(chat_params)
     @chat.user_id = current_user.id
-    @chat.save
+    unless @chat.save
+      render 'error'
+    end
     @chats = @group.chats
   end
 

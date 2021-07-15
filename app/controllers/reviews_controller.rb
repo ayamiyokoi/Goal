@@ -37,7 +37,7 @@ class ReviewsController < ApplicationController
     review = Review.where(user_id: current_user.id, created_at: Time.current.at_beginning_of_day..Time.current.at_end_of_day)
     if review.exists?
       review.update(review_params)
-      format.html { redirect_to @review, notice: "Review was successfully updated." }
+      format.html { redirect_to @review, notice: "振り返りの更新に成功しました。" }
       format.json { render :show, status: :ok, location: @review }
     else
 
@@ -45,7 +45,7 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: "Review was successfully created." }
+        format.html { redirect_to @review, notice: "振り返りの作成に成功しました。" }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new, status: :unprocessable_entity }
