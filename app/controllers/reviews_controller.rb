@@ -1,20 +1,17 @@
 # frozen_string_literal: true
 
 class ReviewsController < ApplicationController
+  before_action :set_review_all, only: %i[ index topics ]
+  before_action :ret_review_mine, only: %i[ index topics ]
   before_action :set_review, only: %i[ show edit update destroy ]
 
   # GET /reviews or /reviews.json
   def index
-    @reviews_mine = Review.where(user_id: current_user.id).page(params[:page]).per(10)
-    @reviews_all = Review.all.page(params[:page]).per(10)
   end
 
   def topics
-    @reviews_mine = Review.where(user_id: current_user.id).page(params[:page]).per(10)
-    likes = Like.where(user_id: current_user.id).pluck(:review_id)
-    @reviews_liked = Review.find(likes).page(params[:page]).per(10)
-    @reviews_like = Review.sorted_by_likes.page(params[:page]).per(10)
-    @reviews = Review.all.page(params[:page]).per(10)
+    # @reviews_like = Review.sorted_by_likes.page(params[:page]).per(10)
+    @reviews_like = Review.sorted_by_likes
   end
 
   # GET /reviews/1 or /reviews/1.json
@@ -90,6 +87,13 @@ class ReviewsController < ApplicationController
 
 
   private
+    def set_review_all
+      @reviews_all = Review.all.page(params[:page]).per(10)
+    end
+
+    def set_review_mine
+      @reviews_mine = Review.where(user_id: current_user.id).page(params[:page]).per(10)
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
