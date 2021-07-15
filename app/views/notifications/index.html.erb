@@ -1,19 +1,18 @@
 <div class="container">
   
-<h4>通知</h4>
-<%= link_to notifications_destroy_all_path, method: :delete do %>
-        <i class="fas fa-trash" style="color: black;"></i>
-        <h7 style="color: black;">全削除</h7>
-    <% end %>
-    <hr>
+  <h4>通知</h4>
+  <%= link_to notifications_destroy_all_path, method: :delete do %>
+    <i class="fas fa-trash" style="color: black;"></i>
+    <h7 style="color: black;">全削除</h7>
+  <% end %>
+  <hr>
 <!--自分の投稿に対するいいね、コメントは通知に表示しない-->
 
   <% if @notifications.exists? %>
-  <%= render 'notifications/notification', notifications: @notifications %>
-  
+    <%= render 'notifications/notification', notifications: @notifications %>
   <% else %>
-  <p>
-    | 通知はありません
-  </p>
-    <% end %>
-    </div>
+    <p>
+      | 通知はありません
+    </p>
+  <% end %>
+</div>
