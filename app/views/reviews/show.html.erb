@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-<div class="col-12">
+<div class="col-7 colum">
 
 <p>
   <strong>達成率:</strong>
@@ -33,21 +33,19 @@
 
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
+<%= link_to '編集', edit_review_path(@review), class: "btn btn-outline-primary" %> |
+<%= link_to '振り返り一覧へ', reviews_path, class: "btn btn-outline-primary" %>
 </div>
-<div class="col-12">
+<div class="col-4 offset-md-1 colum">
 
 
 <p>いいねしたユーザー</p>
 <% @review.liked_users.each do |user| %>
   <li><%= user.name %></li>
-  <li><%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %>
+  <li><%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
        </li>
 <% end %>
 
-<%= link_to "ホームへ戻る", root_path %>
-</div>
 <div class="comments">
   <div id="comments_error">
     <%= render 'layouts/errors', model: @comment %>
@@ -61,6 +59,7 @@
   </div>
 
 </div>
+ </div>
  </div>
 </div>
 </div>
