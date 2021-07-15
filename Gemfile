@@ -79,3 +79,6 @@ gem "ransack"
 gem "rails-i18n"
 gem "chartkick"
 gem "groupdate"
+group :production do
+  gem 'mysql2'
+end
