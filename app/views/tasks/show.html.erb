@@ -1,28 +1,27 @@
 <div class="container">
-<p>
-  <strong>タスク名:</strong>
-  <%= @task.name %>
-</p>
+  <p>
+    <strong>タスク名:</strong>
+    <%= @task.name %>
+  </p>
 
-<p>
-  <strong>タスク詳細:</strong>
-  <%= @task.body %>
-</p>
+  <p>
+    <strong>タスク詳細:</strong>
+    <%= @task.body %>
+  </p>
 
-<p>
-  <strong>期限:</strong>
-  <%= l(@task.date, format: :long) %>
-</p>
+  <p>
+    <strong>期限:</strong>
+    <%= l(@task.date, format: :long) %>
+  </p>
 
-<p>
-  <strong>ステータス:</strong>
-  <% if @task.finished == true %>
-              処理済み
-              <% else %>
-              未処理
-              <% end %>
-</p>
-
-<%= link_to '編集', edit_task_path(@task), class: "btn btn-outline-success" %> |
-<%= link_to '一覧に戻る', tasks_path, class: "btn btn-outline-primary" %>
+  <p>
+    <strong>ステータス:</strong>
+    <% if @task.finished == true %>
+      処理済み
+    <% else %>
+      未処理
+    <% end %>
+  </p>
+  <%= link_to '編集', edit_task_path(@task), class: "btn btn-outline-success" %> |
+  <%= link_to '一覧に戻る', tasks_path, class: "btn btn-outline-primary" %>
 </div>

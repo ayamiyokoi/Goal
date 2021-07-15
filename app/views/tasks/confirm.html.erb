@@ -1,28 +1,25 @@
 <div class="container">
-  
-<p>
-  <strong>タスク名:</strong>
-  <%= @task.name %>
-</p>
+  <p>
+    <strong>タスク名:</strong>
+    <%= @task.name %>
+  </p>
+  <p>
+    <strong>タスク詳細:</strong>
+    <%= @task.body %>
+  </p>
 
-<p>
-  <strong>タスク詳細:</strong>
-  <%= @task.body %>
-</p>
-
-<%= form_with(model: @task, local: true) do |form| %>
-<div class="field">
-    <%= form.label '完了した日' %>
-    <%= form.datetime_field :date %>
-  </div>
-  <div class="field">
-    <%= form.hidden_field :finished, value:true %>
-  </div>
-  <div class="actions">
-    <p>本当に処理済みですか？</p>
-    <%= form.submit "はい", class: "btn btn-outline-success" %>
-    <%= link_to "いいえ", tasks_path, class: "btn btn-outline-danger" %>
-  </div>
-  
-<% end %>
+  <%= form_with(model: @task, local: true) do |form| %>
+    <div class="field">
+      <%= form.label '完了した日' %>
+      <%= form.datetime_field :date %>
+    </div>
+    <div class="field">
+      <%= form.hidden_field :finished, value:true %>
+    </div>
+    <div class="actions">
+      <p>本当に処理済みですか？</p>
+      <%= form.submit "はい", class: "btn btn-outline-success" %>
+      <%= link_to "いいえ", tasks_path, class: "btn btn-outline-danger" %>
+    </div>
+  <% end %>
 </div>

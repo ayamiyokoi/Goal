@@ -2,9 +2,8 @@
   <div class="row">
     <div class="col-12">
       <h4>マイページ</h4>
-
-    <% unless @review == nil %>
-    <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
+      <% unless @review == nil %>
+      <h4><%= @review.created_at.strftime('%Y/%m/%d') %>の振り返り</h4>
     </div>
   </div>
   <div class="row">
@@ -35,25 +34,23 @@
           <p class="introduction">
             自己紹介：
             <% unless @user.introduction == nil %>
-            <%= @user.introduction %>
+              <%= @user.introduction %>
             <% else %>
-            未設定
+              未設定
             <% end %>
           </p>
            <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
         </div>
       </div>
-
     </div>
 
 
     <div class="col-4 offset-md-1 colum">
       <h5>達成率</h5>
-
       <%= pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false %>
       <p style="font-size:20px;">本日の目標達成率：<strong style="font-size:30px;"><%= @review.rate %>%</strong></p>
     </div>
-    </div>
+  </div>
   <div class="row">
     <div class="col-12 colum">
       <h5>本日の振り返り(反省)</h5>
@@ -90,30 +87,25 @@
     <%= line_chart @data, xmin: @from, xmax: @to %>
     <%= link_to '次の一週間', user_path(current_user.id, week_id: params[:week_id].to_i + 1) %>
   </div>
-    <% else %>
-  <h4>ユーザー</h4>
-
+      <% else %>
+    <h4>ユーザー</h4>
       <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
     </div>
     <div class="col-8">
       <div class="field">
-   名前
-    <%= @user.name %>
-  </div>
-   <p>
-       現在のステージ：<%= @user.stage %>
-  </p>
-  <p>
-    現在のレベル：<%= @user.level %>
-  </p>
-
-  <div class="field">
-   メールアドレス
-    <%= @user.email %>
-  </div>
-  <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
+        名前<%= @user.name %>
+      </div>
+      <p>
+        現在のステージ：<%= @user.stage %>
+      </p>
+      <p>
+        現在のレベル：<%= @user.level %>
+      </p>
+      <div class="field">
+        メールアドレス<%= @user.email %>
+      </div>
+      <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
     </div>
-    </div>
-    <% end %>
-
+  </div>
+      <% end %>
 </div>

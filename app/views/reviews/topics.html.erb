@@ -2,41 +2,36 @@
   <h4>トピック一覧</h4>
   <div class="row">
     <div class="col-12">
-   
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a href="#topic1" class="nav-link active" data-toggle="tab">マイトピック</a>
-    </li>
-    <li class="nav-item">
-      <a href="#topic2" class="nav-link" data-toggle="tab">すべてのトピック</a>
-    </li>
-    <li class="nav-item">
-      <a href="#topic3" class="nav-link" data-toggle="tab">いいね順</a>
-    </li>
-    <li class="nav-item">
-      <a href="#topic4" class="nav-link" data-toggle="tab">いいねしたトピック</a>
-    </li>
-  </ul>
 
-  <div class="tab-content">
-    <div id="topic1" class="tab-pane active">
-      <%= render 'topics', reviews: @reviews_mine %>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="#topic1" class="nav-link active" data-toggle="tab">マイトピック</a>
+        </li>
+        <li class="nav-item">
+          <a href="#topic2" class="nav-link" data-toggle="tab">すべてのトピック</a>
+        </li>
+        <li class="nav-item">
+          <a href="#topic3" class="nav-link" data-toggle="tab">いいね順</a>
+        </li>
+        <li class="nav-item">
+          <a href="#topic4" class="nav-link" data-toggle="tab">いいねしたトピック</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="topic1" class="tab-pane active">
+          <%= render 'topics', reviews: @reviews_mine %>
+        </div>
+        <div id="topic2" class="tab-pane">
+          <%= render 'topics', reviews: @reviews_all %>
+        </div>
+        <div id="topic3" class="tab-pane">
+          <%= render 'topics', reviews: @reviews_like %>
+        </div>
+        <div id="topic4" class="tab-pane">
+           <%= render 'topics', reviews: current_user.liked_reviews %>
+        </div>
+      </div>
     </div>
-
-    <div id="topic2" class="tab-pane">
-      <%= render 'topics', reviews: @reviews %>
-    </div>
-
-    <div id="topic3" class="tab-pane">
-      <%= render 'topics', reviews: @reviews_like %>
-    </div>
-
-    <div id="topic4" class="tab-pane">
-       <%= render 'topics', reviews: @reviews_liked %>
-    </div>
-
   </div>
 </div>
-   
-    </div>
-  </div>
