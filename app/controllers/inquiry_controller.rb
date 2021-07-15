@@ -18,7 +18,6 @@ class InquiryController < ApplicationController
 
 
   def thanks
-
     @inquiry = Inquiry.new(inquiry_params)
     InquiryMailer.received_email(@inquiry).deliver
     render :action => "thanks"

@@ -13,8 +13,8 @@ class LikesController < ApplicationController
     @like.destroy
   end
 
-     private
+  private
   def set_review
-       @review = Review.find(params[:review_id])
+    @review = Review.find(params[:review_id])
   end
 end
