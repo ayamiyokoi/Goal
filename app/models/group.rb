@@ -7,5 +7,4 @@ class Group < ApplicationRecord
   has_many :chats
 
   validates :name, :presence => {:message => "を入力してください"}
-  validates :date, :presence => {:message => "を入力してください"}
 end
