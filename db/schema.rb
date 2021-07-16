@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
     t.datetime "remember_created_at"
     t.integer "level", default: 0
     t.integer "stage", default: 0
-    t.string "name"
+    t.string "name", null: false
     t.text "introduction"
     t.text "profile_image_id"
     t.datetime "created_at", null: false
