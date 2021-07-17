@@ -3,6 +3,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review_all, only: %i[ index topics ]
   before_action :set_review_mine, only: %i[ index topics ]
+  before_action :set_review_liked, only: %i[ topics ]
   before_action :set_review, only: %i[ show edit update destroy ]
 
   # GET /reviews or /reviews.json
@@ -10,8 +11,8 @@ class ReviewsController < ApplicationController
   end
 
   def topics
-    # @reviews_like = Review.sorted_by_likes.page(params[:page]).per(10)
-    @reviews_like = Review.sorted_by_likes
+    @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
+    # @reviews_like = Review.sorted_by_likes
   end
 
   # GET /reviews/1 or /reviews/1.json
@@ -93,6 +94,9 @@ class ReviewsController < ApplicationController
 
 
   private
+    def set_review_liked
+      @review_liked = current_user.liked_reviews.page(params[:page]).per(10)
+    end
     def set_review_all
       @reviews_all = Review.all.page(params[:page]).per(10)
     end
