@@ -28,9 +28,6 @@
           <p>
             現在のレベル：<%= @user.level %>
           </p>
-          <p>
-            メールアドレス：<%= @user.email %>
-          </p>
           <p class="introduction">
             自己紹介：
             <% unless @user.introduction == nil %>
@@ -39,7 +36,12 @@
               未設定
             <% end %>
           </p>
+          <% if @user == current_user %>
+          <p>
+            メールアドレス：<%= @user.email %>
+          </p>
            <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
+          <% end %>
         </div>
       </div>
     </div>
