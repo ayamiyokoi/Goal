@@ -126,6 +126,9 @@ ActiveRecord::Schema.define(version: 2021_07_02_022409) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "show_status", default: 0
+    t.boolean "searchable", default: false
+    t.string "custom_id"
     t.integer "level", default: 0
     t.integer "stage", default: 0
     t.string "name", default: "ユーザー"

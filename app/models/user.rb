@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :profile_image
+  enum show_status: {非公開:0, 知人のみ公開:1, すべてのユーザーに公開:2}
   has_many :group_users
   has_many :groups, through: :group_users
   has_many :chats, dependent: :destroy
