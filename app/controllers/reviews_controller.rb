@@ -2,7 +2,7 @@
 
 class ReviewsController < ApplicationController
   before_action :set_review_all, only: %i[ index topics ]
-  before_action :ret_review_mine, only: %i[ index topics ]
+  before_action :set_review_mine, only: %i[ index topics ]
   before_action :set_review, only: %i[ show edit update destroy ]
 
   # GET /reviews or /reviews.json
