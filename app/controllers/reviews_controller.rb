@@ -3,6 +3,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review_all, only: %i[ index topics ]
   before_action :set_review_mine, only: %i[ index topics ]
+  before_action :set_review_liked, only: %i[ topics ]
   before_action :set_review, only: %i[ show edit update destroy ]
 
   # GET /reviews or /reviews.json
@@ -10,8 +11,8 @@ class ReviewsController < ApplicationController
   end
 
   def topics
-    # @reviews_like = Review.sorted_by_likes.page(params[:page]).per(10)
-    @reviews_like = Review.sorted_by_likes
+    @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
+    # @reviews_like = Review.sorted_by_likes
   end
 
   # GET /reviews/1 or /reviews/1.json
@@ -42,6 +43,12 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     respond_to do |format|
       if @review.save
+        # 目標達成で5pt, タスク達成で2pt, 振り返り投稿で1pt、自分のレベルの3乗倍のポイントがたまるとレベルアップ
+        if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review.where(user_id: current_user.id).count > 3**current_user.level
+          current_user.level = current_user.level + 1
+          current_user.save
+          flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
+        end
         format.html { redirect_to @review, notice: "振り返りの作成に成功しました。" }
         format.json { render :show, status: :created, location: @review }
       else
@@ -87,6 +94,9 @@ class ReviewsController < ApplicationController
 
 
   private
+    def set_review_liked
+      @review_liked = current_user.liked_reviews.page(params[:page]).per(10)
+    end
     def set_review_all
       @reviews_all = Review.all.page(params[:page]).per(10)
     end

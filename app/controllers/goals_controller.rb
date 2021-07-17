@@ -32,7 +32,7 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
-      if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review(user_id: current_user.id).count > 3**current_user.level
+      if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review.where(user_id: current_user.id).count > 3**current_user.level
           current_user.level = current_user.level + 1
           current_user.save
           flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
