@@ -101,10 +101,12 @@
       <p>
         現在のレベル：<%= @user.level %>
       </p>
+      <% if @user == current_user %>
       <div class="field">
         メールアドレス<%= @user.email %>
       </div>
       <%= link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary" %>
+      <% end %>
     </div>
   </div>
       <% end %>
