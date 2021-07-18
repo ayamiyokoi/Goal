@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
-  has_many :friends
+  has_many :friends, class_name: "Friend", foreign_key: "myself_id"
   # フォロー機能
   has_many :reverse_of_follows, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_follows, source: :follower

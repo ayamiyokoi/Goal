@@ -5,8 +5,3 @@
     <%= f.submit "検索" %>
   <% end %>
 </div>
-<div class="post-list">
-  <%= attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
-  <%= user.name %>
-  <%= link_to '知人として登録', freinds_path, method: :post %> 
-</div>

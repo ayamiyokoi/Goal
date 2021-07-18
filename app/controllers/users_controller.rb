@@ -11,27 +11,24 @@ class UsersController < ApplicationController
       [d.first.beginning_of_day, d.second]
     end
     unless @review == nil
+      # %表示
       @rate = {"達成" => @review.rate, "未達成" => 100-@review.rate}
     end
   end
 
   def index
-    @users = User.where(show_status: 2).page(params[:page]).per(10)
-    if params[:keyword] == nil
-      @user = User.new
-    else
-      @user = User.search(params[:keyword])
-    end
     @users_know = current_user.friends.page(params[:page]).per(10)
+    @users = User.where(show_status: 2).page(params[:page]).per(10)
+    @user = User.new
   end
 
   def mypage
     @user = User.find(current_user.id)
   end
 
+
   def friend_search
-    @user = User.search(params[:keyword])
-    render "index"
+    @user = User.find_by(custom_id: params[:keyword])
   end
 end
 
