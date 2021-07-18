@@ -17,10 +17,21 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where(show_status: 2).page(params[:page]).per(10)
-    # @users_know = User.where
+    if params[:keyword] == nil
+      @user = User.new
+    else
+      @user = User.search(params[:keyword])
+    end
+    @users_know = current_user.friends.page(params[:page]).per(10)
   end
 
   def mypage
     @user = User.find(current_user.id)
   end
+
+  def friend_search
+    @user = User.search(params[:keyword])
+    render "index"
+  end
 end
+

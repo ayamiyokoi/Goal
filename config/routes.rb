@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "/about" => "homes#about"
   get "/users/mypage" => "users#mypage"
+  get 'friend_search' => 'users#friend_search'
+  resources :freinds, :only => [:create, :destroy]
   resources :users, :only => [:index, :show] do
     resource :follows, only: [:show, :create, :destroy]
   end

@@ -14,6 +14,7 @@
         <div class="tab-content">
           <div id="user_know" class="tab-pane active">
             <%= render 'follows/follow', follows: @users_know %>
+            <%= render 'search', user: @user %>
           </div>
           <div id="user_all" class="tab-pane">
             <%= render 'follows/follow', follows: @users %>

@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
-
+  has_many :friends
   # フォロー機能
   has_many :reverse_of_follows, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_follows, source: :follower
@@ -38,7 +38,7 @@ class User < ApplicationRecord
   # いいね機能
   has_many :likes, dependent: :destroy
   has_many :liked_reviews, through: :likes, source: :review
-  
+
   # フォロー通知機能
   def create_notification_follow(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, "follow"])
@@ -50,4 +50,10 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+
+  # 知人検索機能
+  def self.search(keyword)
+    User.where(custom_id: "#{keyword}")
+  end
+
 end
