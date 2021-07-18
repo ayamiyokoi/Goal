@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       }
   root to: "homes#top"
   get "/about" => "homes#about"
+  get "/users/mypage" => "users#mypage"
+  get 'friend_search' => 'users#friend_search'
+  resources :friends, :only => [:create, :destroy]
   resources :users, :only => [:index, :show] do
     resource :follows, only: [:show, :create, :destroy]
   end
@@ -34,9 +37,9 @@ Rails.application.routes.draw do
   resources :goals, except: [:new, :show]
   delete "notifications/destroy_all" => "notifications#destroy_all"
   resources :notifications, only: [:index]
-  get   "inquiry"         => "inquiry#index"     
+  get   "inquiry"         => "inquiry#index"
   post  "inquiry/confirm" => "inquiry#confirm"
-  post  "inquiry/thanks"  => "inquiry#thanks"  
+  post  "inquiry/thanks"  => "inquiry#thanks"
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

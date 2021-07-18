@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+
   def show
     @user = User.find(params[:id])
     @review = Review.where(user_id: @user.id).first
@@ -10,11 +11,24 @@ class UsersController < ApplicationController
       [d.first.beginning_of_day, d.second]
     end
     unless @review == nil
+      # %表示
       @rate = {"達成" => @review.rate, "未達成" => 100-@review.rate}
     end
   end
 
   def index
-    @users = User.all.page(params[:page]).per(10)
+    @users_know = current_user.friends.page(params[:page]).per(10)
+    @users = User.where(show_status: 2).page(params[:page]).per(10)
+    @user = User.new
+  end
+
+  def mypage
+    @user = User.find(current_user.id)
+  end
+
+
+  def friend_search
+    @user = User.find_by(custom_id: params[:keyword])
   end
 end
+
