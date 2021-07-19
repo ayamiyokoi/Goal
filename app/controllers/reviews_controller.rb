@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   before_action :set_review_all, only: %i[ index topics ]
   before_action :set_review_mine, only: %i[ index topics ]
   before_action :set_review_liked, only: %i[ topics ]
+  before_action :set_review_know, only: %i[ index topics ]
   before_action :set_review, only: %i[ show edit update destroy ]
 
   # GET /reviews or /reviews.json
@@ -94,15 +95,21 @@ class ReviewsController < ApplicationController
 
 
   private
-    def set_review_liked
-      @review_liked = current_user.liked_reviews.page(params[:page]).per(10)
-    end
+
     def set_review_all
-      @reviews_all = Review.all.page(params[:page]).per(10)
+      @reviews_all = User.where(show_status: 2).page(params[:page]).per(10)
     end
 
     def set_review_mine
       @reviews_mine = Review.where(user_id: current_user.id).page(params[:page]).per(10)
+    end
+
+    def set_review_liked
+      @reviews_liked = current_user.liked_reviews.page(params[:page]).per(10)
+    end
+
+    def set_review_know
+      @reviews_know = current_user.friends.page(params[:page]).per(10)
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_review

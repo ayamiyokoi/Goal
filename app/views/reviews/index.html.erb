@@ -7,6 +7,9 @@
           <a href="#reviews_mine" class="nav-link active" data-toggle="tab">すべての振り返り</a>
         </li>
         <li class="nav-item">
+          <a href="#reviews_know" class="nav-link" data-toggle="tab">知人の振り返り</a>
+        </li>
+        <li class="nav-item">
           <a href="#reviews_all" class="nav-link" data-toggle="tab">全ユーザーの振り返り</a>
         </li>
       </ul>
@@ -14,6 +17,9 @@
       <div class="tab-content">
         <div id="reviews_mine" class="tab-pane active">
           <%= render 'index', reviews: @reviews_mine %>
+        </div>
+        <div id="reviews_know" class="tab-pane">
+          <%= render 'index', reviews: @reviews_know %>
         </div>
         <div id="reviews_all" class="tab-pane">
           <%= render 'index', reviews: @reviews_all %>

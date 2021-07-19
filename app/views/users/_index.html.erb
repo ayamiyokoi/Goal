@@ -13,8 +13,8 @@
       </thead>
       <tbody>
         <% follows.each do |user| %>
-
         <tr>
+          <!--変数にFriendクラスが入っているときのみ、変数の変更-->
           <% user = User.find(user.friend_id) if user.class == Friend %>
           <td><%= attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></td>
           <td><%= link_to user.name, user_path(user.id, week_id: 0) %></td>
