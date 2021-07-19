@@ -8,13 +8,16 @@
           <a href="#topic1" class="nav-link active" data-toggle="tab">マイトピック</a>
         </li>
         <li class="nav-item">
-          <a href="#topic2" class="nav-link" data-toggle="tab">すべてのトピック</a>
+          <a href="#topic2" class="nav-link" data-toggle="tab">知人のトピック</a>
         </li>
         <li class="nav-item">
-          <a href="#topic3" class="nav-link" data-toggle="tab">いいね順</a>
+          <a href="#topic3" class="nav-link" data-toggle="tab">すべてのトピック</a>
         </li>
         <li class="nav-item">
-          <a href="#topic4" class="nav-link" data-toggle="tab">いいねしたトピック</a>
+          <a href="#topic4" class="nav-link" data-toggle="tab">いいね順</a>
+        </li>
+        <li class="nav-item">
+          <a href="#topic5" class="nav-link" data-toggle="tab">いいねしたトピック</a>
         </li>
       </ul>
 
@@ -23,12 +26,15 @@
           <%= render 'topics', reviews: @reviews_mine %>
         </div>
         <div id="topic2" class="tab-pane">
-          <%= render 'topics', reviews: @reviews_all %>
+          <%= render 'topics', reviews: @reviews_know %>
         </div>
         <div id="topic3" class="tab-pane">
-          <%= render 'topics', reviews: @reviews_like %>
+          <%= render 'topics', reviews: @reviews_all %>
         </div>
         <div id="topic4" class="tab-pane">
+          <%= render 'topics', reviews: @reviews_like %>
+        </div>
+        <div id="topic5" class="tab-pane">
            <%= render 'topics', reviews: @review_liked %>
         </div>
       </div>
