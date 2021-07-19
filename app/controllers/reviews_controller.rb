@@ -105,11 +105,11 @@ class ReviewsController < ApplicationController
     end
 
     def set_review_liked
-      @review_liked = current_user.liked_reviews.page(params[:page]).per(10)
+      @reviews_liked = current_user.liked_reviews.page(params[:page]).per(10)
     end
 
     def set_review_know
-      @review_know = current_user.friends.page(params[:page]).per(10)
+      @reviews_know = current_user.friends.page(params[:page]).per(10)
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_review
