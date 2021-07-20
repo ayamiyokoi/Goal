@@ -8,6 +8,9 @@ class GroupsController < ApplicationController
     @groups_all = Group.all.page(params[:page]).per(10)
     @groups_mine = current_user.groups.page(params[:page]).per(10)
     @group = Group.new
+   # @users = User.joins(:friends).where(friends: { myself_id: current_user.id})
+    @users = User.where(id: Friend.where(myself_id: current_user.id).pluck('friend_id'))
+    #TODO: test
   end
 
   # GET /groups/1 or /groups/1.json
@@ -27,7 +30,7 @@ class GroupsController < ApplicationController
         format.html { redirect_to @group, notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to groups_path :index, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end
