@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
 
   def topics
     @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
+    #@reviews_like = Kaminari.paginate_array(Review.joins(:user).select("reviews.*, user.*").where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
     # @reviews_like = Review.sorted_by_likes
   end
 
@@ -81,17 +82,6 @@ class ReviewsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  # def search
-  #   if params[:search].present?
-  #     @reviews = Review.where('body LIKE ?', "%#{params[:search]}%")
-  #     redirect_to 'reviews/search'
-  #   else
-  #     @reviews = Review.none
-  #     redirect_to 'reviews/search'
-  #   end
-  # end
-
 
 
   private

@@ -20,6 +20,20 @@
     <%= form.attachment_field :group_image %>
   </div>
 
+  <div>
+    <%= form.label :user_ids, "メンバー", class: "control-label" %>
+    <p>
+    <ul style="list-style:none;display:flex;">
+      <% @users.each do |user| %>
+        <li style="margin-right: 16px;"><%= form.check_box :user_ids, {multiple: true}, user.id, nil  %> <%= user.name %></li>
+      <% end %>
+    </ul>
+
+      <%#= form.check_box :user_ids,{ multiple: true, checked: user[:checked], disabled: user[:disabled], include_hidden: false, class: "check-box" }, user[:id] %>
+
+    </p>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
