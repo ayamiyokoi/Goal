@@ -24,9 +24,15 @@
           </p>
           <p>
             現在のステージ：<%= @user.stage %>
+            <button type="button" class="btn btn-outline-primary tip" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="ステージとは？→ 目標設定の数によって上がる数です">
+              <small><i class="far fa-hand-point-right"></i>click!</small>
+            </button>
           </p>
           <p>
             現在のレベル：<%= @user.level %>
+            <button type="button" class="btn btn-outline-primary tip" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です">
+              <small><i class="far fa-hand-point-right"></i>click!</small>
+            </button>
           </p>
           <p class="introduction">
             自己紹介：
@@ -96,9 +102,15 @@
       </div>
       <p>
         現在のステージ：<%= @user.stage %>
+        <button type="button" class="btn btn-outline-primary tip" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="ステージとは？→ 目標設定の数によって上がる数です">
+          <small><i class="far fa-hand-point-right"></i>click!</small>
+        </button>
       </p>
       <p>
         現在のレベル：<%= @user.level %>
+        <button type="button" class="btn btn-outline-primary tip" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です">
+          <small><i class="far fa-hand-point-right"></i>click!</small>
+        </button>
       </p>
       <% if @user == current_user %>
       <%= link_to '詳細画面へ', users_mypage_path, class: "btn btn-outline-primary" %>
