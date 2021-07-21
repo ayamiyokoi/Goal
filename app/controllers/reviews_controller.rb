@@ -12,7 +12,9 @@ class ReviewsController < ApplicationController
   end
 
   def topics
+    #TODO: 自分の友達のlike, status 2のlikeだけ取る
     @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
+    #@reviews_like = Kaminari.paginate_array(Review.joins(:user).where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
     #@reviews_like = Kaminari.paginate_array(Review.joins(:user).select("reviews.*, user.*").where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
     # @reviews_like = Review.sorted_by_likes
   end

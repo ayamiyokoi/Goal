@@ -81,6 +81,7 @@ gem "ransack"
 gem "rails-i18n"
 gem "chartkick"
 gem "groupdate"
+gem 'rails_admin', '~> 2.0'
 group :production do
   gem 'mysql2'
 end
