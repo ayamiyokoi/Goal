@@ -74,3 +74,22 @@ div.top dl.active {
   color: blue;
   display: inline-block;
 }
+.sp_only{
+  display: none !important;
+}
+
+
+@media screen and (max-width: 480px) {
+  .sp_only{
+		display: initial !important;
+	}
+	.text5{
+	  font-size: 15px !important;
+	}
+  .top{
+    background-image: image-url('top_img_sp');
+  }
+  .pc_only{
+		display: none !important;
+	}
+}
