@@ -2,6 +2,7 @@
 
 class GroupsController < ApplicationController
   before_action :set_group, only: %i[ show edit update destroy join ]
+  before_action :set_users, only: %i[ index edit ]
 
   # GET /groups or /groups.json
   def index
@@ -9,8 +10,6 @@ class GroupsController < ApplicationController
     @groups_mine = current_user.groups.page(params[:page]).per(10)
     @group = Group.new
    # @users = User.joins(:friends).where(friends: { myself_id: current_user.id})
-    @users = User.where(id: Friend.where(myself_id: current_user.id).pluck('friend_id'))
-    #TODO: test
   end
 
   # GET /groups/1 or /groups/1.json
@@ -27,7 +26,7 @@ class GroupsController < ApplicationController
     @group.users << current_user
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: "Group was successfully created." }
+        format.html { redirect_to @group, notice: "グループの作成に成功しました。" }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { redirect_to groups_path :index, status: :unprocessable_entity }
@@ -38,9 +37,10 @@ class GroupsController < ApplicationController
 
   # PATCH/PUT /groups/1 or /groups/1.json
   def update
+    @group.users << current_user
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: "Group was successfully updated." }
+        format.html { redirect_to @group, notice: "グループの更新が成功しました。" }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,11 +53,12 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: "Group was successfully destroyed." }
+      format.html { redirect_to groups_url, notice: "グループは削除されました" }
       format.json { head :no_content }
     end
   end
 
+  #TODO: これいらない気がする
   def join
     @group.users << current_user
     if @group.save
@@ -71,6 +72,10 @@ class GroupsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])
+    end
+
+    def set_users
+      @users = User.where(id: Friend.where(myself_id: current_user.id).pluck('friend_id'))
     end
 
     # Only allow a list of trusted parameters through.
