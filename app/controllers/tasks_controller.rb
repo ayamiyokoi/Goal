@@ -26,7 +26,7 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: "Task was successfully created." }
+        format.html { redirect_to @task, notice: "タスクを作成しました。" }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class TasksController < ApplicationController
           current_user.save
           flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
         end
-        format.html { redirect_to @task, notice: "Task was successfully updated." }
+        format.html { redirect_to @task, notice: "タスクを更新しました。" }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,7 +57,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
+      format.html { redirect_to tasks_url, notice: "タスクを削除しました。" }
       format.json { head :no_content }
     end
   end
