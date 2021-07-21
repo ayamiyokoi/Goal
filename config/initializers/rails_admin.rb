@@ -38,7 +38,7 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
-
+  
   #BASIC認証
   #TODO: .envに追加すべき？
   config.authenticate_with do
