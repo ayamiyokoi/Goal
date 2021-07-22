@@ -12,8 +12,7 @@ class ReviewsController < ApplicationController
   end
 
   def topics
-     #TODO: どこにincludeつける?
-    #TODO: 自分の友達のlike, status 2のlikeだけ取る
+    #TODO: どこにincludeつける?
     # @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
     @reviews_like = Kaminari.paginate_array(Review.where(user_id: current_user.friends.pluck(:id)).or(Review.where(user_id: User.where(show_status: 2).pluck(:id))).sorted_by_likes).page(params[:page]).per(10)
     #@reviews_like = Kaminari.paginate_array(Review.joins(:user).select("reviews.*, user.*").where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)

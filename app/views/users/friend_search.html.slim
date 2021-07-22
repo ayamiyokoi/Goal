@@ -1,5 +1,5 @@
 .container
-  div[lcass="row"]
+  .row
     .col-12
       - if Friend.where(friend_id: @user.id, myself_id: current_user.id).exists?
         p
@@ -13,7 +13,7 @@
             = link_to '知人として登録', friends_path(params: {id: @user.id}), method: :post, class: 'btn btn-outline-primary'
         - else
           p
-            |  相手がID検索による知人登録を許可していません。 
+            |  相手がID検索による知人登録を許可していません。
           p
-            |  マイページ設定からID検索ステータスを「許可」に設定してください 
+            |  マイページ設定からID検索ステータスを「許可」に設定してください
           = link_to 'ユーザー一覧画面へ', users_path, class: 'btn btn-outline-primary'

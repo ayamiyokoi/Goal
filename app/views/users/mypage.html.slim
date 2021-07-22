@@ -16,25 +16,25 @@
         |  現在のレベル：
         = @user.level
       p.introduction
-        |  自己紹介： 
+        |  自己紹介：
         - unless @user.introduction == nil
           = @user.introduction
         - else
-          |  未設定 
+          |  未設定
       p
-        |  公開ステータス： 
+        |  公開ステータス：
         = @user.show_status
       p
-        |  検索ステータス： 
+        |  検索ステータス：
         - if @user.searchable == true
-          |  ID検索を許可 
+          |  ID検索を許可
         - else
-          |  ID検索を許可しない 
+          |  ID検索を許可しない
       p
-        |  カスタムID： 
+        |  カスタムID：
         - unless @user.custom_id == nil
           = @user.custom_id
         - else
-          |  未設定 
+          |  未設定
       - if @user == current_user
         = link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary"

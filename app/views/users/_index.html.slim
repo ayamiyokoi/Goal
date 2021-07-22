@@ -16,7 +16,6 @@
       tbody
         - follows.each do |user|
           tr
-            - user = User.find(user.friend_id) if user.class == Friend
             td
               = attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
             td
@@ -24,15 +23,16 @@
             td
               = truncate(user.introduction, length:35)
             td
-              | フォロー数: 
+              | フォロー数:
               = user.followings.count
             td
-              | フォロワー数: 
+              | フォロワー数:
               = user.followers.count
             - friend = Friend.find_by(friend_id: user.id, myself_id: current_user.id)
             td
               = link_to "知人から削除", friend_path(friend.id, params: {id: friend.id}), method: :delete, class: "btn btn-outline-danger"
+  = paginate follows
 - else
   p
     | ユーザーはいません
-= paginate follows
+
