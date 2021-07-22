@@ -1,4 +1,0 @@
-<%= form_with model: [group, chat], url: group_chats_path(group_id: group.id), action: :post do |f| %>
-  <%= f.text_field :chat , class: "form-control", rows: "8", placeholder: "メッセージを入力して下さい" %>
-  <%= f.submit "投稿", class: 'form-submit' %>
-<% end %>

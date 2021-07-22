@@ -2,7 +2,7 @@
   h4
     | 振り返り一覧
   .row
-    .coi-12
+    .col-12
       ul.nav.nav-tabs
         li.nav-item
           a.nav-link.active[href="#reviews_mine" data-toggle="tab"]
@@ -20,5 +20,5 @@
           = render 'index', reviews: @reviews_know
         #reviews_all.tab-pane
           = render 'index', reviews: @reviews_all
-      div
+      p
         = link_to '今日の振り返りを作成', new_review_path, class: "btn btn-outline-primary"
