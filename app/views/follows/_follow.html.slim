@@ -1,0 +1,40 @@
+- if follows.exists?
+  .table
+    table
+      thead
+        tr
+          th
+          th
+            | 名前
+          th
+            | 自己紹介
+          th
+            | フォロワー数
+          th
+            | フォロー数
+          th
+      tbody
+        - follows.each do |user|
+          tr
+            td
+              = attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+            td
+              = link_to user.name, user_path(user.id, week_id: 0)
+            td
+              = truncate(user.introduction, length:35)
+            td
+              | フォロー数: 
+              = user.followings.count
+            td
+              | フォロワー数: 
+              = user.followers.count
+            td
+              - unless current_user == user
+                - if current_user.following?(user)
+                  = link_to "フォローを外す", user_follows_path(user.id), method: :delete, class: "btn btn-outline-danger"
+                - else
+                  = link_to "フォローする", user_follows_path(user.id), method: :post, class: "btn btn-outline-primary"
+- else
+  p
+    | ユーザーはいません
+= paginate follows

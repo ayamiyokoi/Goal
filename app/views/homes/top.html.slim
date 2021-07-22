@@ -1,0 +1,24 @@
+.top
+  dl.text1
+    |  <img src="
+    = asset_path "logo_goal.png"
+    | " width="60%"> 
+  dl.text2
+    = link_to about_path, class: "link" do
+      |  <img src="
+      = asset_path "logo_goal.png"
+      | " width="100px">とは？ 
+  dl.text3
+    = link_to "始める！(新規登録)", new_user_registration_path, class: "link"
+  dl.text4
+    = link_to 'ログイン', new_user_session_path, class: "link"
+  section.pc_only
+    dl.text5
+      |  テストアカウント→ メールアドレス：test1@test1 | パスワード：111111 
+  section.sp_only
+    dl.text5
+      |  テストアカウント
+    br
+    | メールアドレス：test1@test1
+    br
+    | パスワード：111111 

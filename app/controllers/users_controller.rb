@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users_know = current_user.friends.page(params[:page]).per(10)
+    @users_know = User.where(id: current_user.friends.pluck(:friend_id)).page(params[:page]).per(10)
     @users = User.where(show_status: 2).page(params[:page]).per(10)
     @user = User.new
   end

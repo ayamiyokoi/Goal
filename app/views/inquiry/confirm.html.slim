@@ -1,0 +1,25 @@
+.container
+  .page-header
+    h1
+      | お問い合わせ
+  = form_with model: @inquiry, url: inquiry_thanks_path, local: true do |f|
+    table.table
+      tr
+        th
+          | 名前
+        td
+          = f.hidden_field :name
+          = @inquiry.name
+      tr
+        th
+          | メールアドレス
+        td
+          = f.hidden_field :email
+          = @inquiry.email
+      tr
+        th
+          | お問い合わせ内容
+        td
+          = f.hidden_field :message
+          = simple_format(@inquiry.message)
+    = f.submit '送信', :class => 'btn btn-primary'

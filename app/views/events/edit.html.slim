@@ -1,0 +1,7 @@
+.container
+  div[ckass="row"]
+    .col
+      = render 'form', event: @event
+      = link_to '詳細', @event
+      |  | 
+      = link_to 'イベント一覧へ', events_path

@@ -24,13 +24,15 @@
     <%= form.label :user_ids, "メンバー", class: "control-label" %>
     <p>
     <ul style="list-style:none;display:flex;">
-      <% @users.each do |user| %>
-        <li style="margin-right: 16px;">
-          <%= form.check_box :user_ids, {multiple: true}, user.id, nil  %>
-          <%= attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img" %>
-          <%= user.name %>
-        </li>
-      <% end %>
+
+
+          <%= form.collection_check_boxes :user_ids, @users, :id, :name do |b| %>
+           <li style="margin-right: 16px;">
+            <%= b.text %>
+            <%= b.check_box  %>
+            <%= attachment_image_tag(User.find_by_name(b.text), :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img") %>
+          <% end %>
+
     </ul>
 
       <%#= form.check_box :user_ids,{ multiple: true, checked: user[:checked], disabled: user[:disabled], include_hidden: false, class: "check-box" }, user[:id] %>

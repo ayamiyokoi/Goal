@@ -1,0 +1,86 @@
+doctype html
+html
+  head
+    title
+      | GOAL
+    = csrf_meta_tags
+    = csp_meta_tag
+    script[src="https://kit.fontawesome.com/014a69a131.js" crossorigin="anonymous"]
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+  body
+    .footerFixed
+      nav.navbar.navbar-expand-lg.navbar-light[style="background-color: #e3f2fd;"]
+        = link_to root_path, class: "navbar-brand" do
+          |  <img src="
+          = asset_path "logo_goal_black.png"
+          | " width="120px"> 
+        button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+          span.navbar-toggler-icon
+        - if user_signed_in?
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              p[style="padding: 12px 0 0 30px;"]
+                | ようこそ
+                = current_user.name
+                | さん
+          #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto
+              li.nav-item
+                = link_to 'マイページ', user_path(current_user.id, week_id: 0), class: "nav-link"
+              li.nav-item.dropdown
+                a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+                  |  振り返り 
+                .dropdown-menu[aria-labelledby="navbarDropdown"]
+                  = link_to '振り返り', reviews_path, class: "dropdown-item"
+                  = link_to 'トピック一覧', reviews_topics_path, class: "dropdown-item"
+              li.nav-item.dropdown
+                a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+                  |  目標&タスク 
+                .dropdown-menu[aria-labelledby="navbarDropdown"]
+                  = link_to '目標', goals_path, class: "dropdown-item"
+                  = link_to 'タスク', tasks_path, class: "dropdown-item"
+              li.nav-item
+                = link_to 'カレンダー', events_path, class: "nav-link"
+              li.nav-item
+                - if unchecked_notifications.any?
+                  i.fa.fa-circle[style="color: gold;"]
+                = link_to '通知', notifications_path, class: "nav-link"
+              li.nav-item.dropdown
+                a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+                  |  ユーザー 
+                .dropdown-menu[aria-labelledby="navbarDropdown"]
+                  = link_to 'グループ', groups_path, class: "dropdown-item"
+                  = link_to 'フォロー', user_follows_path(user_id: current_user.id), class: "dropdown-item"
+                  = link_to 'ユーザー一覧', users_path, class: "dropdown-item"
+              li.nav-item
+                = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"
+              li.nav-item.dropdown
+                a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+                  |  GOALについて 
+                .dropdown-menu[aria-labelledby="navbarDropdown"]
+                  = link_to 'ABOUT', about_path, class: "dropdown-item"
+                  = link_to 'お問い合わせ', inquiry_path, class: "dropdown-item"
+              = search_form_for @search, url: search_reviews_path, method: :get do |f|
+                = f.text_field :topic_cont, placeholder: '検索'
+                = f.submit ("検索する")
+        - else
+          #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto
+              li.nav-item
+                = link_to "新規登録", new_user_registration_path, class: "nav-link"
+              li.nav-item
+                = link_to "ログイン", new_user_session_path, class: "nav-link"
+              li.nav-item.dropdown
+                a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+                  |  GOALについて 
+                .dropdown-menu[aria-labelledby="navbarDropdown"]
+                  = link_to 'ABOUT', about_path, class: "dropdown-item"
+                  = link_to 'お問い合わせ', inquiry_path, class: "dropdown-item"
+      p#notice
+        = notice
+      = yield
+      footer
+        div
+          |  © Ayami Yokoi.All Rights reserved 

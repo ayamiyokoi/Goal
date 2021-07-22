@@ -1,0 +1,40 @@
+.container
+  .row
+    .col-5
+      = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+    .col-7
+      p
+        |  名前：
+        = @user.name
+      p
+        | メールアドレス：
+        = @user.email
+      p
+        |  現在のステージ：
+        = @user.stage
+      p
+        |  現在のレベル：
+        = @user.level
+      p.introduction
+        |  自己紹介：
+        - unless @user.introduction == nil
+          = @user.introduction
+        - else
+          |  未設定
+      p
+        |  公開ステータス：
+        = @user.show_status
+      p
+        |  検索ステータス：
+        - if @user.searchable == true
+          |  ID検索を許可
+        - else
+          |  ID検索を許可しない
+      p
+        |  カスタムID：
+        - unless @user.custom_id == nil
+          = @user.custom_id
+        - else
+          |  未設定
+      - if @user == current_user
+        = link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary"

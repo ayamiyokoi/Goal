@@ -33,8 +33,9 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate reviews %>
   </div>
 <% else %>
   <p style="padding:20px;color:blue;">データが登録されていません。</p>
 <% end %>
-<%= paginate reviews %>
+

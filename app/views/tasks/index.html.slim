@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-12
+      h4
+        | タスク一覧
+      ul.nav.nav-tabs
+        li.nav-item
+          a.nav-link.active[href="#task_active" data-toggle="tab"]
+            | 未処理タスク
+        li.nav-item
+          a.nav-link[href="#task_done" data-toggle="tab"]
+            | 処理済みタスク
+      .tab-content
+        #task_active.tab-pane.active
+          = render 'index', tasks: @tasks_active
+        #task_done.tab-pane
+          = render 'index', tasks: @tasks_done
+  .row
+    .col-12
+      h4
+        | 新しいタスク
+      = render 'form', task: @task

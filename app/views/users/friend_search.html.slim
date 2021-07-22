@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-12
+      - if Friend.where(friend_id: @user.id, myself_id: current_user.id).exists?
+        p
+          | すでに知人として登録しています。
+        = link_to 'ユーザー一覧画面へ', users_path, class: 'btn btn-outline-primary'
+      - else
+        - if @user.searchable == true
+          .post-list
+            = attachment_image_tag @user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+            = @user.name
+            = link_to '知人として登録', friends_path(params: {id: @user.id}), method: :post, class: 'btn btn-outline-primary'
+        - else
+          p
+            |  相手がID検索による知人登録を許可していません。
+          p
+            |  マイページ設定からID検索ステータスを「許可」に設定してください
+          = link_to 'ユーザー一覧画面へ', users_path, class: 'btn btn-outline-primary'

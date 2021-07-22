@@ -1,0 +1,22 @@
+.container
+  h4
+    | イベント詳細
+  p
+    strong
+      | イベント名:
+    = @event.title
+  p
+    strong
+      | イベント詳細:
+    = @event.body
+  p
+    strong
+      | 開始日時:
+    = l(@event.start_time, format: :long)
+  p
+    strong
+      | 終了日時:
+    = l(@event.end_time, format: :long)
+  = link_to '編集', edit_event_path(@event)
+  |  | 
+  = link_to 'カレンダーに戻る', events_path

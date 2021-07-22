@@ -1,0 +1,10 @@
+.container
+  h4
+    | グループ一覧
+  .row
+    .col-12
+      = render 'index', groups: @groups_mine
+    .col-12
+      h4
+        | グループ新規作成
+      = render 'form', group: @group

@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-12
+      h4
+        | フォロー一覧
+      ul.nav.nav-tabs
+        li.nav-item
+          a.nav-link.active[href="#follower" data-toggle="tab"]
+            | フォロワー
+        li.nav-item
+          a.nav-link[href="#following" data-toggle="tab"]
+            | フォロー中
+      .tab-content
+        #follower.tab-pane.active
+          = render 'follow', follows: @users_followers
+        #following.tab-pane
+          = render 'follow', follows: @users_followings

@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-12
+      h4
+        | ユーザー一覧
+      ul.nav.nav-tabs
+        li.nav-item
+          a.nav-link.active[href="#user_know" data-toggle="tab"]
+            | 知人
+        li.nav-item
+          a.nav-link[href="#user_all" data-toggle="tab"]
+            | すべてのユーザー
+      .tab-content
+        #user_know.tab-pane.active
+          = render 'index', follows: @users_know
+          = render 'search', user: @user
+        #user_all.tab-pane
+          = render 'follows/follow', follows: @users

@@ -55,6 +55,7 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "letter_opener"
   gem 'rubocop-airbnb'
+  gem 'bullet'
 end
 
 group :test do
@@ -81,6 +82,8 @@ gem "ransack"
 gem "rails-i18n"
 gem "chartkick"
 gem 'rails_admin', '~> 2.0'
+gem 'slim-rails'
+gem 'html2slim'
 group :production do
   gem 'mysql2'
 end

@@ -12,9 +12,9 @@ class ReviewsController < ApplicationController
   end
 
   def topics
-    #TODO: 自分の友達のlike, status 2のlikeだけ取る
-    @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
-    #@reviews_like = Kaminari.paginate_array(Review.joins(:user).where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
+    #TODO: どこにincludeつける?
+    # @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
+    @reviews_like = Kaminari.paginate_array(Review.where(user_id: current_user.friends.pluck(:id)).or(Review.where(user_id: User.where(show_status: 2).pluck(:id))).sorted_by_likes).page(params[:page]).per(10)
     #@reviews_like = Kaminari.paginate_array(Review.joins(:user).select("reviews.*, user.*").where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
     # @reviews_like = Review.sorted_by_likes
   end
@@ -89,7 +89,9 @@ class ReviewsController < ApplicationController
   private
 
     def set_review_all
-      @reviews_all = User.where(show_status: 2).page(params[:page]).per(10)
+      #TODO: 右取れてるのになんで表示されん？
+      @review_all = Review.where(user_id: User.where(show_status: 2).pluck(:id)).page(params[:page]).per(10)
+    #   @reviews_all = User.where(show_status: 2).page(params[:page]).per(10)
     end
 
     def set_review_mine
@@ -101,7 +103,9 @@ class ReviewsController < ApplicationController
     end
 
     def set_review_know
-      @reviews_know = current_user.friends.page(params[:page]).per(10)
+      # @reviews_know = current_user.friends.page(params[:page]).per(10)
+      #N+1問題対策
+      @reviews_know = Review.where(user_id: current_user.friends.pluck(:id)).includes([:user]).page(params[:page]).per(10)
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_review
@@ -110,6 +114,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit( :tag_id, :rate, :review, :plan, :title, :topic)
+      params.require(:review).permit( :rate, :review, :plan, :title, :topic)
     end
 end

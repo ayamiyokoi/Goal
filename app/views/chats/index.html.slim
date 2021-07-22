@@ -1,0 +1,12 @@
+.container
+  .row
+    .col
+      h4
+        | グループチャット
+      .chats
+        #chats_error
+          = render 'layouts/errors', model: @chat
+        #posts
+          = render partial: 'form', locals: {group: @group, chat: @chat}
+        #chat
+          = render partial: 'index', locals: { chats: @chats}

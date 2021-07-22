@@ -1,0 +1,10 @@
+p
+  | コメント件数：
+  = review.comments.count
+- review.comments.each do |comment|
+  p
+    = attachment_image_tag comment.user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+    = comment.comment
+  - if comment.user == current_user
+    .comment-delete
+      = link_to "削除", review_comment_path(comment.review, comment), method: :delete, remote:true

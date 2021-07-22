@@ -13,7 +13,14 @@
   <dl class="text4">
     <%= link_to 'ログイン', new_user_session_path, class: "link" %>
   </dl>
-  <dl class="text5">
-    テストアカウント→ メールアドレス：test1@test1 | パスワード：111111
-  </dl>
+  <section class="pc_only">
+    <dl class="text5">
+      テストアカウント→ メールアドレス：test1@test1 | パスワード：111111
+    </dl>
+  </section>
+  <section class="sp_only">
+   <dl class="text5">
+     テストアカウント<br>メールアドレス：test1@test1<br>パスワード：111111
+   </dl>
+  </section>
 </div>

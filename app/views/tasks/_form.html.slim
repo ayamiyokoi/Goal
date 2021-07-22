@@ -1,0 +1,26 @@
+= form_with(model: task, local: true) do |form|
+  - if task.errors.any?
+    #error_explanation
+      h2
+        = pluralize(task.errors.count, "error")
+        |  prohibited this task from being saved:
+      ul
+        - task.errors.full_messages.each do |message|
+          li
+            = message
+  .field
+    = form.label 'タスク名'
+    = form.text_field :name, class: "form-control", placeholder: "例）電話掛け100件"
+  .field
+    = form.label 'タスク詳細'
+    = form.text_area :body, class: "form-control", placeholder: "例）14:00~16:00にアポ獲得のため、電話掛け"
+  .field
+    = form.label '期限'
+    = form.datetime_field :date, class: "form-control"
+  .field
+    = form.radio_button :finished, :true
+    = form.label :finished, "処理済み", {value: :true, style: "display: inline-block;"}
+    = form.radio_button :finished, :false
+    = form.label :finished, "未処理", {value: :false, style: "display: inline-block;"}
+  .actions
+    = form.submit
