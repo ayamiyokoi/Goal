@@ -94,8 +94,7 @@ class ReviewsController < ApplicationController
   private
 
     def set_review_all
-      #TODO: 右取れてるのになんで表示されん？
-      @review_all = Review.where(user_id: User.where(show_status: 2).pluck(:id)).page(params[:page]).per(10)
+      @reviews_all = Review.where(user_id: User.where(show_status: 2).pluck(:id)).page(params[:page]).per(10)
     #   @reviews_all = User.where(show_status: 2).page(params[:page]).per(10)
     end
 

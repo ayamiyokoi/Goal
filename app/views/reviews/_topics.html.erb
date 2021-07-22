@@ -16,9 +16,9 @@
         <% reviews.each do |review| %>
           <tr>
             <!--変数にFriendクラスが入っているとき、変数の変更-->
-            <% review = Review.find_by(user_id: review.friend_id) if review.class == Friend %>
+            <%# review = Review.find_by(user_id: review.friend_id) if review.class == Friend %>
             <!--変数にUserクラスが入っているとき、変数の変更-->
-            <% review = Review.find_by(user_id: review.id) if review.class == User %>
+            <%# review = Review.find_by(user_id: review.id) if review.class == User %>
             <td><%= attachment_image_tag review.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></td>
             <td><%= truncate(review.title, length:15) %></td>
             <td><%= truncate(review.topic, length:35) %></td>
