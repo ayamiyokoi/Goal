@@ -16,10 +16,10 @@
         p
           h5
             | 達成率
-          = pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false
-          p[style="font-size:20px;"]
+          = pie_chart @rate, width: "100px", height: "100px", colors: ["blue",  "#e3f2fd"], legend: false
+          p[style="font-size:15px;"]
             | 本日の目標達成率：
-            strong[style="font-size:30px;"]
+            strong[style="font-size:20px;"]
               = @review.rate
               | %
       .row
@@ -46,14 +46,17 @@
         .col-12.colum[style="display:flex;"]
           #likes_buttons[style="padding:5px 10px 0 0;"]
             = render partial: 'likes/like', locals: { review: @review}
-          #comments_area[style="padding:9px 10px 0 0;"]
-            = render partial: 'comments/index', locals: { review: @review}
+          p[style="padding:9px 10px 0 0;"]
+            i.far.fa-comment
+            = @review.comments.count
           -if @review.user_id == current_user.id
             = link_to '編集', edit_review_path(@review), class: "btn btn-outline-primary"
     .col-4.offset-md-1.colum
       .comments
         #comments_error
           = render 'layouts/errors', model: @comment
+        #comments_area
+          = render partial: 'comments/index', locals: { review: @review}
         .new-comment
           #comment_new
             = render partial: 'comments/form', locals: { review: @review, comment: @comment}

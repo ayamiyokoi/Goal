@@ -1,6 +1,3 @@
-p
-  i.far.fa-comment
-  = review.comments.count
 - review.comments.each do |comment|
   p
     = attachment_image_tag comment.user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
