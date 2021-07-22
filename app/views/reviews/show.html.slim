@@ -1,47 +1,59 @@
 .container
   .row
-    .col-7.colum
-      p
-        strong
-          | 達成率:
-        = @review.rate
-        | % 
-      p
-        strong
-          | 本日の振り返り(反省）:
-        = @review.review
-      p
-        strong
-          | 明日の目標:
-        = @review.plan
-      p
-        strong
-          | 本日のトピック題名:
-        = @review.title
-      p
-        strong
-          | 本日のトピック:
-        = @review.topic
-      p
+    .col-12
+      .row
+        .col-1
+          = attachment_image_tag @user, :profile_image, size: '70x70', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+        .col-10
+          h4
+            = link_to @user.name, user_path(@user.id, week_id: 0)
+            |さんの
+            = @review.created_at.strftime('%Y/%m/%d')
+            | の振り返り
 
-      #likes_buttons
-        = render partial: 'likes/like', locals: { review: @review}
-      = link_to '編集', edit_review_path(@review), class: "btn btn-outline-primary"
-      |  | 
-      = link_to '振り返り一覧へ', reviews_path, class: "btn btn-outline-primary"
+    .col-7.colum
+      .col-12.colum
+        p
+          h5
+            | 達成率
+          = pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false
+          p[style="font-size:20px;"]
+            | 本日の目標達成率：
+            strong[style="font-size:30px;"]
+              = @review.rate
+              | %
+      .row
+        .col-12.colum
+          p
+            strong
+              | 本日の振り返り(反省）:
+            = @review.review
+      .row
+        .col-12.colum
+          p
+            strong
+              | 明日の目標:
+            = @review.plan
+      .row
+        .col-12.colum
+          p
+            strong
+              | 本日のトピック題名:
+            = @review.title
+          p
+            = @review.topic
+      .row
+        .col-12.colum[style="display:flex;"]
+          #likes_buttons[style="padding:5px 10px 0 0;"]
+            = render partial: 'likes/like', locals: { review: @review}
+          #comments_area[style="padding:9px 10px 0 0;"]
+            = render partial: 'comments/index', locals: { review: @review}
+          -if @review.user_id == current_user.id
+            = link_to '編集', edit_review_path(@review), class: "btn btn-outline-primary"
     .col-4.offset-md-1.colum
-      p
-        | いいねしたユーザー
-      - @review.liked_users.each do |user|
-        li
-          = user.name
-        li
-          = attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img"
       .comments
         #comments_error
           = render 'layouts/errors', model: @comment
-        #comments_area
-          = render partial: 'comments/index', locals: { review: @review}
         .new-comment
           #comment_new
             = render partial: 'comments/form', locals: { review: @review, comment: @comment}

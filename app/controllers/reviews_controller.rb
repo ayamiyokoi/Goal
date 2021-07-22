@@ -23,6 +23,11 @@ class ReviewsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @review.comments.order(created_at: :desc)
+    @user = User.find(@review.user_id)
+    unless @review == nil
+      # %表示
+      @rate = {"達成" => @review.rate, "未達成" => 100-@review.rate}
+    end
   end
 
   # GET /reviews/new
@@ -109,7 +114,7 @@ class ReviewsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_review
-      @review = Review.find(params[:id])
+      @review = Review.joins(:user).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
