@@ -1,0 +1,37 @@
+- if goals.present?
+  .table
+    table
+      thead
+        tr
+          th
+            | 目標
+          th
+            | 期限
+          th
+            | 達成ステータス
+          th
+            | 目標設定日
+          th
+          th
+      tbody
+        - goals.each do |goal|
+          tr
+            td
+              = goal.name
+            td
+              = goal.date.strftime("%Y-%m-%d")
+            td
+              - if goal.achieved == true
+                |  達成 
+              - else
+                |  未達成 
+            td
+              = goal.created_at.strftime("%Y-%m-%d")
+            th
+              = link_to '編集', edit_goal_path(goal), class: "btn btn-outline-success"
+            th
+              = link_to '削除する', goal_path(goal), class: "btn btn-outline-danger"
+- else
+  p[style="padding:20px;color:blue;"]
+    | データが登録されていません。
+= paginate goals

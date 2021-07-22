@@ -1,0 +1,32 @@
+.container
+  h4
+    | トピック一覧
+  .row
+    .col-12
+      ul.nav.nav-tabs
+        li.nav-item
+          a.nav-link.active[href="#topic1" data-toggle="tab"]
+            | マイトピック
+        li.nav-item
+          a.nav-link[href="#topic2" data-toggle="tab"]
+            | 知人のトピック
+        li.nav-item
+          a.nav-link[href="#topic3" data-toggle="tab"]
+            | すべてのトピック
+        li.nav-item
+          a.nav-link[href="#topic4" data-toggle="tab"]
+            | いいね順
+        li.nav-item
+          a.nav-link[href="#topic5" data-toggle="tab"]
+            | いいねしたトピック
+      .tab-content
+        #topic1.tab-pane.active
+          = render 'topics', reviews: @reviews_mine
+        #topic2.tab-pane
+          = render 'topics', reviews: @reviews_know
+        #topic3.tab-pane
+          = render 'topics', reviews: @reviews_all
+        #topic4.tab-pane
+          = render 'topics', reviews: @reviews_like
+        #topic5.tab-pane
+          = render 'topics', reviews: @reviews_liked

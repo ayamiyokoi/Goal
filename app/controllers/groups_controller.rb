@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
     @groups_all = Group.all.page(params[:page]).per(10)
     @groups_mine = current_user.groups.page(params[:page]).per(10)
     @group = Group.new
+    @group.group_users.build
    # @users = User.joins(:friends).where(friends: { myself_id: current_user.id})
   end
 
@@ -18,6 +19,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+       
   end
 
   # POST /groups or /groups.json
@@ -37,7 +39,8 @@ class GroupsController < ApplicationController
 
   # PATCH/PUT /groups/1 or /groups/1.json
   def update
-    @group.users << current_user
+    # unless @group.users.include?(current_user)
+     @group.users << current_user
     respond_to do |format|
       if @group.update(group_params)
         format.html { redirect_to @group, notice: "グループの更新が成功しました。" }

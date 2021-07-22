@@ -1,0 +1,22 @@
+.container
+  h4
+    | 目標一覧
+  .row
+    .col
+      ul.nav.nav-tabs
+        li.nav-item
+          a.nav-link.active[href="#goal_active" data-toggle="tab"]
+            | 未達成目標
+        li.nav-item
+          a.nav-link[href="#goal_done" data-toggle="tab"]
+            | 達成済み目標
+      .tab-content
+        #goal_active.tab-pane.active
+          = render 'index', goals: @goals_active
+        #goal_done.tab-pane
+          = render 'index', goals: @goals_done
+  .row
+    .col
+      h4
+        | 目標入力
+      = render 'form', goal: @goal

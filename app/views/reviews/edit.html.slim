@@ -1,0 +1,9 @@
+.container
+  div[cklass="row"]
+    .col
+      h4
+        | 振り返りの編集
+      = render 'form', review: @review
+      = link_to '詳細', @review, class: "btn btn-outline-primary"
+      |  | 
+      = link_to '一覧へ戻る', reviews_path, class: "btn btn-outline-primary"

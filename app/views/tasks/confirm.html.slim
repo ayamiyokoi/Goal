@@ -1,0 +1,20 @@
+.container
+  p
+    strong
+      | タスク名:
+    = @task.name
+  p
+    strong
+      | タスク詳細:
+    = @task.body
+  = form_with(model: @task, local: true) do |form|
+    .field
+      = form.label '完了した日'
+      = form.datetime_field :date
+    .field
+      = form.hidden_field :finished, value:true
+    .actions
+      p
+        | 本当に処理済みですか？
+      = form.submit "はい", class: "btn btn-outline-success"
+      = link_to "いいえ", tasks_path, class: "btn btn-outline-danger"

@@ -1,0 +1,36 @@
+.container
+  = form_with model: @inquiry, url: inquiry_confirm_path, local: true do |f|
+    .page-header
+      h1
+        | お問い合わせ
+      p
+        | ご意見等ございましたら、下記のフォームよりお問い合わせ願います。
+    - if @inquiry.errors.any?
+      .alert.alert-danger[role="alert"]
+        strong
+          | 入力内容にエラーがあります
+        ul
+          - @inquiry.errors.each do |attr, msg|
+            li
+              = msg
+    table.table
+      tr
+        th
+          | 名前
+          span.text-danger
+            | （必須）
+        td
+          = f.text_field :name
+      tr
+        th
+          | メールアドレス
+          span.text-danger
+            | （必須）
+        td
+          = f.text_field :email
+      tr
+        th
+          | お問い合わせ内容
+        td
+          = f.text_area :message
+    = f.submit '確認', class: 'btn btn-primary'

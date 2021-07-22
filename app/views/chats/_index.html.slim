@@ -1,0 +1,26 @@
+- if chats.present?
+  - chats.each do |chat|
+    .chat-box
+      - if chat.user == current_user
+        .mycomment.row
+          .chat-fukidashi.col-4.offset-4
+            p
+              strong
+                = chat.chat
+              br
+              = chat.created_at.strftime("%Y-%m-%d %H:%M")
+          .chat-face.col-1
+            = attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+            = link_to(group_chat_path(group_id: chat.group_id, id: chat.id), method: :delete, remote: true) do
+              i.fas.fa-trash-alt
+      - else
+        .fukidasi.row
+          .faceicon.col-1
+            = attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+          .chatting.col-11
+            .says
+              p
+                strong
+                  = chat.chat
+                br
+                = chat.created_at.strftime("%Y-%m-%d %H:%M")

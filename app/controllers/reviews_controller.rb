@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   before_action :set_review_all, only: %i[ index topics ]
   before_action :set_review_mine, only: %i[ index topics ]
   before_action :set_review_liked, only: %i[ topics ]
+  #TODO: なんかエラー出る、直して
   before_action :set_review_know, only: %i[ index topics ]
   before_action :set_review, only: %i[ show edit update destroy ]
 
@@ -13,8 +14,8 @@ class ReviewsController < ApplicationController
 
   def topics
     #TODO: 自分の友達のlike, status 2のlikeだけ取る
-    @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
-    #@reviews_like = Kaminari.paginate_array(Review.joins(:user).where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
+    # @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
+    @reviews_like = Kaminari.paginate_array(Review.joins(:user).where(user_id: {show_status: 2}).sorted_by_likes).page(params[:page]).per(10)
     #@reviews_like = Kaminari.paginate_array(Review.joins(:user).select("reviews.*, user.*").where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
     # @reviews_like = Review.sorted_by_likes
   end
@@ -89,6 +90,8 @@ class ReviewsController < ApplicationController
   private
 
     def set_review_all
+      #TODO: きれいにして
+      # @review_all = Review.where(user_id: User.where(show_status: 2).pluck('id')).page(params[:page]).per(10)
       @reviews_all = User.where(show_status: 2).page(params[:page]).per(10)
     end
 
@@ -101,7 +104,8 @@ class ReviewsController < ApplicationController
     end
 
     def set_review_know
-      @reviews_know = current_user.friends.page(params[:page]).per(10)
+      # @reviews_know = current_user.friends.page(params[:page]).per(10)
+      @reviews_know = Review.where(user_id: current_user.friends.pluck(:id)).page(params[:page]).per(10)
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_review
@@ -110,6 +114,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit( :tag_id, :rate, :review, :plan, :title, :topic)
+      params.require(:review).permit( :rate, :review, :plan, :title, :topic)
     end
 end

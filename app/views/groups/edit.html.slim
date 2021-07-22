@@ -1,0 +1,7 @@
+.container
+  h4
+    | グループ編集
+  = render 'form', group: @group
+  = link_to 'グループ詳細', @group
+  |  | 
+  = link_to 'グループ一覧', groups_path

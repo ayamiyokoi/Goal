@@ -1,0 +1,68 @@
+.container
+  .row
+    p.about
+      | ABOUT
+    .col-12
+      .box
+        p.que
+          | GOALとは？
+        p.ans
+          | 会員登録したユーザーだけが使える、目標達成に近づくための振り返りが行えるサイトです。
+      .box
+        p.que
+          | 目標を達成するために必要なことは何だろう？
+        p.ans
+          | 目標を設定し、毎日の成果の振り返ることです。
+        p.use
+          | GOALを使う！ 
+          = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
+          | |
+          = link_to 'ログイン', new_user_session_path, class: "about-link"
+      .box
+        p.que
+          | 目標に近づいてる感じがしない
+        p.ans
+          | GOALでは、達成率をグラフ化して表示しています。毎日の積み重ねを実感することが出来ます。
+        p.use
+          | GOALを使う！ 
+          = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
+          | |
+          = link_to 'ログイン', new_user_session_path, class: "about-link"
+      .box
+        p.que
+          | 上司/部下との連携があまりとれない。
+        p.ans
+          | GOALでは、グループ機能をを搭載しています。グループ内で気軽にチャットができます。
+        p.use
+          | GOALを使う！ 
+          = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
+          | |
+          = link_to 'ログイン', new_user_session_path, class: "about-link"
+      .box
+        p.que
+          | 他者が学んだことも知ることが出来れば、もっと効率的に目標達成できるのに
+        p.ans
+          | GOALでは、他者の振り返り投稿について、お気に入りに登録可能です。いつでも、見ることが出来ます。
+        p.use
+          | GOALを使う！ 
+          = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
+          | |
+          = link_to 'ログイン', new_user_session_path, class: "about-link"
+      .box
+        p.que
+          |  カレンダーをいちいち見るのが面倒 
+        p.ans
+          | GOALではカレンダー機能を搭載しています。予定を立てやすく、見やすく。
+        p.use
+          | GOALを使う！ 
+          = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
+          | |
+          = link_to 'ログイン', new_user_session_path, class: "about-link"
+      .box
+        p[style="font-size:20px;"]
+          | 毎日の振り返りに使ってみませんか？
+        p.use
+          | GOALを使う！ 
+          = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
+          | |
+          = link_to 'ログイン', new_user_session_path, class: "about-link"
