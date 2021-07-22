@@ -22,7 +22,7 @@
             <!--アソシエーションしたため不要-->
             <!--<%# review = Review.find_by(user_id: review.friend_id) if review.class == Friend %>-->
             <!--変数にUserクラスが入っているとき、変数の変更-->
-            <% review = Review.find_by(user_id: review.id) if review.class == User %>
+            <%# review = Review.find_by(user_id: review.id) if review.class == User %>
             <th><%= attachment_image_tag review.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></th>
             <td><%= review.rate %>%</td>
             <td><%= truncate(review.review, length:25) %></td>
