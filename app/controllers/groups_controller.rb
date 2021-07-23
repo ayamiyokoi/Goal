@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-       
+
   end
 
   # POST /groups or /groups.json
@@ -40,9 +40,12 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1 or /groups/1.json
   def update
     # unless @group.users.include?(current_user)
-     @group.users << current_user
+    #選んでないときはnilになるようにして
+    update_params = group_params
+    update_params[:user_ids].push(current_user.id)
+    # @group.users << current_user
     respond_to do |format|
-      if @group.update(group_params)
+      if @group.update(update_params)
         format.html { redirect_to @group, notice: "グループの更新が成功しました。" }
         format.json { render :show, status: :ok, location: @group }
       else

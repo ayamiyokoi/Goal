@@ -2,6 +2,4 @@
   = link_to '♥', review_likes_path(review), method: :delete, remote: true
 - else
   = link_to '♡', review_likes_path(review), method: :post, remote: true
-p
-  | いいね件数: 
-  = review.likes.count
+= review.likes.count

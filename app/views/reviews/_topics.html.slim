@@ -17,8 +17,6 @@
       tbody
         - reviews.each do |review|
           tr
-            - review = Review.find_by(user_id: review.friend_id) if review.class == Friend
-            - review = Review.find_by(user_id: review.id) if review.class == User
             td
               = attachment_image_tag review.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
             td
@@ -36,7 +34,8 @@
                 = link_to '編集', edit_review_path(review), class: "btn btn-outline-success"
               td
                 = link_to '削除', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger"
+    = paginate reviews
 - else
   p[style="padding:20px;color:blue;"]
     | データが登録されていません。
-= paginate reviews
+

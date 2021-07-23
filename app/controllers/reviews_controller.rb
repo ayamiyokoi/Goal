@@ -23,6 +23,11 @@ class ReviewsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @review.comments.order(created_at: :desc)
+    @user = User.find(@review.user_id)
+    unless @review == nil
+      # %表示
+      @rate = {"達成" => @review.rate, "未達成" => 100-@review.rate}
+    end
   end
 
   # GET /reviews/new
@@ -89,8 +94,7 @@ class ReviewsController < ApplicationController
   private
 
     def set_review_all
-      #TODO: 右取れてるのになんで表示されん？
-      @review_all = Review.where(user_id: User.where(show_status: 2).pluck(:id)).page(params[:page]).per(10)
+      @reviews_all = Review.where(user_id: User.where(show_status: 2).pluck(:id)).page(params[:page]).per(10)
     #   @reviews_all = User.where(show_status: 2).page(params[:page]).per(10)
     end
 
@@ -109,7 +113,7 @@ class ReviewsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_review
-      @review = Review.find(params[:id])
+      @review = Review.joins(:user).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

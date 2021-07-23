@@ -3,6 +3,7 @@
 class UsersController < ApplicationController
 
   def show
+    #TODO: tooltipなんとかして
     @user = User.find(params[:id])
     @review = Review.where(user_id: @user.id).first
     @to = Time.current.at_end_of_day + (7 * params[:week_id].to_i).day
