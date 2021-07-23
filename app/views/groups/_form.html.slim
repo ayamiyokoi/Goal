@@ -25,6 +25,6 @@
           = form.check_box :user_ids, {multiple: true}, user.id, nil
           = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
           = user.name
-    - #= form.check_box :user_ids,{ multiple: true, checked: user[:checked], disabled: user[:disabled], include_hidden: false, class: "check-box" }, user[:id]
+  
   .actions
     = form.submit
