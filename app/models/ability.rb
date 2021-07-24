@@ -5,18 +5,22 @@ class Ability
 
   def initialize(user)
     can :manage, :session
-    can :read, Home
+    # can [:top, :about], :home
+    can :manage, :home
     can :manage, Inquiry
 
     user ||= User.new
     if user.admin?
       can :manage, :all
     else
+      can :manage, :all
+      can :manage, Review, user_id: user.id
+      can :read, Review, active: true
+      can :manage, User, id: user.id
       #自分が作成したもののみmanage可能
       can :manage, Goal, user_id: user.id
       can :read, Goal
-      can :manage, Review, user_id: user.id
-      can :read, Review, active: true
+
       can :manage, Task, user_id: user.id
       can :manage, Chat, user_id: user.id
       can :read, Chat

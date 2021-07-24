@@ -36,6 +36,8 @@ class ApplicationController < ActionController::Base
     end
 
     def set_search
+      #TODO: 知人と公開ステータスのやつのみとる
+      #TODO: 結果のレイアウト編集
       @search = Review.ransack(params[:q])
       @search_reviews = @search.result
     end

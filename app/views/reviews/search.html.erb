@@ -13,8 +13,8 @@
     <tbody>
       <% @search_reviews.each do |review| %>
         <tr>
-          <th><%= attachment_image_tag review.user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg" %></th>
-          <td><%= review.topic %></td>
+          <th><%= attachment_image_tag review.user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></th>
+          <td><%= review.title %><br><%= review.topic %></td>
         </tr>
       <% end %>
     </tbody>

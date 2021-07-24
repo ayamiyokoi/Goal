@@ -80,9 +80,11 @@
                 <%= link_to 'お問い合わせ', inquiry_path, class: "dropdown-item" %>
               </div>
             </li>
+            <!--トピックの検索-->
+            <!--TODO: form_withにして-->
             <%= search_form_for @search, url: search_reviews_path, method: :get do |f| %>
-              <%= f.text_field :topic_cont, placeholder: '検索' %>
-              <%= f.submit ("検索する") %>
+              <%= f.text_field :topic_cont, placeholder: 'トピックをキーワードで検索' %>
+              <%= f.submit ("検索") %>
             <% end %>
           </ul>
         </div>

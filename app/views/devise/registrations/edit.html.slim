@@ -20,7 +20,7 @@
       br
       = f.text_area :introduction, class: "form-control"
     div
-      |  公開範囲 
+      |  公開範囲
       .radio-inline
         = f.radio_button :show_status, :非公開, checked: "checked"
         = f.label :非公開
@@ -43,7 +43,7 @@
       = f.text_field :custom_id, class: "form-control"
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       div
-        | Currently waiting confirmation for: 
+        | Currently waiting confirmation for:
         = resource.unconfirmed_email
     .field
       = f.label :password
