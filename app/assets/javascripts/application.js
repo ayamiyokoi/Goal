@@ -82,7 +82,7 @@
 //         }
 //     });
 // //});
-  document.addEventListener("turbolinks:load", function () {
+  document.addEventListener("DOMContentLoaded", function () {
 $(function() {
     $("div.top dl").each(function(i) {
         setTimeout(function() {
