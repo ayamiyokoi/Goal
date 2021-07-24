@@ -4,4 +4,6 @@
     = comment.comment
   - if comment.user == current_user
     .comment-delete
-      = link_to "削除", review_comment_path(comment.review, comment), method: :delete, remote:true
+      /= link_to "削除", review_comment_path(comment.review, comment), method: :delete, remote:true
+      = link_to(review_comment_path(comment.review, comment), method: :delete, remote: true) do
+              i.fas.fa-trash-alt

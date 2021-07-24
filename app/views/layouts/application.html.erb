@@ -5,8 +5,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://kit.fontawesome.com/014a69a131.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
@@ -80,9 +78,11 @@
                 <%= link_to 'お問い合わせ', inquiry_path, class: "dropdown-item" %>
               </div>
             </li>
+            <!--トピックの検索-->
+            <!--TODO: form_withにして-->
             <%= search_form_for @search, url: search_reviews_path, method: :get do |f| %>
-              <%= f.text_field :topic_cont, placeholder: '検索' %>
-              <%= f.submit ("検索する") %>
+              <%= f.text_field :topic_cont, placeholder: 'トピックをキーワードで検索' %>
+              <%= f.submit ("検索") %>
             <% end %>
           </ul>
         </div>

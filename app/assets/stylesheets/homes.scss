@@ -48,6 +48,7 @@ div.top dl.active {
 }
 .link:hover{
     text-decoration: none;
+    background-color: blue !important;
 }
 .about{
   font-size: 30px;
@@ -57,12 +58,15 @@ div.top dl.active {
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 20px;
+  height: 140px !important;
 }
 .about-link{
     color: blue !important;
+    font-weight: bold;
+    border-bottom: 2px solid blue;
 }
 .about-link:hover{
-    text-decoration: none;
+  text-decoration: none;
 }
 .que{
   border-bottom: dashed 3px white ;
@@ -74,6 +78,7 @@ div.top dl.active {
   color: blue;
   display: inline-block;
 }
+
 .sp_only{
   display: none !important;
 }

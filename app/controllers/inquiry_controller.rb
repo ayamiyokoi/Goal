@@ -6,6 +6,7 @@ class InquiryController < ApplicationController
   end
 
   def confirm
+    #TODO: @inquiry 共通にして
     @inquiry = Inquiry.new(inquiry_params)
     # binding.irb
     if @inquiry.valid?

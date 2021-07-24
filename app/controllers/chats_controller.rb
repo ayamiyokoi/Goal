@@ -2,10 +2,10 @@
 
 class ChatsController < ApplicationController
   before_action :set_group, only: %i[ index create destroy ]
-
+ #TODO: @chats省略で大丈夫か？
   def index
     @chat = Chat.new
-    @chats = @group.chats
+    # @chats = @group.chats
   end
 
   def create
@@ -14,7 +14,7 @@ class ChatsController < ApplicationController
     unless @chat.save
       render 'error'
     end
-    @chats = @group.chats
+    # @chats = @group.chats
   end
 
   # def update
@@ -23,12 +23,13 @@ class ChatsController < ApplicationController
 
   def destroy
     @chats = Chat.find_by(id: params[:id], group_id: params[:group_id]).destroy
-    @chats = @group.chats
+    # @chats = @group.chats
   end
 
   private
     def set_group
       @group = Group.find(params[:group_id])
+      @chats = @group.chats
     end
 
     def chat_params

@@ -23,5 +23,12 @@
   .field
     = form.label '本日のトピック'
     = form.text_area :topic, class: "form-control", rows: "8", placeholder: "例）リニアモーターカーの開通による、再開発事業により、名古屋の地価が上昇している。"
+  .field
+      |公開ステータス
+      br
+      = f.radio_button :active, :true
+      = f.label :active, "公開", {value: :true, style: "display: inline-block;"}
+      = f.radio_button :active, :false
+      = f.label :active, "非公開", {value: :false, style: "display: inline-block;"}
   .actions
     = form.submit

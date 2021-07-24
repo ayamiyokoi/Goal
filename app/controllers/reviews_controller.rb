@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
 
   def topics
     #TODO: どこにincludeつける?
+    #TODO: メソッドにして
     # @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
     @reviews_like = Kaminari.paginate_array(Review.where(user_id: current_user.friends.pluck(:id)).or(Review.where(user_id: User.where(show_status: 2).pluck(:id))).sorted_by_likes).page(params[:page]).per(10)
     #@reviews_like = Kaminari.paginate_array(Review.joins(:user).select("reviews.*, user.*").where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
@@ -53,6 +54,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         # 目標達成で5pt, タスク達成で2pt, 振り返り投稿で1pt、自分のレベルの3乗倍のポイントがたまるとレベルアップ
+        #TODO: めそっどにして
         if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review.where(user_id: current_user.id).count > 3**current_user.level
           current_user.level = current_user.level + 1
           current_user.save
