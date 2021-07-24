@@ -14,8 +14,9 @@ class ReviewsController < ApplicationController
   def topics
     #TODO: どこにincludeつける?
     #TODO: メソッドにして
+    #TODO: activeの更新ができてない
     # @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
-    @reviews_like = Kaminari.paginate_array(Review.where(user_id: current_user.friends.pluck(:id)).or(Review.where(user_id: User.where(show_status: 2).pluck(:id))).sorted_by_likes).page(params[:page]).per(10)
+    @reviews_like = Kaminari.paginate_array(Review.where(user_id: current_user.friends.pluck(:id), active: true).or(Review.where(user_id: User.where(show_status: 2).pluck(:id), active: true)).sorted_by_likes).page(params[:page]).per(10)
     #@reviews_like = Kaminari.paginate_array(Review.joins(:user).select("reviews.*, user.*").where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
     # @reviews_like = Review.sorted_by_likes
   end

@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_010400) do
     t.text "topic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active", default: false
+    t.boolean "active", default: true
   end
 
   create_table "tags", force: :cascade do |t|
