@@ -1,6 +1,15 @@
 .container
   h4
     | マイページ
+  .row
+  .col-12
+    -@goals.each do |goal|
+      ul
+        li
+          = goal.date.strftime('%Y/%m/%d')
+          |までの目標
+          = goal.name
+          = link_to '達成済みにする', edit_goal_path(goal), class: 'btn btn-outline-primary'
   - unless @review == nil
     h4
       = @review.created_at.strftime('%Y/%m/%d')

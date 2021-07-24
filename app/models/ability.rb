@@ -5,7 +5,8 @@ class Ability
 
   def initialize(user)
     can :manage, :session
-    can :read, :home
+    can :read, Home
+    can :manage, Inquiry
 
     user ||= User.new
     if user.admin?

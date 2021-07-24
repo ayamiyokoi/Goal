@@ -17,6 +17,7 @@ class GoalsController < ApplicationController
     if @goal.save
       if Goal.stage_up?(current_user)
         #今のステージから1上がる
+        #TODO: ステージアップ、レベルアップ、どうやってめそっどにするのか
         current_user.stage = current_user.stage + 1
         current_user.save
         flash[:notice] = "ステージ「＋１」アップ 、現在のステージは#{current_user.stage}です。"
@@ -32,6 +33,7 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
+      #TODO: メソッドにして
       if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review.where(user_id: current_user.id).count > 3**current_user.level
           current_user.level = current_user.level + 1
           current_user.save
@@ -51,7 +53,7 @@ class GoalsController < ApplicationController
 
   private
   def set_goal
-      @goal = Goal.find(params[:id])
+    @goal = Goal.find(params[:id])
   end
 
   def goal_params
