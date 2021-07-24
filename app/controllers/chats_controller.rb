@@ -29,7 +29,7 @@ class ChatsController < ApplicationController
   private
     def set_group
       @group = Group.find(params[:group_id])
-      @chats = @group.chats
+      @chats = @group.chats.includes(:user)
     end
 
     def chat_params
