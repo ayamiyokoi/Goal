@@ -2,14 +2,28 @@
   h4
     | マイページ
   .row
-  .col-12
-    -@goals.each do |goal|
-      ul
-        li
-          = goal.date.strftime('%Y/%m/%d')
-          |までの目標
-          = goal.name
-          = link_to '達成済みにする', edit_goal_path(goal), class: 'btn btn-outline-primary'
+  .col-12.colum
+    - if @goals.present?
+      h4
+        |目標
+      .table
+        table
+          thead
+            tr
+              th
+                | 期限
+              th
+                | 目標
+              th
+          tbody
+            -@goals.each do |goal|
+              tr
+                td
+                  = goal.date.strftime('%Y/%m/%d')
+                td
+                  = goal.name
+                td
+                  = link_to '達成済みにする', edit_goal_path(goal), class: 'btn btn-outline-primary'
   - unless @review == nil
     h4
       = @review.created_at.strftime('%Y/%m/%d')
@@ -89,9 +103,9 @@
             = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success"
             = link_to '削除', @review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger"
     .row
-      = link_to '前の一週間', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box"
+      = link_to '前の一週間', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box_button"
       = line_chart @data, xmin: @from, xmax: @to
-      = link_to '次の一週間', user_path(current_user.id, week_id: params[:week_id].to_i + 1), class: "btn btn-outline-primary box"
+      = link_to '次の一週間', user_path(current_user.id, week_id: params[:week_id].to_i + 1), class: "btn btn-outline-primary box_button"
   - else
     h4
       | ユーザー
