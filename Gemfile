@@ -84,6 +84,7 @@ gem "chartkick"
 gem 'rails_admin', '~> 2.0'
 gem 'slim-rails'
 gem 'html2slim'
+gem 'cancancan'
 group :production do
   gem 'mysql2'
 end
