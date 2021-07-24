@@ -58,5 +58,11 @@ class User < ApplicationRecord
   def self.search(keyword)
     User.where(custom_id: "#{keyword}")
   end
+  
+  #今のステージから1上がる
+  def upgrade_stage
+    self.stage = self.stage +1
+    self.save
+  end
 
 end

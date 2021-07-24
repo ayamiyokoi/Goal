@@ -18,8 +18,8 @@ class GoalsController < ApplicationController
       if Goal.stage_up?(current_user)
         #今のステージから1上がる
         #TODO: ステージアップ、レベルアップ、どうやってめそっどにするのか
-        current_user.stage = current_user.stage + 1
-        current_user.save
+        current_user.upgrade_stage
+        
         flash[:notice] = "ステージ「＋１」アップ 、現在のステージは#{current_user.stage}です。"
       end
       redirect_to request.referer
