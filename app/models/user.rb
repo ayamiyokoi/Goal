@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   attachment :profile_image
   enum show_status: {非公開:0, 知人のみ公開:1, すべてのユーザーに公開:2}
   has_many :group_users
@@ -58,11 +58,31 @@ class User < ApplicationRecord
   def self.search(keyword)
     User.where(custom_id: "#{keyword}")
   end
-  
+
   #今のステージから1上がる
   def upgrade_stage
     self.stage = self.stage +1
     self.save
   end
 
+ #SNS認証
+  def self.find_for_oauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
+
+    unless user
+      user = User.create(
+        uid:      auth.uid,
+        provider: auth.provider,
+        email:    User.dummy_email(auth),
+        password: Devise.friendly_token[0, 20]
+      )
+    end
+  #TODO: このuser 何？
+    user
+  end
+  private
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
+  end
 end

@@ -27,3 +27,6 @@
     .actions
       = f.submit "新規登録"
   = render "devise/shared/links"
+
+  user_facebook_omniauth_authorize_path(:facebook)
+  user_twitter_omniauth_authorize_path(:twitter)
