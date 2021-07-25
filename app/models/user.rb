@@ -64,6 +64,12 @@ class User < ApplicationRecord
     self.stage = self.stage +1
     self.save
   end
+  
+  #今のレベルから1上がる
+  def upgrade_level
+    self.level = self.level +1
+    self.save
+  end
 
  #SNS認証
   def self.find_for_oauth(auth)

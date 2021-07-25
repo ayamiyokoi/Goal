@@ -27,7 +27,10 @@ class Review < ApplicationRecord
   def liked_users_count
     liked_users.count
   end
-
+  
+  def self.review_point(current_user)
+    Review.where(user_id: current_user.id).count
+  end
 
 
   # いいね通知機能

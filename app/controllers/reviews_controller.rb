@@ -54,10 +54,9 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         # 目標達成で5pt, タスク達成で2pt, 振り返り投稿で1pt、自分のレベルの3乗倍のポイントがたまるとレベルアップ
-        #TODO: めそっどにして
-        if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review.where(user_id: current_user.id).count > 3**current_user.level
-          current_user.level = current_user.level + 1
-          current_user.save
+        if Goal.goal_point(current_user) + Task.task_point(current_user) + Review.review_point(current_user) > 3**current_user.level
+          #レベル+1
+          current_user.upgrade_level
           flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
         end
         format.html { redirect_to @review, notice: "振り返りの作成に成功しました。" }
