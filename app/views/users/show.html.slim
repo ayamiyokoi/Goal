@@ -2,8 +2,47 @@
   h4
     | マイページ
   .row
+    .col-6.colum
+      .row
+        .col-12
+          h5
+            | ユーザー
+      .row
+        .col-5
+          = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+        .col-7
+          p
+            |  名前：
+            = @user.name
+          p
+            |  現在のステージ：
+            = @user.stage
+            button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="ステージとは？→ 目標設定の数によって上がる数です"]
+              small
+                i.fas.fa-question-circle
+                | click!
+          p
+            |  現在のレベル：
+            = @user.level
+            button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です"]
+              small
+                i.fas.fa-question-circle
+                | click!
+          p.introduction
+            |  自己紹介：
+            - unless @user.introduction == nil
+              = @user.introduction
+            - else
+              |  未設定
+          - if @user == current_user
+            = link_to users_mypage_path, class: "btn btn-outline-primary margin"
+              i.fas.fa-user
+              | 詳細
+            = link_to edit_user_registration_path, class: "btn btn-outline-primary margin"
+              i.fas.fa-cog
+              | 編集
     - if @goals.present?
-    .col-5.colum
+    .col-5.offset-md-1.colum
       h4
         |目標
       .table
@@ -25,8 +64,18 @@
                 td
                   = link_to '達成済みにする', edit_goal_path(goal), class: 'btn btn-outline-primary'
         = paginate @goals
+  .row
+    .col-4.colum
+        h5
+          | 達成率
+        = pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false
+        p[style="font-size:20px;"]
+          | 本日の目標達成率：
+          strong[style="font-size:30px;"]
+            = @review.rate
+            | %
     - if @tasks.present?
-    .col-6.offset-md-1.colum
+    .col-7.offset-md-1.colum
       h4
         | タスク
       .table
@@ -53,113 +102,10 @@
                   = link_to '処理済みにする', confirm_task_path(task), class: 'btn btn-outline-primary'
         = paginate @tasks
   - unless @review == nil
-    h4
-      = @review.created_at.strftime('%Y/%m/%d')
-      | の振り返り
-    .row
-      .col-7.colum
-        .row
-          .col-12
-            h5
-              | ユーザー
-        .row
-          .col-5
-            = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-          .col-7
-            p
-              |  名前：
-              = @user.name
-            p
-              |  現在のステージ：
-              = @user.stage
-              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="ステージとは？→ 目標設定の数によって上がる数です"]
-                small
-                  i.fas.fa-question-circle
-                  | click!
-            p
-              |  現在のレベル：
-              = @user.level
-              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です"]
-                small
-                  i.fas.fa-question-circle
-                  | click!
-            p.introduction
-              |  自己紹介：
-              - unless @user.introduction == nil
-                = @user.introduction
-              - else
-                |  未設定
-            - if @user == current_user
-              = link_to users_mypage_path, class: "btn btn-outline-primary margin"
-                i.fas.fa-user
-                | 詳細
-              = link_to edit_user_registration_path, class: "btn btn-outline-primary margin"
-                i.fas.fa-cog
-                | 編集
-      .col-4.offset-md-1.colum
-        h5
-          | 達成率
-        = pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false
-        p[style="font-size:20px;"]
-          | 本日の目標達成率：
-          strong[style="font-size:30px;"]
-            = @review.rate
-            | %
-    .row
-      .col-12.colum
-        h5
-          | 本日の振り返り(反省)
-        p
-          = @review.review
-    .row
-      .col-12.colum
-        h5
-          | 明日の目標
-        p
-          = @review.plan
-    .row
-      .col-12.colum
-        h5
-          | 本日のトピック:
-          = @review.title
-        p
-          = @review.topic
-    .row
-      .col-12
-        p
-          | コメント数：
-          = link_to "#{@review.comments.count} 件", review_path(@review.id)
-          |  いいね数：
-          = @review.liked_users_count
-          = link_to '詳細画面', @review, class: "btn btn-outline-primary margin"
-          - if @review.written_by?(current_user)
-            = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success margin"
-            = link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger margin"
-    .row
-      = link_to '前の一週間', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box_button"
-      = line_chart @data, xmin: @from, xmax: @to
-      = link_to '次の一週間', user_path(current_user.id, week_id: params[:week_id].to_i + 1), class: "btn btn-outline-primary box_button"
-  - else
-    h4
-      | ユーザー
-    = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-    .col-8
-      .field
-        |  名前
-        = @user.name
-      p
-        |  現在のステージ：
-        = @user.stage
-        button#stage.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="ステージとは？→ 目標設定の数によって上がる数です"]
-          small
-            i.far.fa-hand-point-right
-            | click!
-      p
-        |  現在のレベル：
-        = @user.level
-        button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です"]
-          small
-            i.far.fa-hand-point-right
-            | click!
-      - if @user == current_user
-        = link_to '詳細画面へ', users_mypage_path, class: "btn btn-outline-primary"
+    .row.colum
+      .col-2
+        = link_to '前週', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box_button"
+      .col-8[style="margin-left: -100px;"]
+        = line_chart @data, xmin: @from, xmax: @to
+      .col-2.text-right[style="margin-left: 100px;"]
+        = link_to '次週', user_path(current_user.id, week_id: params[:week_id].to_i + 1), class: "btn btn-outline-primary box_button"
