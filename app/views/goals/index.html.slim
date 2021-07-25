@@ -17,6 +17,7 @@
           = render 'index', goals: @goals_done
   .row
     .col
+      = render 'layouts/errors', model: @goal
       h4
         | 目標入力
       = render 'form', goal: @goal
