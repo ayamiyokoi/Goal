@@ -19,14 +19,14 @@
             td
               = task.name
             td
-              = task.body
+              = truncate(task.body, length:25)
             td
               = l(task.date, format: :long)
             td
               - if task.finished == true
-                |  処理済み 
+                |  処理済み
               - else
-                |  未処理 
+                |  未処理
             td
               = link_to '詳細', task, class: "btn btn-outline-primary"
             td
