@@ -42,65 +42,65 @@
               i.fas.fa-cog
               | 編集
     - if @goals.present?
-    .col-5.offset-md-1.colum
-      h4
-        |目標
-      .table
-        table
-          thead
-            tr
-              th
-                | 期限
-              th
-                | 目標
-              th
-          tbody
-            -@goals.each do |goal|
-              tr
-                td
-                  = goal.date.strftime('%Y/%m/%d')
-                td
-                  = goal.name
-                td
-                  = link_to '達成済みにする', edit_goal_path(goal), class: 'btn btn-outline-primary'
-        = paginate @goals
+     .col-5.offset-md-1.colum
+       h4
+         |目標
+       .table
+         table
+           thead
+             tr
+               th
+                 | 期限
+               th
+                 | 目標
+               th
+           tbody
+             -@goals.each do |goal|
+               tr
+                 td
+                   = goal.date.strftime('%Y/%m/%d')
+                 td
+                   = goal.name
+                 td
+                   = link_to '達成済みにする', edit_goal_path(goal), class: 'btn btn-outline-primary'
+         = paginate @goals
   .row
-    .col-4.colum
-        h5
-          | 達成率
-        = pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false
-        p[style="font-size:20px;"]
-          | 本日の目標達成率：
-          strong[style="font-size:30px;"]
-            = @review.rate
-            | %
+    - if @reviews.present?
+      .col-3.colum[style="text-align:center;"]
+          = pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false
+          p[style="font-size:20px;padding:20px;"]
+            | 本日の目標達成率：
+          p
+            strong[style="font-size:40px;text-align:center;"]
+              = @review.rate
+              | %
     - if @tasks.present?
-    .col-7.offset-md-1.colum
-      h4
-        | タスク
-      .table
-        table
-          thead
-            tr
-              th
-                | 期限
-              th
-                | タスク
-              th
-                | タスク詳細
-              th
-          tbody
-            -@tasks.each do |task|
+      .col-8.offset-md-1.colum
+        h4
+          | タスク
+        .table
+          table
+            thead
               tr
-                td
-                  = task.date.strftime('%Y/%m/%d')
-                td
-                  = task.name
-                td
-                  = truncate(task.body, length:25)
-                td
-                  = link_to '処理済みにする', confirm_task_path(task), class: 'btn btn-outline-primary'
-        = paginate @tasks
+                th
+                  | 期限
+                th
+                  | タスク
+                th
+                  | タスク詳細
+                th
+            tbody
+              -@tasks.each do |task|
+                tr
+                  td
+                    = task.date.strftime('%Y/%m/%d')
+                  td
+                    = task.name
+                  td
+                    = truncate(task.body, length:25)
+                  td
+                    = link_to '処理済みにする', confirm_task_path(task), class: 'btn btn-outline-primary'
+          = paginate @tasks
   - unless @review == nil
     .row.colum
       .col-2
