@@ -61,13 +61,13 @@ class User < ApplicationRecord
 
   #今のステージから1上がる
   def upgrade_stage
-    self.stage = self.stage +1
+    self.stage = self.stage + 1
     self.save
   end
   
   #今のレベルから1上がる
   def upgrade_level
-    self.level = self.level +1
+    self.level = self.level + 1
     self.save
   end
 

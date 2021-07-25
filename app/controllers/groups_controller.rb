@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1 or /groups/1.json
   def update
     # unless @group.users.include?(current_user)
-    #選んでないときはnilになるようにして
+    #自分をグループに追加
     update_params = group_params
     update_params[:user_ids].push(current_user.id)
     # @group.users << current_user
