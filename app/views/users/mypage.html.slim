@@ -37,4 +37,6 @@
         - else
           |  未設定
       - if @user == current_user
-        = link_to '編集画面へ', edit_user_registration_path, class: "btn btn-outline-primary"
+        = link_to edit_user_registration_path, class: "btn btn-outline-primary"
+          i.fas.fa-cog
+          | 編集

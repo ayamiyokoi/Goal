@@ -88,6 +88,7 @@ gem 'cancancan'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-rails_csrf_protection'
 group :production do
   gem 'mysql2'
 end
