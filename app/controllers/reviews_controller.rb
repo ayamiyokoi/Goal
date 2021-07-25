@@ -109,8 +109,7 @@ class ReviewsController < ApplicationController
 
     def set_review_know
       # @reviews_know = current_user.friends.page(params[:page]).per(10)
-      #N+1問題対策
-      @reviews_know = Reviewself.active_friend_review(current_user).includes(:user).page(params[:page]).per(10)
+      @reviews_know = Review.active_friend_review(current_user).includes(:user).page(params[:page]).per(10)
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_review
