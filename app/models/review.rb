@@ -27,7 +27,18 @@ class Review < ApplicationRecord
   def liked_users_count
     liked_users.count
   end
-
+  
+  def self.review_point(current_user)
+    Review.where(user_id: current_user.id).count
+  end
+  
+  def self.active_friend_review(current_user)
+    Review.where(user_id: current_user.friends.pluck(:id), active: true)
+  end
+  
+  def self.active_all_review
+    Review.where(user_id: User.where(show_status: 2).pluck(:id), active: true)
+  end
 
 
   # いいね通知機能

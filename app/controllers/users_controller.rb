@@ -3,7 +3,6 @@
 class UsersController < ApplicationController
 
   def show
-    #TODO: 並び順変わらねえ、なんでや
     @goals = Goal.where(user_id: params[:id]).where(achieved: false).order(date: "ASC")
     @user = User.find(params[:id])
     @review = Review.where(user_id: @user.id).first

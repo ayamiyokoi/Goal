@@ -1,22 +1,27 @@
 <div class="container">
-  <h4>トピック検索</h4>
-  <% if params[:q].present? && params[:q][:topic_cont].present? %>
-     <%= params[:q][:topic_cont] %>に関するトピックを検索
-  <% end %>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>トピック</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @search_reviews.each do |review| %>
-        <tr>
-          <th><%= attachment_image_tag review.user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></th>
-          <td><%= review.title %><br><%= review.topic %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-12">
+      <h4>
+        <% if params[:q].present? && params[:q][:topic_cont].present? %>
+           <%= params[:q][:topic_cont] %>に関するトピックを検索
+        <% end %>
+      </h4>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>トピック</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @search_reviews.each do |review| %>
+            <tr>
+              <th><%= attachment_image_tag review.user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img" %></th>
+              <td><%= review.title %><br><%= review.topic %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

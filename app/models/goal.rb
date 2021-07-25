@@ -11,4 +11,8 @@ class Goal < ApplicationRecord
     Goal.where(user_id: current_user.id).count > 2**current_user.stage
   end
 
+  def self.goal_point(current_user)
+    5*Goal.where(user_id: current_user.id, achieved: true).count
+  end
+
 end

@@ -39,10 +39,10 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        #TODO: メソッドにして
-        if 5*Goal.where(user_id: current_user.id, achieved: true).count + 2*Task.where(user_id: current_user.id, finished: true).count + Review.where(user_id: current_user.id).count > 3**current_user.level
-          current_user.level = current_user.level + 1
-          current_user.save
+         # 目標達成で5pt, タスク達成で2pt, 振り返り投稿で1pt、自分のレベルの3乗倍のポイントがたまるとレベルアップ
+        if Goal.goal_point(current_user) + Task.task_point(current_user) + Review.review_point(current_user) > 3**current_user.level
+          #レベル+1
+          current_user.upgrade_level
           flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
         end
         format.html { redirect_to @task, notice: "タスクを更新しました。" }
@@ -62,7 +62,7 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def confirm
   end
 

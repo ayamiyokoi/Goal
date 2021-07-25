@@ -4,10 +4,9 @@ class ChatsController < ApplicationController
   #TODO: なんでbeforeactionだとエラーなの？
   #before_action :set_chats, only: %i[ index create ]
   before_action :set_group, only: %i[ index create destroy ]
- #TODO: @chats省略で大丈夫か？
   def index
     @chat = Chat.new
-    @chats = @group.chats
+    @chats = @group.chats.includes(:user)
   end
 
   def create
@@ -16,7 +15,7 @@ class ChatsController < ApplicationController
     unless @chat.save
       render 'error'
     end
-    @chats = @group.chats
+    @chats = @group.chats.includes(:user)
   end
 
   # def update
@@ -25,7 +24,7 @@ class ChatsController < ApplicationController
 
   def destroy
     @chats = Chat.find_by(id: params[:id], group_id: params[:group_id]).destroy
-    @chats = @group.chats
+    @chats = @group.chats.includes(:user)
   end
 
   private
