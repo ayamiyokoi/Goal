@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def friend_search
     @user = User.find_by(custom_id: params[:keyword])
+    @keyword = params[:keyword]
   end
 end
 

@@ -13,6 +13,6 @@
       .tab-content
         #user_know.tab-pane.active
           = render 'index', follows: @users_know
-          = render 'search', user: @user
+          = render 'search'
         #user_all.tab-pane
           = render 'follows/follow', follows: @users
