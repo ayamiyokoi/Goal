@@ -3,8 +3,8 @@
 class UsersController < ApplicationController
 
   def show
-    @goals = Goal.where(user_id: params[:id]).where(achieved: false).order(date: "ASC").page(params[:page]).per(10)
-    @tasks = Task.where(user_id: params[:id]).where(finished: false).order(date: "ASC").page(params[:page]).per(10)
+    @goals = Goal.where(user_id: params[:id]).where(achieved: false).order(date: "ASC").page(params[:page]).per(3)
+    @tasks = Task.where(user_id: params[:id]).where(finished: false).order(date: "ASC").page(params[:page]).per(3)
     @user = User.find(params[:id])
     @review = Review.where(user_id: @user.id).first
     @to = Time.current.at_end_of_day + (7 * params[:week_id].to_i).day
