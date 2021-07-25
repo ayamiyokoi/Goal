@@ -6,8 +6,8 @@ class GoalsController < ApplicationController
 
   def index
      # 自分の目標のみ表示、達成済、未達成で判別
-    @goals_active = Goal.where(user_id: current_user.id, achieved: false).page(params[:page]).per(5)
-    @goals_done = Goal.where(user_id: current_user.id, achieved: true).page(params[:page]).per(10)
+    @goals_active = Goal.where(user_id: current_user.id, achieved: false).order(date: "ASC").page(params[:page]).per(5)
+    @goals_done = Goal.where(user_id: current_user.id, achieved: true).order(date: "DESC").page(params[:page]).per(10)
     @goal = Goal.new
   end
 
