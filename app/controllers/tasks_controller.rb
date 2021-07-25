@@ -29,7 +29,7 @@ class TasksController < ApplicationController
         format.html { redirect_to @task, notice: "タスクを作成しました。" }
         format.json { render :show, status: :created, location: @task }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
