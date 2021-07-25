@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[twitter facebook]
   attachment :profile_image
   enum show_status: {非公開:0, 知人のみ公開:1, すべてのユーザーに公開:2}
   has_many :group_users
@@ -74,12 +74,12 @@ class User < ApplicationRecord
         uid:      auth.uid,
         provider: auth.provider,
         email:    User.dummy_email(auth),
+        name:     auth.name,
         password: Devise.friendly_token[0, 20]
       )
     end
-  #TODO: このuser 何？
-    user
   end
+
   private
 
   def self.dummy_email(auth)
