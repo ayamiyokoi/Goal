@@ -10,5 +10,9 @@ class Goal < ApplicationRecord
       #自分の目標の数が２の自分のステージ乗より大きいなら
     Goal.where(user_id: current_user.id).count > 2**current_user.stage
   end
+  
+  def self.count_point(current_user)
+    5*Goal.where(user_id: current_user.id, achieved: true).count
+  end
 
 end

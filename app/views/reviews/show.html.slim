@@ -43,6 +43,15 @@
           p
             = @review.topic
       .row
+        .col-12.colum
+          p
+            strong
+              | 公開ステータス:
+            - if @review.active == true
+              |  公開
+            - else
+              |  非公開
+      .row
         .col-12.colum[style="display:flex;"]
           #likes_buttons[style="padding:5px 10px 0 0;"]
             = render partial: 'likes/like', locals: { review: @review}
