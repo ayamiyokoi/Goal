@@ -22,6 +22,8 @@
           td
             = link_to 'グループ詳細画面へ', group, class: "btn btn-outline-primary"
           td
+            = link_to 'チャットする', group_chats_path(group), class: "btn btn-outline-primary"
+          td
             = link_to '編集', edit_group_path(group), class: "btn btn-outline-success"
           td
             = link_to '削除', group, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger"

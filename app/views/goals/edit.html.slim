@@ -1,6 +1,7 @@
 .container
   .row
     .col
+      = render 'layouts/errors', model: @goal
       h4
         | 目標編集
       = render 'form', goal: @goal

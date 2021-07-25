@@ -13,24 +13,33 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :manage, :all
-      # can :manage, Review, user_id: user.id
+      # can :manage, :review
+      can :read, :all
+      can :manage, :review, user_id: user.id
       # can :read, Review, active: true
+      # can :manage, :user
+      # can :manage, :devise
       # can :manage, User, id: user.id
       # #自分が作成したもののみmanage可能
+      # can :manage, :goal
       # can :manage, Goal, user_id: user.id
       # can :read, Goal
 
       # can :manage, Task, user_id: user.id
       # can :manage, Chat, user_id: user.id
       # can :read, Chat
+      # can :manage, :group
       # can :manage, Group
+      # can :manage, :comment
       # can :manage, Comment, user_id: user.id
       # can :read, Comment
       # can :manage, Like, user_id: user.id
       # can :read, Like
+      # can :manage, :event
       # can :manage, Event, user_id: user.id
+      # can :manage, :follow
       # can :manage, Follow
+      # can :manage, :friend
       # can :manage, Friend
       # can :manage, Notification
       #他者が作成した振り返りは公開中のみ、閲覧可能

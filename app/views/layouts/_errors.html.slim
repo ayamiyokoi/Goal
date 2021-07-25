@@ -2,7 +2,7 @@
   #error_explanation
     h3
       = pluralize(model.errors.count, "error")
-      |  prohibited this model from being saved: 
+      |  prohibited this model from being saved:
     ul
       - model.errors.full_messages.each do |message|
         li

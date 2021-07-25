@@ -39,7 +39,7 @@ class GoalsController < ApplicationController
       end
       redirect_to goals_path
     else
-      redirect_to request.referer
+      render "index"
     end
   end
 

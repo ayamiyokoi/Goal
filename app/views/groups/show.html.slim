@@ -17,9 +17,5 @@
             = user.name
             = link_to 'ユーザー詳細画面へ', user_path(user.id, week_id: 0)
     = link_to '編集する', edit_group_path(@group), class: "btn btn-outline-primary"
-    |  | 
     = link_to '一覧に戻る', groups_path, class: "btn btn-outline-primary"
-    - unless @group.users.include?(current_user)
-      = link_to '参加する', join_group_path(@group), class: "btn btn-outline-primary"
-    - else
-      = link_to 'チャットする', group_chats_path(params[:id]), class: "btn btn-outline-primary"
+    = link_to 'チャットする', group_chats_path(params[:id]), class: "btn btn-outline-primary"
