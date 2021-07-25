@@ -26,9 +26,9 @@
   .field
       |公開ステータス
       br
-      = form.radio_button :active, :true
+      = form.radio_button :active, :true, checked: true
       = form.label :active, "公開", {value: :true, style: "display: inline-block;"}
-      = form.radio_button :active, :false
+      = form.radio_button :active, :false, checked: false
       = form.label :active, "非公開", {value: :false, style: "display: inline-block;"}
   .actions
     = form.submit
