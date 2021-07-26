@@ -12,6 +12,7 @@ class Review < ApplicationRecord
   validates :plan, :presence => {:message => "を入力してください"}
   validates :title, :presence => {:message => "を入力してください"}
   validates :topic, :presence => {:message => "を入力してください"}
+
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
@@ -32,13 +33,14 @@ class Review < ApplicationRecord
   def self.review_point(current_user)
     Review.where(user_id: current_user.id).count
   end
-
+  #友達の公開中のReview
   #  select reviews.id, reviews.title, count(likes.id), users.id from reviews inner join likes on reviews.id = likes.review_id inner join users on reviews.user_id = users.id where reviews.active = 1 and users.id IN (3, 4)  group by review_id order by count(likes.id) desc ;
   def self.active_friend_review(current_user)
     # Review.includes(:user, :likes).group(:id).where(users: {id: current_user.friends.pluck(:id)}).where(active: true).order("count(likes.id) desc")
-    Review.where(user_id: current_user.friends.pluck(:id), active: true)
+    #公開ステータス１か２で、公開中のReview
+    Review.where(user_id: current_user.friends.where(show_status: 1).or(current_user.friends.where(show_status: 2)).pluck(:id), active: true)
   end
-
+  #公開中のすべてのReview
   def self.active_all_review
     Review.where(user_id: User.where(show_status: 2).pluck(:id), active: true)
   end

@@ -19,7 +19,6 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-
   end
 
   # POST /groups or /groups.json
@@ -52,6 +51,7 @@ class GroupsController < ApplicationController
         format.html { redirect_to @group, notice: "グループの更新が成功しました。" }
         format.json { render :show, status: :ok, location: @group }
       else
+        set_users()
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end

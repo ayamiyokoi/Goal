@@ -36,9 +36,13 @@ class ApplicationController < ActionController::Base
     end
 
     def set_search
-      #TODO: 知人と公開ステータスのやつのみとる
-      #TODO: 結果のレイアウト編集
-      @search = Review.ransack(params[:q])
+      # 友達と公開ステータスのReviewから検索
+      if user_signed_in?
+        @search = Review.active_friend_review(current_user).or(Review.active_all_review).ransack(params[:q])
+      else
+        #公開ステータス２で公開中のReview
+        @search = Review.active_all_review.ransack(params[:q])
+      end
       @search_reviews = @search.result
     end
 end

@@ -9,21 +9,17 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
-    @reviews_follow = Review.where(user_id: current_user.followings.pluck(:id)).includes(:user).page(params[:page]).per(10)
+    #自分がフォローしている人のReview(公開中)
+    @reviews_follow = Review.where(user_id: current_user.followings.pluck(:id), active: true).includes(:user).page(params[:page]).per(10)
   end
 
   def topics
-    #TODO: どこにincludeつける?
-    #TODO: メソッドにして
-    # @reviews_like = Kaminari.paginate_array(Review.sorted_by_likes).page(params[:page]).per(10)
+    #いいね順、表示するユーザーの範囲は友達と公開ステータスの人、(公開中)
     @reviews_like = Kaminari.paginate_array(Review.active_friend_review(current_user).or(Review.active_all_review).sorted_by_likes).page(params[:page]).per(10)
-    #@reviews_like = Kaminari.paginate_array(Review.joins(:user).select("reviews.*, user.*").where(show_status: 2).sorted_by_likes).page(params[:page]).per(10)
-    # @reviews_like = Review.sorted_by_likes
   end
 
   # GET /reviews/1 or /reviews/1.json
   def show
-    #includeどこ？
     @comment = Comment.new
     @comments = @review.comments.order(created_at: :desc)
     @user = User.find(@review.user_id)
@@ -44,6 +40,7 @@ class ReviewsController < ApplicationController
 
   # POST /reviews or /reviews.json
   def create
+    #今日振り返りしたかの確認
     review = Review.where(user_id: current_user.id, created_at: Time.current.at_beginning_of_day..Time.current.at_end_of_day)
     if review.exists?
       review.update(review_params)
@@ -97,19 +94,23 @@ class ReviewsController < ApplicationController
   private
 
     def set_review_all
+      #ユーザーが公開ステータスのすべてのReview(公開中）
       @reviews_all = Review.active_all_review.includes(:user).page(params[:page]).per(10)
     #   @reviews_all = User.where(show_status: 2).page(params[:page]).per(10)
     end
 
     def set_review_mine
+      #自分のReview
       @reviews_mine = Review.where(user_id: current_user.id).includes(:user).page(params[:page]).per(10)
     end
 
     def set_review_liked
+      #自分がいいねしたReview(公開中)
       @reviews_liked = current_user.liked_reviews.where(active: true).includes(:user).page(params[:page]).per(10)
     end
 
     def set_review_know
+      #友達の
       # @reviews_know = current_user.friends.page(params[:page]).per(10)
       @reviews_know = Review.active_friend_review(current_user).includes(:user).page(params[:page]).per(10)
     end
