@@ -17,6 +17,5 @@
     strong
       | 終了日時:
     = l(@event.end_time, format: :long)
-  = link_to '編集', edit_event_path(@event)
-  |  | 
-  = link_to 'カレンダーに戻る', events_path
+  = link_to '編集', edit_event_path(@event), class: 'btn btn-outline-success margin'
+  = link_to 'カレンダーに戻る', events_path, class: 'btn btn-outline-primary'
