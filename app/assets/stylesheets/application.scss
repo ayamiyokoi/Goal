@@ -67,13 +67,12 @@ footer{
   color: orange;
   padding-left: 30px;
 }
-a:hover {
-  background-color: transparent;
-}
+
 /*ページネーション自体のデザイン*/
 .pagination>li>a {
   border: none;
   color: #696969;
+  padding: 5px 8px;
 }
 
 /* 表示しているページ番号のデザイン */
@@ -85,4 +84,8 @@ a:hover {
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
   border-radius: 15px;
+  background: #e0e0e0;
+}
+a:hover {
+  background-color: transparent;
 }
