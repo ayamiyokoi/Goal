@@ -1,8 +1,8 @@
 - if model.errors.any?
   #error_explanation
     h3
-      = pluralize(model.errors.count, "error")
-      |  prohibited this model from being saved:
+      = pluralize(model.errors.count, "つのエラー")
+      |  が発生し、保存できませんでした。
     ul
       - model.errors.full_messages.each do |message|
         li

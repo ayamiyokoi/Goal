@@ -37,8 +37,8 @@ ja:
       event:
         title: イベント名
         body: イベント詳細
-        start: 開始日時
-        end: 終了日時
+        start_time: 開始日時
+        end_time: 終了日時
       goal:
         name: 目標
         date: 期限
