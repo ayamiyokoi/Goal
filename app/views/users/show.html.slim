@@ -112,9 +112,14 @@
         |タスクが未設定です
   - unless @review == nil
     .row.colum
-      .col-2
+      .col-2.pc_only
         = link_to '前週', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box_button"
-      .col-8[style="margin-left: -100px;"]
-        = line_chart @data, xmin: @from, xmax: @to
-      .col-2.text-right[style="margin-left: 100px;"]
+      .col-8.pc_only[style="margin-left: -100px;"]
+        = line_chart @data, xmin: @from, xmax: @to, width: "800px", height: "500px"
+      .col-2.text-right.pc_only[style="margin-left: 100px;"]
+        = link_to '次週', user_path(current_user.id, week_id: params[:week_id].to_i + 1), class: "btn btn-outline-primary box_button"
+      .col-xs-12.sp_only[style="margin-left: -10px;"]
+        = line_chart @data, xmin: @from, xmax: @to, width: "300px", height: "200px"
+      .col-xs-12.sp_only
+        = link_to '前週', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box_button margin"
         = link_to '次週', user_path(current_user.id, week_id: params[:week_id].to_i + 1), class: "btn btn-outline-primary box_button"
