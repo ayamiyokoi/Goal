@@ -44,8 +44,9 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    @group.destroy
+    @goal.destroy
     redirect_to goals_path
+    flash[:notice] = "目標を削除しました。"
   end
 
 
