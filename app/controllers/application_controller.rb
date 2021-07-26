@@ -37,7 +37,12 @@ class ApplicationController < ActionController::Base
 
     def set_search
       # 友達と公開ステータスのReviewから検索
-      @search = Review.active_friend_review(current_user).or(Review.active_all_review).ransack(params[:q])
+      if user_signed_in?
+        @search = Review.active_friend_review(current_user).or(Review.active_all_review).ransack(params[:q])
+      else
+        #公開ステータス２で公開中のReview
+        @search = Review.active_all_review.ransack(params[:q])
+      end
       @search_reviews = @search.result
     end
 end
