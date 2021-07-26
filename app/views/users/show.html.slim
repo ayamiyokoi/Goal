@@ -2,15 +2,15 @@
   h4
     | マイページ
   .row
-    .col-6.colum
+    .col-md-6.col-xs-12.colum
       .row
         .col-12
           h5
             | ユーザー
       .row
-        .col-5
+        .col-md-5.col-xs-12
           = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-        .col-7
+        .col-md-7.col-xs-12
           p
             |  名前：
             = @user.name
@@ -43,7 +43,7 @@
                 i.fas.fa-cog
                 | 編集
     - if @goals.present?
-      .col-5.offset-md-1.colum
+      .col-md-5.offset-md-1.col-xs-12.colum
         h4
           |目標
         .table
@@ -67,11 +67,11 @@
                     = link_to '達成済みにする', edit_goal_path(goal), class: 'btn btn-outline-primary'
           = paginate @goals
     -else
-      .col-5.offset-md-1.colum[style="text-align:center;padding-top:145px;"]
+      .col-md-5.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:145px;"]
         |目標が未設定です
   .row
     - unless @review == nil
-      .col-3.colum[style="text-align:center;"]
+      .col-md-3.col-xs-12.colum[style="text-align:center;"]
         = pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false
         p[style="font-size:20px;padding:20px;"]
           | 本日の目標達成率：
@@ -80,7 +80,7 @@
           = @review.rate
           | %
     - if @tasks.present?
-      .col-8.offset-md-1.colum
+      .col-md-8.offset-md-1.col-xs-12.colum
         h4
           | タスク
         .table
@@ -108,7 +108,7 @@
                     = link_to '処理済みにする', confirm_task_path(task), class: 'btn btn-outline-primary'
           = paginate @tasks
     -else
-      .col-8.offset-md-1.colum[style="text-align:center;padding-top:155px;"]
+      .col-8.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:155px;"]
         |タスクが未設定です
   - unless @review == nil
     .row.colum
