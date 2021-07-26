@@ -2,6 +2,5 @@
   .row
     .col
       = render 'form', event: @event
-      = link_to '詳細', @event
-      |  | 
-      = link_to 'イベント一覧へ', events_path
+      = link_to '詳細', @event, class: "btn btn-outline-primary margin"
+      = link_to 'イベント一覧へ', events_path, class: "btn btn-outline-primary"

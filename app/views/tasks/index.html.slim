@@ -19,4 +19,5 @@
     .col-12
       h4
         | 新しいタスク
+      = render 'layouts/errors', model: @task
       = render 'form', task: @task
