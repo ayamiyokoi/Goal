@@ -52,7 +52,7 @@
               td
                 = link_to '編集', edit_review_path(review), class: "btn btn-outline-success"
               td
-                = link_to '削除', review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger"
+                = link_to '削除', review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger"
     = paginate reviews
 - else
   p[style="padding:20px;color:blue;"]

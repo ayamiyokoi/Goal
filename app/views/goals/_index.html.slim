@@ -30,7 +30,7 @@
             th
               = link_to '編集', edit_goal_path(goal), class: "btn btn-outline-success"
             th
-              = link_to '削除', goal_path(goal), class: "btn btn-outline-danger"
+              = link_to '削除', goal_path(goal), method: :delete, class: "btn btn-outline-danger"
     = paginate goals
 - else
   p[style="padding:20px;color:blue;"]
