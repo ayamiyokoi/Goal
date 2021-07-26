@@ -112,7 +112,7 @@
                     = link_to '処理済み', confirm_task_path(task), class: 'btn btn-outline-primary'
           = paginate @tasks
     -else
-      .col-8.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:155px;"]
+      .col-md-8.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:155px;"]
         |タスクが未設定です
   - unless @review == nil
     .row.colum
