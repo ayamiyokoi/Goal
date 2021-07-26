@@ -11,6 +11,9 @@
           a.nav-link[href="#reviews_know" data-toggle="tab"]
             | 知人の振り返り
         li.nav-item
+          a.nav-link[href="#reviews_follow" data-toggle="tab"]
+            | フォローしている人の振り返り
+        li.nav-item
           a.nav-link[href="#reviews_all" data-toggle="tab"]
             | 全ユーザーの振り返り
       .tab-content
@@ -18,6 +21,8 @@
           = render 'index', reviews: @reviews_mine
         #reviews_know.tab-pane
           = render 'index', reviews: @reviews_know
+        #reviews_follow.tab-pane
+          = render 'index', reviews: @reviews_follow
         #reviews_all.tab-pane
           = render 'index', reviews: @reviews_all
       p
