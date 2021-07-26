@@ -1,5 +1,6 @@
 .container
   h4
     | 本日の振り返り
+  = render 'layouts/errors', model: @review
   = render 'form', review: @review
   = link_to '戻る', reviews_path
