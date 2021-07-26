@@ -1,4 +1,3 @@
-
 ja:
 
   activerecord:
@@ -9,7 +8,7 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-          
+
 
     # クラス属性の名前 日本語訳
     attributes:
@@ -253,6 +252,12 @@ ja:
     next: ">>"
     week: 週
 
-
+  views:
+    pagination:
+      previous: "< 前"
+      next: "次 >"
+      first: "<< 最初"
+      last: "最後 >>"
+      truncate: "..."
 
 site_title: GOAL
