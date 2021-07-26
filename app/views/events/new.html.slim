@@ -3,4 +3,4 @@
     | 新しい予定の作成
   = render 'layouts/errors', model: @event
   = render 'form', event: @event
-  = link_to '一覧に戻る', events_path
+  = link_to '一覧に戻る', events_path, class: 'btn btn-outline-primary'
