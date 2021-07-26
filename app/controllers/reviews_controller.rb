@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
+    @reviews_follow = Review.where(user_id: current_user.followings.pluck(:id)).includes(:user).page(params[:page]).per(10)
   end
 
   def topics
