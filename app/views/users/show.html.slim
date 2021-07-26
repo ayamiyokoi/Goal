@@ -115,6 +115,7 @@
       .col-md-8.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:155px;"]
         |タスクが未設定です
   - unless @review == nil
+    .row
     .row.colum
       .col-2.pc_only
         = link_to '前週', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box_button"

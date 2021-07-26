@@ -4,7 +4,7 @@
       - if chat.user == current_user
         .mycomment.row
           .chat-fukidashi.col-md-4.offset-md-4.col-xs-10
-            = link_to(group_chat_path(group_id: chat.group_id, id: chat.id), method: :delete, remote: true, class: 'sp_only') do
+            = link_to(group_chat_path(group_id: chat.group_id, id: chat.id), method: :delete, remote: true, class: 'sp_only margin') do
                 i.fas.fa-trash-alt
             p
               strong
@@ -17,9 +17,10 @@
               i.fas.fa-trash-alt
       - else
         .fukidasi.row
-          .faceicon.col-md-1.col-xs-2
-            = attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-          .chatting.col-md-11.col-xs-10
+          .faceicon.col-md-1.col-xs-3
+            = attachment_image_tag chat.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpg", class: "img pc_only"
+            = attachment_image_tag chat.user, :profile_image, size: '35x35', format: 'jpeg', fallback: "no_image.jpg", class: "img sp_only"
+          .chatting.col-md-11.col-xs-9
             .says
               p
                 strong
