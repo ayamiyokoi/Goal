@@ -7,4 +7,5 @@
     .col-12
       h4
         | グループ新規作成
+      = render 'layouts/errors', model: @group
       = render 'form', group: @group
