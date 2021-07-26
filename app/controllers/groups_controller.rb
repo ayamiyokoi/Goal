@@ -31,8 +31,11 @@ class GroupsController < ApplicationController
         format.html { redirect_to @group, notice: "グループの作成に成功しました。" }
         format.json { render :show, status: :created, location: @group }
       else
-        format.html { redirect_to groups_path :index, status: :unprocessable_entity }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+        @groups_all = Group.all.page(params[:page]).per(10)
+        @groups_mine = current_user.groups.page(params[:page]).per(10)
+        set_users()
+        format.html { render :index }
+        format.json { render json: @group.errors }
       end
     end
   end
