@@ -1,7 +1,7 @@
 - notifications.each do |notification|
   - visitor = notification.visitor
   - visited = notification.visited
-  .col-md-6.mx-auto
+  .col-md-11[style="margin:10px 0;"]
     .form-inline
       span
         = link_to user_path(visitor) do
@@ -29,7 +29,8 @@
                   = "にコメントしました"
             p.text-muted.mb-0
               = Comment.find_by(id: notification.comment_id)&.comment
-  .small.text-muted.text-right
+  .col-1.small.text-muted.text-right[style="margin:10px 0;"]
     = time_ago_in_words(notification.created_at).upcase
   hr
-= paginate notifications
+  .col-12
+    = paginate notifications
