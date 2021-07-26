@@ -61,6 +61,7 @@
                     = goal.date.strftime('%Y/%m/%d')
                   td
                     = goal.name
+                  - if goal.user_id == current_user.id
                   td
                     = link_to '達成済みにする', edit_goal_path(goal), class: 'btn btn-outline-primary'
           = paginate @goals
@@ -101,6 +102,7 @@
                     = task.name
                   td
                     = truncate(task.body, length:25)
+                  - if task.user_id == current_user.id
                   td
                     = link_to '処理済みにする', confirm_task_path(task), class: 'btn btn-outline-primary'
           = paginate @tasks
