@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
   # GET /reviews or /reviews.json
   def index
     #自分がフォローしている人のReview(公開中)
-    @reviews_follow = Review.where(user_id: current_user.followings.pluck(:id), active: true).includes(:user).page(params[:page]).per(10)
+    @reviews_follow = Review.where(user_id: current_user.followings.pluck(:id), active: true).includes(:user).order(created_at: "DESC").page(params[:page]).per(10)
   end
 
   def topics
@@ -95,24 +95,24 @@ class ReviewsController < ApplicationController
 
     def set_review_all
       #ユーザーが公開ステータスのすべてのReview(公開中）
-      @reviews_all = Review.active_all_review.includes(:user).page(params[:page]).per(10)
+      @reviews_all = Review.active_all_review.includes(:user).order(created_at: "DESC").page(params[:page]).per(10)
     #   @reviews_all = User.where(show_status: 2).page(params[:page]).per(10)
     end
 
     def set_review_mine
       #自分のReview
-      @reviews_mine = Review.where(user_id: current_user.id).includes(:user).page(params[:page]).per(10)
+      @reviews_mine = Review.where(user_id: current_user.id).includes(:user).order(created_at: "DESC").page(params[:page]).per(10)
     end
 
     def set_review_liked
       #自分がいいねしたReview(公開中)
-      @reviews_liked = current_user.liked_reviews.where(active: true).includes(:user).page(params[:page]).per(10)
+      @reviews_liked = current_user.liked_reviews.where(active: true).includes(:user).order(created_at: "DESC").page(params[:page]).per(10)
     end
 
     def set_review_know
       #友達のReview
       # @reviews_know = current_user.friends.page(params[:page]).per(10)
-      @reviews_know = Review.active_friend_review(current_user).includes(:user).page(params[:page]).per(10)
+      @reviews_know = Review.active_friend_review(current_user).includes(:user).order(created_at: "DESC").page(params[:page]).per(10)
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_review
