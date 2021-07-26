@@ -38,9 +38,10 @@
             = link_to users_mypage_path, class: "btn btn-outline-primary margin"
               i.fas.fa-user
               | 詳細
-            = link_to edit_user_registration_path, class: "btn btn-outline-primary margin"
-              i.fas.fa-cog
-              | 編集
+            .[style="display:inline-block;" data-turbolinks="false"]
+              = link_to edit_user_registration_path, class: "btn btn-outline-primary margin"
+                i.fas.fa-cog
+                | 編集
     - if @goals.present?
       .col-5.offset-md-1.colum
         h4
