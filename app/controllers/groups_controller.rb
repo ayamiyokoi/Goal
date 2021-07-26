@@ -67,15 +67,15 @@ class GroupsController < ApplicationController
     end
   end
 
-  #TODO: これいらない気がする
-  def join
-    @group.users << current_user
-    if @group.save
-      redirect_to group_path(@group)
-    else
-      redirect_to request.referer
-    end
-  end
+
+  # def join
+  #   @group.users << current_user
+  #   if @group.save
+  #     redirect_to group_path(@group)
+  #   else
+  #     redirect_to request.referer
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

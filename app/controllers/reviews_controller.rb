@@ -110,7 +110,7 @@ class ReviewsController < ApplicationController
     end
 
     def set_review_know
-      #友達の
+      #友達のReview
       # @reviews_know = current_user.friends.page(params[:page]).per(10)
       @reviews_know = Review.active_friend_review(current_user).includes(:user).page(params[:page]).per(10)
     end
