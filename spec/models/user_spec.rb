@@ -1,12 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
-
   before do
     @user = FactoryBot.build(:user)
   end
-
 
   describe "バリデーションのテスト" do
     it "名前、メール、パスワードがあれば有効な状態であること" do
@@ -36,6 +33,5 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors[:password]).to include("は6文字以上で入力してください")
     end
-
   end
 end

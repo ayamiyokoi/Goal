@@ -1,5 +1,5 @@
 FactoryBot.define do
-  #FactoryBotを使用し、taskデータをあらかじめ用意しておく
+  # FactoryBotを使用し、taskデータをあらかじめ用意しておく
   factory :task do
     name { "メールチェック" }
     body { "テスト" }

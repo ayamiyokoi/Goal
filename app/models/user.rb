@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :profile_image
-  enum show_status: {非公開:0, 知人のみ公開:1, すべてのユーザーに公開:2}
+  enum show_status: { 非公開: 0, 知人のみ公開: 1, すべてのユーザーに公開: 2 }
   has_many :group_users
   has_many :groups, through: :group_users
   has_many :chats, dependent: :destroy
@@ -31,9 +31,11 @@ class User < ApplicationRecord
   def follow(user_id)
     follows.create(followed_id: user_id)
   end
+
   def unfollow(user_id)
     follows.find_by(followed_id: user_id).destroy
   end
+
   def following?(user)
     followings.include?(user)
   end
@@ -44,7 +46,7 @@ class User < ApplicationRecord
 
   # フォロー通知機能
   def create_notification_follow(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, "follow"])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, "follow"])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
@@ -59,19 +61,19 @@ class User < ApplicationRecord
     User.where(custom_id: "#{keyword}")
   end
 
-  #今のステージから1上がる
+  # 今のステージから1上がる
   def upgrade_stage
-    self.stage = self.stage + 1
-    self.save
+    self.stage = stage + 1
+    save
   end
 
-  #今のレベルから1上がる
+  # 今のレベルから1上がる
   def upgrade_level
-    self.level = self.level + 1
-    self.save
+    self.level = level + 1
+    save
   end
 
- #SNS認証
+  # SNS認証
   # def self.find_for_oauth(auth)
   #   user = User.where(uid: auth.uid, provider: auth.provider).first
 

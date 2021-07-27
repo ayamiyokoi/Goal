@@ -44,6 +44,7 @@ group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails', '~> 4.1.0'
   gem "factory_bot_rails"
+  gem 'rubocop-airbnb'
 end
 
 group :development do

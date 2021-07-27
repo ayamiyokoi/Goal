@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :set_review, only: %i[ create destroy ]
+  before_action :set_review, only: %i(create destroy)
 
   def create
     @comment = Comment.new(comment_params)
@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def set_review
     @review = Review.find(params[:review_id])
   end
