@@ -106,7 +106,18 @@ a:hover {
   .sp_only{
 		display: initial !important;
 	}
-
+  .green{
+    color: #3cf005;
+  }
+  .red{
+    color: red;
+  }
+  .colum_index{
+    background-color: #e3f2fd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px 10px 0;
+  }
   .pc_only{
 		display: none !important;
 	}
