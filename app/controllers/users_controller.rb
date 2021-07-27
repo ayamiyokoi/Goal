@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @goals = Goal.where(user_id: params[:id]).where(achieved: false).order(date: "ASC").page(params[:page]).per(3)
     @tasks = Task.where(user_id: params[:id]).where(finished: false).order(date: "ASC").page(params[:page]).per(3)
     @user = User.find(params[:id])
-    @review = Review.where(user_id: @user.id).first
+    @review = Review.where(user_id: @user.id).last
     @to = Time.current.at_end_of_day + (7 * params[:week_id].to_i).day
     @from = (@to - 6.day).at_beginning_of_day
     @data = Review.where(user_id: @user.id).where(created_at: @from..@to).pluck(:created_at, :rate).map do |d|

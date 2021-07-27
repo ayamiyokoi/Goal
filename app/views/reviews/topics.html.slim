@@ -4,21 +4,22 @@
   .row
     .col-12
       ul.nav.nav-tabs
-        li.nav-item
+        li.nav-item.vertical
           a.nav-link.active[href="#topic1" data-toggle="tab"]
-            | マイトピック
-        li.nav-item
+            = current_user.name
+            | 
+        li.nav-item.vertical
           a.nav-link[href="#topic2" data-toggle="tab"]
-            | 友達のトピック
-        li.nav-item
+            | 友達
+        li.nav-item.vertical
           a.nav-link[href="#topic3" data-toggle="tab"]
-            | すべてのトピック
-        li.nav-item
+            | すべて
+        li.nav-item.vertical
           a.nav-link[href="#topic4" data-toggle="tab"]
             | いいね順
-        li.nav-item
+        li.nav-item.vertical
           a.nav-link[href="#topic5" data-toggle="tab"]
-            | いいねしたトピック
+            | お気に入り
       .tab-content
         #topic1.tab-pane.active
           = render 'topics', reviews: @reviews_mine

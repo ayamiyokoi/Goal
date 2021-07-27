@@ -1,4 +1,4 @@
-.table
+.table.pc_only
   table
     thead
       tr
@@ -28,4 +28,26 @@
           -if group.users.count == 1
             td
               = link_to '削除', group, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger"
-  = paginate groups
+.sp_only
+        - groups.each do |group|
+          .colum_index
+            ul[style="list-style:none;display:flex;padding:0;margin-bottom:10px;"]
+              li
+                = attachment_image_tag group, :group_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin"
+              li.margin.line_height
+                = group.name
+              li.margin.line_height
+                | (
+                = group.users.count
+                | )
+              li
+                = link_to group, class: "blue margin line_height" do
+                  i.fas.fa-sign-in-alt
+              li
+                = link_to group_chats_path(group), class: "green margin line_height" do
+                  i.far.fa-edit
+              -if group.users.count == 1
+                li
+                  = link_to group, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red line_height" do
+                    i.fas.fa-trash-alt
+= paginate groups

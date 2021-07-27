@@ -37,10 +37,11 @@
         p
           | 期限:
           = goal.date.strftime("%m/%d")
+        p
+          | 目標:
+          = goal.name
+        hr
         ul[style="list-style:none;display:flex;padding:0;"]
-          li.margin
-            | 目標:
-            = goal.name
           li
             - if goal.achieved == false
               = link_to edit_goal_path(goal), class: 'blue margin' do
@@ -52,9 +53,9 @@
             = link_to edit_goal_path(goal), class: "green margin" do
               i.far.fa-edit
           li
-            = link_to goal_path(goal), method: :delete, class: "red" do
+            = link_to goal_path(goal), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
               i.fas.fa-trash-alt
-    = paginate goals
+  = paginate goals
 - else
   p[style="padding:20px;color:blue;"]
     | データが登録されていません。

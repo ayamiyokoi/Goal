@@ -4,18 +4,19 @@
   .row
     .col-12
       ul.nav.nav-tabs
-        li.nav-item
+        li.nav-item.vertical
           a.nav-link.active[href="#reviews_mine" data-toggle="tab"]
-            | すべての振り返り
-        li.nav-item
+            = current_user.name
+            | さん
+        li.nav-item.vertical
           a.nav-link[href="#reviews_know" data-toggle="tab"]
-            | 友達の振り返り
-        li.nav-item
+            | 友達
+        li.nav-item.vertical
           a.nav-link[href="#reviews_follow" data-toggle="tab"]
-            | フォローしている人の振り返り
-        li.nav-item
+            | フォロー
+        li.nav-item.vertical
           a.nav-link[href="#reviews_all" data-toggle="tab"]
-            | 全ユーザーの振り返り
+            | すべて
       .tab-content
         #reviews_mine.tab-pane.active
           = render 'index', reviews: @reviews_mine
