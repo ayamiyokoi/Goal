@@ -1,20 +1,21 @@
 .container
   .row
-    .col-4
+    .col-md-4.col-xs-12
       h4
         | グループ名:
         = @group.name
       p
         = attachment_image_tag @group, :group_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-    .col-8
+    .col-md-8.col-xs-12
       p
         | グループメンバー
       div
         - @group.users.each do |user|
           div
-            = attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img margin"
+            = attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img margin pc_only"
+            = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin sp_only"
             = link_to user.name, user_path(user.id, week_id: 0), class:'margin'
-            = user.introduction
+            = truncate(user.introduction, length:15)
     = link_to '編集', edit_group_path(@group), class: "btn btn-outline-success margin"
     = link_to '一覧に戻る', groups_path, class: "btn btn-outline-primary margin"
     = link_to 'チャット', group_chats_path(params[:id]), class: "btn btn-outline-primary"

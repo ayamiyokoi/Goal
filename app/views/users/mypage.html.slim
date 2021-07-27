@@ -1,8 +1,8 @@
 .container
   .row
-    .col-5
+    .col-md-5.col-xs-12
       = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-    .col-7
+    .col-md-7.col-xs-12
       p
         |  名前：
         = @user.name

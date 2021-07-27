@@ -1,5 +1,5 @@
 - if follows.exists?
-  .table
+  .table.pc_only
     table
       thead
         tr
@@ -23,17 +23,39 @@
             td
               = truncate(user.introduction, length:35)
             td
-              | フォロー数: 
+              | フォロー数:
               = user.followings.count
             td
-              | フォロワー数: 
+              | フォロワー数:
               = user.followers.count
             td
               - unless current_user == user
                 - if current_user.following?(user)
-                  = link_to "フォローを外す", user_follows_path(user.id), method: :delete, class: "btn btn-outline-danger"
+                  = link_to "フォローを外す", user_follows_path(user.id), method: :delete, data: { confirm: '本当にフォローを解除しますか?' }, class: "btn btn-outline-danger"
                 - else
                   = link_to "フォローする", user_follows_path(user.id), method: :post, class: "btn btn-outline-primary"
+  .sp_only
+    - follows.each do |user|
+      .colum_index
+        ul[style="list-style:none;display:flex;padding:0;"]
+          li.margin
+            = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+          li.margin.line_height
+            = link_to user.name, user_path(user.id, week_id: 0)
+          li
+            - unless current_user == user
+              - if current_user.following?(user)
+                = link_to "フォロー中", user_follows_path(user.id), method: :delete, data: { confirm: '本当にフォローを解除しますか?' }, class: "btn btn-outline-danger"
+              - else
+                = link_to "フォローする", user_follows_path(user.id), method: :post, class: "btn btn-outline-primary"
+        hr
+        ul[style="list-style:none;display:flex;padding:0;"]
+          li.margin
+            = user.followings.count
+            | フォロー
+          li
+            = user.followers.count
+            | フォロワー
   = paginate follows
 - else
   p

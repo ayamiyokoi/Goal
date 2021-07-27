@@ -32,7 +32,17 @@
             td
               = link_to "友達から削除", friend_path(friend.id, params: {id: friend.id}), data: { confirm: '本当に削除しますか?' }, method: :delete, class: "btn btn-outline-danger"
   .sp_only
-    
+    - follows.each do |user|
+      .colum_index
+        ul[style="list-style:none;display:flex;padding:0;"]
+          li.margin
+            = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+          li.margin.line_height
+            = link_to user.name, user_path(user.id, week_id: 0)
+          - friend = Friend.find_by(friend_id: user.id, myself_id: current_user.id)
+          li
+            = link_to friend_path(friend.id, params: {id: friend.id}), data: { confirm: '本当に削除しますか?' }, method: :delete, class: "btn red" do
+              i.fas.fa-trash-alt
   = paginate follows
 - else
   p

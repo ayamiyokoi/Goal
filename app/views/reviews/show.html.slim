@@ -2,16 +2,18 @@
   .row
     .col-12
       .row
-        .col-1
-          = attachment_image_tag @user, :profile_image, size: '70x70', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-        .col-10
+        .col-md-1.col-xs-2
+          = attachment_image_tag @user, :profile_image, size: '70x70', format: 'jpeg', fallback: "no_image.jpg", class: "img pc_only"
+          = attachment_image_tag @user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img sp_only"
+        .col-md-10.col-xs-10
           h4
             = link_to @user.name, user_path(@user.id, week_id: 0)
             |さんの
+            br.sp_only
             = @review.created_at.strftime('%Y/%m/%d')
             | の振り返り
-
-    .col-7.colum
+  .row
+    .col-md-7.colum.col-xs-12
       .col-12.colum
         p
           h5
@@ -60,7 +62,7 @@
             = @review.comments.count
           -if @review.user_id == current_user.id
             = link_to '編集', edit_review_path(@review), class: "btn btn-outline-primary"
-    .col-4.offset-md-1.colum
+    .col-md-4.offset-md-1.colum.col-xs-12
       .comments
         #comments_error
           = render 'layouts/errors', model: @comment

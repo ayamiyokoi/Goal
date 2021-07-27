@@ -1,9 +1,9 @@
 - review.comments.each do |comment|
   p
-    = attachment_image_tag comment.user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+    = attachment_image_tag comment.user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin"
     = comment.comment
   - if comment.user == current_user
     .comment-delete
       /= link_to "削除", review_comment_path(comment.review, comment), method: :delete, remote:true
       = link_to(review_comment_path(comment.review, comment), method: :delete, remote: true) do
-              i.fas.fa-trash-alt
+        i.fas.fa-trash-alt
