@@ -2,9 +2,8 @@
   .row
     .col
       h4
-        = attachment_image_tag @group, :group_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+        = attachment_image_tag @group, :group_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img margin"
         = @group.name
-        | のグループチャット
       .chats
         #chats_error
           = render 'layouts/errors', model: @chat

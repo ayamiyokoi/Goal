@@ -91,7 +91,7 @@
                     i.fas.fa-trash-alt
         = paginate @goals
     -else
-      .col-md-5.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:145px;"]
+      .col-md-5.offset-md-1.col-xs-12.colum[style="text-align:center;"]
         |目標が未設定です
   .row
     - unless @review == nil
@@ -159,53 +159,54 @@
                     i.fas.fa-trash-alt
         = paginate @tasks
     -else
-      .col-md-8.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:155px;"]
+      .col-md-8.offset-md-1.col-xs-12.colum[style="text-align:center;"]
         |タスクが未設定です
   .row
-    .col-12.sp_only.colum
-      ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-        li.margin.line_height
-          = @review.created_at.strftime("%m/%d")
-        li.margin.line_height
-          | 達成率:
-          = @review.rate
-          | %
-        li
-          = pie_chart @rate, width: "50px", height: "50px", colors: ["blue",  "#e3f2fd"], legend: false
-      p
-        | 振り返り:
-        = truncate(@review.review, length:25)
-      p
-        | 明日の目標:
-        = truncate(@review.plan, length:25)
-      p
-        | トピック
-        = truncate(@review.title, length:15)
-      p
-        = truncate(@review.topic, length:35)
-      hr
-      ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-        li.margin
-          - if @review.active == true
-            i.fas.fa-eye
-          - else
-            i.fas.fa-eye-slash
-        li
-          = link_to @review, class: "blue margin" do
-            i.fas.fa-sign-in-alt
-        - if @review.written_by?(current_user)
+    - unless @review == nil
+      .col-12.sp_only.colum
+        ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
+          li.margin.line_height
+            = @review.created_at.strftime("%m/%d")
+          li.margin.line_height
+            | 達成率:
+            = @review.rate
+            | %
           li
-            = link_to edit_review_path(@review), class: "green margin" do
-              i.far.fa-edit
-          li
-            = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin" do
-              i.fas.fa-trash-alt
-        #likes_buttons.margin
-          = render partial: 'likes/like', locals: { review: @review}
+            = pie_chart @rate, width: "50px", height: "50px", colors: ["blue",  "#e3f2fd"], legend: false
         p
-          = link_to @review do
-            i.far.fa-comment
-            = @review.comments.count
+          | 振り返り:
+          = truncate(@review.review, length:25)
+        p
+          | 明日の目標:
+          = truncate(@review.plan, length:25)
+        p
+          | トピック:
+          = truncate(@review.title, length:15)
+        p
+          = truncate(@review.topic, length:35)
+        hr
+        ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
+          li.margin
+            - if @review.active == true
+              i.fas.fa-eye
+            - else
+              i.fas.fa-eye-slash
+          li
+            = link_to @review, class: "blue margin" do
+              i.fas.fa-sign-in-alt
+          - if @review.written_by?(current_user)
+            li
+              = link_to edit_review_path(@review), class: "green margin" do
+                i.far.fa-edit
+            li
+              = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin" do
+                i.fas.fa-trash-alt
+          #likes_buttons.margin
+            = render partial: 'likes/like', locals: { review: @review}
+          p
+            = link_to @review do
+              i.far.fa-comment
+              = @review.comments.count
   - unless @review == nil
     .row
     .row.colum
