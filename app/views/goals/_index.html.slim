@@ -42,7 +42,12 @@
             | 目標:
             = goal.name
           li
-            = link_to '未達成', edit_goal_path(goal), class: 'btn btn-outline-primary margin'
+            - if goal.achieved == false
+              = link_to edit_goal_path(goal), class: 'blue margin' do
+                i.fas.fa-check-square
+            - else
+              = link_to edit_goal_path(goal), class: 'blue margin' do
+                i.fas.fa-undo-alt
           li
             = link_to edit_goal_path(goal), class: "green margin" do
               i.far.fa-edit

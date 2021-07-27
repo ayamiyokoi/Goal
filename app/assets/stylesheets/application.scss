@@ -112,11 +112,14 @@ a:hover {
   .red{
     color: red;
   }
+  .blue{
+    color: #1b74f2;
+  }
   .colum_index{
     background-color: #e3f2fd;
     border-radius: 10px;
-    margin-bottom: 20px;
-    padding: 10px 10px 0;
+    margin: 10px 0;
+    padding: 10px 10px 1px;
   }
   .pc_only{
 		display: none !important;
