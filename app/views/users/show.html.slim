@@ -12,7 +12,7 @@
           = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
         .col-md-7.col-xs-12
           p
-            |  名前：
+            |  名前:
             = @user.name
           p
             |  現在のステージ：
@@ -168,19 +168,25 @@
           li.margin.line_height
             = @review.created_at.strftime("%m/%d")
           li.margin.line_height
-            | 達成率:
+            b
+              | 達成率:
             = @review.rate
             | %
           li
             = pie_chart @rate, width: "50px", height: "50px", colors: ["blue",  "#e3f2fd"], legend: false
         p
-          | 振り返り:
+          b
+            | 振り返り:
+          br
           = truncate(@review.review, length:25)
         p
-          | 明日の目標:
+          b
+            | 明日の目標:
+          br
           = truncate(@review.plan, length:25)
         p
-          | トピック:
+          b
+            | トピック:
           = truncate(@review.title, length:15)
         p
           = truncate(@review.topic, length:35)
