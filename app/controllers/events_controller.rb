@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i(show edit update destroy)
+  LIMIT_PER_PAGE = 10
 
   # GET /events or /events.json
   def index
     # Scope your query to the dates being shown:
     start_date = params.fetch(:start_date, Date.today).to_date
-    @events = Event.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week, user_id: current_user.id).page(params[:page]).per(10)  
+    @events = Event.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week, user_id: current_user.id).page(params[:page]).per(LIMIT_PER_PAGE)
   end
-
 
   # GET /events/1 or /events/1.json
   def show
@@ -62,13 +62,14 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:title, :body, :start_time, :end_time)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(:title, :body, :start_time, :end_time)
+  end
 end

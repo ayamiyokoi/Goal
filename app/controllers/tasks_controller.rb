@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy confirm ]
+  before_action :set_task, only: %i(show edit update destroy confirm)
+  LIMIT_PER_PAGE = 5
 
   # GET /tasks or /tasks.json
   def index
     # 自分のタスクのみ表示、処理済、未処理で判別
-    @tasks_active = Task.where(user_id: current_user.id, finished: false).order(date: "ASC").page(params[:page]).per(5)
-    @tasks_done = Task.where(user_id: current_user.id, finished: true).order(date: "DESC").page(params[:page]).per(5)
+    @tasks_active = Task.where(user_id: current_user.id, finished: false).order(date: "ASC").page(params[:page]).per(LIMIT_PER_PAGE)
+    @tasks_done = Task.where(user_id: current_user.id, finished: true).order(date: "DESC").page(params[:page]).per(LIMIT_PER_PAGE)
     @task = Task.new
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
   end
-
 
   # GET /tasks/1/edit
   def edit
@@ -39,9 +39,9 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-         # 目標達成で5pt, タスク達成で2pt, 振り返り投稿で1pt、自分のレベルの3乗倍のポイントがたまるとレベルアップ
+        # 目標達成で5pt, タスク達成で2pt, 振り返り投稿で1pt、自分のレベルの3乗倍のポイントがたまるとレベルアップ
         if Goal.goal_point(current_user) + Task.task_point(current_user) + Review.review_point(current_user) > 3**current_user.level
-          #レベル+1
+          # レベル+1
           current_user.upgrade_level
           flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
         end
@@ -67,13 +67,14 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit( :name, :body, :date, :finished)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(:name, :body, :date, :finished)
+  end
 end

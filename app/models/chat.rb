@@ -3,5 +3,5 @@
 class Chat < ApplicationRecord
   belongs_to :user
   belongs_to :group
-  validates :chat, :presence => {:message => "を入力してください"}
+  validates :chat, :presence => { :message => "を入力してください" }
 end

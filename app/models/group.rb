@@ -6,5 +6,5 @@ class Group < ApplicationRecord
   has_many :users, through: :group_users
   accepts_nested_attributes_for :group_users
   has_many :chats
-  validates :name, :presence => {:message => "を入力してください"}
+  validates :name, :presence => { :message => "を入力してください" }
 end

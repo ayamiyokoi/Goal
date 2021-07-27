@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class FollowsController < ApplicationController
+  LIMIT_PER_PAGE = 10
+
   def show
     user = User.find(params[:user_id])
-    @users_followings = user.followings.page(params[:page]).per(10)
-    @users_followers = user.followers.page(params[:page]).per(10)
+    @users_followings = user.followings.page(params[:page]).per(LIMIT_PER_PAGE)
+    @users_followers = user.followers.page(params[:page]).per(LIMIT_PER_PAGE)
   end
 
   def create

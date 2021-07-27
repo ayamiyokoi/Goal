@@ -14,24 +14,24 @@ class Ability
       can :manage, :all
     else
       # can :manage, :review
-      #can :read, :all
-    #   if user.product_manager?
-    #   can :manage, Stockpile, owner: user # 自分がオーナーの倉庫には全権限を持つ
-    #   can :read, Stockpile                 # そうでなくても、読み取り権限を持つ
+      # can :read, :all
+      #   if user.product_manager?
+      #   can :manage, Stockpile, owner: user # 自分がオーナーの倉庫には全権限を持つ
+      #   can :read, Stockpile                 # そうでなくても、読み取り権限を持つ
 
-    #   # 自分の倉庫にある製品に対してすべての権限を持つ
-    #   can :manage, Product, stockpile: {owner: user}
-    #   # ただし、新規登録、削除はできない
-    #   cannot [:create, :destroy], Product
-    # end
+      #   # 自分の倉庫にある製品に対してすべての権限を持つ
+      #   can :manage, Product, stockpile: {owner: user}
+      #   # ただし、新規登録、削除はできない
+      #   cannot [:create, :destroy], Product
+      # end
 
-    # if user.customer?
-    #   # 複数のモデルに権限を付与できる
-    #   can :read, [Stockpile, Product]
+      # if user.customer?
+      #   # 複数のモデルに権限を付与できる
+      #   can :read, [Stockpile, Product]
 
-    #   # 独自権限も作れる
-    #   can :buy, Procuct, stockpile: nil # 倉庫から出されている製品を買える
-    # end
+      #   # 独自権限も作れる
+      #   can :buy, Procuct, stockpile: nil # 倉庫から出されている製品を買える
+      # end
       can :manage, :all
 
       # can :read, Review, active: true
@@ -62,7 +62,7 @@ class Ability
       # can :manage, :friend
       # # can :manage, Friend
       # can :manage, Notification
-      #他者が作成した振り返りは公開中のみ、閲覧可能
+      # 他者が作成した振り返りは公開中のみ、閲覧可能
 
     end
     # Define abilities for the passed in user here. For example:

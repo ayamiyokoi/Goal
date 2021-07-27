@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class ChatsController < ApplicationController
-  #TODO: なんでbeforeactionだとエラーなの？
-  #before_action :set_chats, only: %i[ index create ]
-  before_action :set_group, only: %i[ index create destroy ]
+  before_action :set_group, only: %i(index create destroy)
+
   def index
     @chat = Chat.new
     @chats = @group.chats.includes(:user)
@@ -18,25 +17,22 @@ class ChatsController < ApplicationController
     @chats = @group.chats.includes(:user)
   end
 
-  # def update
-  #   @chat.update(chat_params)
-  # end
-
   def destroy
     @chats = Chat.find_by(id: params[:id], group_id: params[:group_id]).destroy
     @chats = @group.chats.includes(:user)
   end
 
   private
-    def set_group
-      @group = Group.find(params[:group_id])
-    end
 
-    def set_chats
-      @chats = @group.chats.includes(:user)
-    end
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
 
-    def chat_params
-      params.require(:chat).permit(:chat)
-    end
+  def set_chats
+    @chats = @group.chats.includes(:user)
+  end
+
+  def chat_params
+    params.require(:chat).permit(:chat)
+  end
 end

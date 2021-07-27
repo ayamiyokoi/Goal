@@ -5,15 +5,15 @@ class Comment < ApplicationRecord
   belongs_to :review
   has_many :notifications, dependent: :destroy
 
-  validates :comment, :presence => {:message => "を入力してください"}
+  validates :comment, :presence => { :message => "を入力してください" }
 
   # コメント通知機能
   def create_notification_comment(current_user, review_id, commented_id, comment_id)
     # 自分の投稿に対して自分以外にコメントしている人をすべて取得し、通知を送る
-     save_notification_comment(current_user, review_id, commented_id, comment_id)
+    save_notification_comment(current_user, review_id, commented_id, comment_id)
   end
 
-   def save_notification_comment(current_user, review_id, visited_id, comment_id)
+  def save_notification_comment(current_user, review_id, visited_id, comment_id)
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_user.active_notifications.new(
       review_id: review_id,
