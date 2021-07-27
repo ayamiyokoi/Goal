@@ -5,6 +5,10 @@ class FriendsController < ApplicationController
     friend.myself_id = current_user.id
     friend.friend_id = params[:id]
     friend.save
+    #友達と自分の両方を登録
+    friend.myself_id = params[:id]
+    friend.friend_id = current_user.id
+    friend.save
     redirect_to users_path
     flash[:notice] = "知人として登録完了しました。"
   end
