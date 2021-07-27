@@ -46,7 +46,7 @@
       .col-md-5.offset-md-1.col-xs-12.colum
         h4
           |目標
-        .table
+        .table.pc_only
           table
             thead
               tr
@@ -58,22 +58,44 @@
             tbody
               -@goals.each do |goal|
                 tr
-                  td.pc_only
+                  td
                     = goal.date.strftime('%Y/%m/%d')
-                  td.sp_only[style="padding: 0 12px 12px;"]
-                    = goal.date.strftime('%m/%d')
                   td
                     = goal.name
                   - if goal.user_id == current_user.id
                   td
                     = link_to '未達成', edit_goal_path(goal), class: 'btn btn-outline-primary'
-          = paginate @goals
+        .sp_only
+          - @goals.each do |goal|
+            .colum_mypage
+              p
+                | 期限:
+                = goal.date.strftime("%m/%d")
+              p
+                | 目標:
+                = goal.name
+              hr
+              ul[style="list-style:none;display:flex;padding:0;"]
+                li
+                  - if goal.achieved == false
+                    = link_to edit_goal_path(goal), class: 'blue margin' do
+                      i.fas.fa-check-square
+                  - else
+                    = link_to edit_goal_path(goal), class: 'blue margin' do
+                      i.fas.fa-undo-alt
+                li
+                  = link_to edit_goal_path(goal), class: "green margin" do
+                    i.far.fa-edit
+                li
+                  = link_to goal_path(goal), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
+                    i.fas.fa-trash-alt
+        = paginate @goals
     -else
       .col-md-5.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:145px;"]
         |目標が未設定です
   .row
     - unless @review == nil
-      .col-md-3.col-xs-12.colum[style="text-align:center;"]
+      .col-md-3.col-xs-12.colum.pc_only[style="text-align:center;"]
         = pie_chart @rate, width: "200px", height: "200px", colors: ["blue",  "#e3f2fd"], legend: false
         p[style="font-size:20px;padding:20px;"]
           | 本日の目標達成率：
@@ -85,7 +107,7 @@
       .col-md-8.offset-md-1.col-xs-12.colum
         h4
           | タスク
-        .table
+        .table.pc_only
           table
             thead
               tr
@@ -99,10 +121,8 @@
             tbody
               - @tasks.each do |task|
                 tr
-                  td.pc_only
+                  td
                     = task.date.strftime('%Y/%m/%d')
-                  td.sp_only[style="padding: 0 12px 12px;"]
-                    = task.date.strftime('%m/%d')
                   td
                     = task.name
                   td
@@ -110,10 +130,82 @@
                   - if task.user_id == current_user.id
                   td
                     = link_to '処理済み', confirm_task_path(task), class: 'btn btn-outline-primary'
-          = paginate @tasks
+        .sp_only
+          - @tasks.each do |task|
+            .colum_mypage
+              p
+                | 期限:
+                = task.date.strftime("%m/%d")
+              p
+                | タスク:
+                = task.name
+              p
+                | 詳細:
+                = truncate(task.body, length:25)
+              hr
+              ul[style="list-style:none;display:flex;padding:0;"]
+                li
+                  - if task.finished == false
+                    = link_to confirm_task_path(task), class: 'blue margin' do
+                      i.fas.fa-check-square
+                li
+                  = link_to task, class: "blue margin" do
+                    i.fas.fa-eye
+                li
+                  = link_to edit_task_path(task), class: "green margin" do
+                    i.far.fa-edit
+                li
+                  = link_to task, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
+                    i.fas.fa-trash-alt
+        = paginate @tasks
     -else
       .col-md-8.offset-md-1.col-xs-12.colum[style="text-align:center;padding-top:155px;"]
         |タスクが未設定です
+  .row
+    .col-12.sp_only.colum
+      ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
+        li.margin.line_height
+          = @review.created_at.strftime("%m/%d")
+        li.margin.line_height
+          | 達成率:
+          = @review.rate
+          | %
+        li
+          = pie_chart @rate, width: "50px", height: "50px", colors: ["blue",  "#e3f2fd"], legend: false
+      p
+        | 振り返り:
+        = truncate(@review.review, length:25)
+      p
+        | 明日の目標:
+        = truncate(@review.plan, length:25)
+      p
+        | トピック
+        = truncate(@review.title, length:15)
+      p
+        = truncate(@review.topic, length:35)
+      hr
+      ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
+        li.margin
+          - if @review.active == true
+            i.fas.fa-eye
+          - else
+            i.fas.fa-eye-slash
+        li
+          = link_to @review, class: "blue margin" do
+            i.fas.fa-sign-in-alt
+        - if @review.written_by?(current_user)
+          li
+            = link_to edit_review_path(@review), class: "green margin" do
+              i.far.fa-edit
+          li
+            = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin" do
+              i.fas.fa-trash-alt
+        #likes_buttons.margin
+          = render partial: 'likes/like', locals: { review: @review}
+        p
+          = link_to @review do
+            i.far.fa-comment
+            = @review.comments.count
   - unless @review == nil
     .row
     .row.colum
