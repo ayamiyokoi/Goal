@@ -178,18 +178,18 @@
           b
             | 振り返り:
           br
-          = truncate(@review.review, length:25)
+          = truncate(@review.review, length:100)
         p
           b
             | 明日の目標:
           br
-          = truncate(@review.plan, length:25)
+          = truncate(@review.plan, length:100)
         p
           b
             | トピック:
-          = truncate(@review.title, length:15)
+          = truncate(@review.title, length:20)
         p
-          = truncate(@review.topic, length:35)
+          = truncate(@review.topic, length:100)
         hr
         ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
           li.margin
