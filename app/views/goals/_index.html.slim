@@ -1,5 +1,5 @@
 - if goals.present?
-  .table
+  .table.pc_only
     table
       thead
         tr
@@ -19,18 +19,36 @@
             td
               = goal.name
             td
-              = goal.date.strftime("%Y-%m-%d")
+              = goal.date.strftime("%Y/%m/%d")
             td
               - if goal.achieved == true
                 |  達成
               - else
                 |  未達成
             td
-              = goal.created_at.strftime("%Y-%m-%d")
+              = goal.created_at.strftime("%Y/%m/%d")
             th
               = link_to '編集', edit_goal_path(goal), class: "btn btn-outline-success"
             th
               = link_to '削除', goal_path(goal), method: :delete, class: "btn btn-outline-danger"
+  .sp_only
+    - goals.each do |goal|
+      .colum_index
+        p
+          | 期限:
+          = goal.date.strftime("%m/%d")
+        ul[style="list-style:none;display:flex;padding:0;"]
+          li.margin
+            | 目標:
+            = goal.name
+          li
+            = link_to '未達成', edit_goal_path(goal), class: 'btn btn-outline-primary margin'
+          li
+            = link_to edit_goal_path(goal), class: "green margin" do
+              i.far.fa-edit
+          li
+            = link_to goal_path(goal), method: :delete, class: "red" do
+              i.fas.fa-trash-alt
     = paginate goals
 - else
   p[style="padding:20px;color:blue;"]
