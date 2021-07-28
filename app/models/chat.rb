@@ -9,7 +9,9 @@ class Chat < ApplicationRecord
   # チャット通知機能
   def create_notification_chat(current_user, group_id, chated_ids, chat_id)
     # 自分のグループで自分以外にチャットしている人をすべて取得し、通知を送る
-    save_notification_chat(current_user, group_id, chated_ids, chat_id)
+    chated_ids.each do |visited_id|
+      save_notification_chat(current_user, group_id, visited_id, chat_id)
+    end
   end
 
   def save_notification_chat(current_user, group_id, visited_id, chat_id)
