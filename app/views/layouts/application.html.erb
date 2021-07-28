@@ -58,10 +58,16 @@
             </li>
             <li class="nav-item">
               <% if unchecked_notifications.any? %>
-                <i class="fa fa-circle" style="color: gold;"></i>
-              <% end %>
-              <%= link_to notifications_path, class: "nav-link" do %>
-                <i class="far fa-bell"></i>通知
+                <span class="fa-stack" style="margin-top:10px;">
+                  <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1.1em;color:rgba(0, 0, 0, 0.5);padding-top: 2px;"></i>
+                  <i class="fas fa-circle n-circle fa-stack-1x" style="color: gold;margin: -10px 0 0 -10px;"></i>
+                </span>
+                <span style="margin-left: -10px;color: rgba(0, 0, 0, 0.5);margin: 15px 10px 0 -15px;">通知</span>
+                <!--<i class="fa fa-circle" style="color: gold;"></i>-->
+              <% else %>
+                <%= link_to notifications_path, class: "nav-link" do %>
+                  <i class="far fa-bell"></i>通知
+                <% end %>
               <% end %>
             </li>
             <li class="nav-item dropdown">
