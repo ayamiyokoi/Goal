@@ -24,9 +24,8 @@
             /アソシエ―ションしたため不要
              /- review = Review.find_by(user_id: review.friend_id) if review.class == Friend
              /- review = Review.find_by(user_id: review.id) if review.class == User
-            - unless review.user == current_user
-              td
-                = attachment_image_tag review.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+            td
+              = attachment_image_tag review.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
             td
               = review.rate
               | %
