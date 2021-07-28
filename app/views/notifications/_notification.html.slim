@@ -29,6 +29,18 @@
                   = "にコメントしました"
             p.text-muted.mb-0
               = Comment.find_by(id: notification.comment_id)&.comment
+        - when 'chat' then
+          | "チャットメッセージを送りました。"
+          /- if notification.group.user_id == visited.id
+            /= link_to notification.group, style: "font-weight: bold;"
+            | "チャットメッセージを送りました。"
+          /- else
+            span
+              = link_to group_chats_path(notification.group) do
+                = attachment_image_tag notification.group.user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg"
+                strong
+                  = notification.group.user.name + 'さんが'
+                  = "チャットメッセージを送りました"
   .col-1.small.text-muted.text-right[style="margin:10px 0;"]
     = time_ago_in_words(notification.created_at).upcase
   hr
