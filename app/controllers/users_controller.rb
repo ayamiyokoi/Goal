@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def index
     @users_know = User.where(id: current_user.friends.pluck(:friend_id)).page(params[:page]).per(LIMIT_PER_PAGE_10)
-    @users = User.where(show_status: 2).page(params[:page]).per(LIMIT_PER_PAGE_10)
+    @users = User.where(show_status: 2).page(params[:page]).order(created_at: "DESC").per(LIMIT_PER_PAGE_10)
     @user = User.new
   end
 

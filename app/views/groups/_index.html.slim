@@ -44,6 +44,9 @@
                 = link_to group, class: "blue margin line_height" do
                   i.fas.fa-sign-in-alt
               li
+                = link_to group_chats_path(group), class: "blue margin line_height" do
+                  i.far.fa-comments
+              li
                 = link_to group_chats_path(group), class: "green margin line_height" do
                   i.far.fa-edit
               -if group.users.count == 1
