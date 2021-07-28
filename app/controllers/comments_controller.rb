@@ -7,11 +7,11 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.review_id = @review.id
-    unless @comment.save
+    if @comment.save
+      @comment.create_notification_comment(current_user, @review.id, @review.user_id, @comment.id)
+    else
       render 'error'
     end
-    @comment.create_notification_comment(current_user, @review.id, @review.user_id, @comment.id)
-    # redirect_to review_path(review)
   end
 
   def update

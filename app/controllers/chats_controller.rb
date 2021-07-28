@@ -11,7 +11,9 @@ class ChatsController < ApplicationController
   def create
     @chat = @group.chats.build(chat_params)
     @chat.user_id = current_user.id
-    unless @chat.save
+    if @chat.save
+      @chat.create_notification_chat(current_user, @group.id, @group.user_ids, @chat.id)
+    else
       render 'error'
     end
     @chats = @group.chats.includes(:user)

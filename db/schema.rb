@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_24_010400) do
+ActiveRecord::Schema.define(version: 2021_07_28_025946) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 2021_07_24_010400) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "chat_id"
+    t.integer "group_id"
   end
 
   create_table "review_tags", force: :cascade do |t|

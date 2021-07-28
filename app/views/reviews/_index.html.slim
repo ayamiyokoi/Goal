@@ -12,8 +12,6 @@
           th
             | 明日の目標
           th
-            | トピック題名
-          th
             | コメント数
           th
             | いいね数
@@ -36,8 +34,6 @@
               = truncate(review.review, length:25)
             td
               = truncate(review.plan, length:25)
-            td
-              = review.title
             td
               = link_to "#{review.comments.count} 件", review_path(review.id)
             td

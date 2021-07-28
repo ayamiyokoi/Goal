@@ -3,7 +3,7 @@
 class NotificationsController < ApplicationController
   LIMIT_PER_PAGE = 10
   def index
-    @notifications = current_user.passive_notifications.includes(:visitor, :visited, :review).page(params[:page]).per(LIMIT_PER_PAGE)
+    @notifications = current_user.passive_notifications.includes(:visitor, :visited, :review, :group).order(created_at: "DESC").page(params[:page]).per(LIMIT_PER_PAGE)
     @notifications.where(checked: false).each do |notification|
       notification.update_attributes(checked: true)
     end
