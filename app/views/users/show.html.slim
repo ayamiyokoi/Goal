@@ -214,7 +214,7 @@
               = link_to @review do
                 i.far.fa-comment
                 = @review.comments.count
-      .col-12.pc_only.colum
+        .col-12.pc_only.colum
           ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
             li.margin.line_height
               = @review.created_at.strftime("%m/%d")
