@@ -11,7 +11,7 @@
             .post-list
               = attachment_image_tag @user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img margin"
               = @user.name
-              = link_to '友達として登録', friends_path(params: {id: @user.id}), method: :post, class: 'btn btn-outline-primary'
+              = link_to '友達として登録', friends_path(params: {id: @user.id}), method: :post, class: 'btn btn-outline-primary margin-left'
           - else
             p
               |  相手がID検索による友達登録を許可していません。
