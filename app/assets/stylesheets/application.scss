@@ -102,6 +102,9 @@ a:hover {
 .margin-left{
   margin-left: 10px;
 }
+.space{
+  padding-top: 10px;
+}
 .sp_only{
   display: none !important;
 }
@@ -135,6 +138,9 @@ a:hover {
   }
   .sp_up{
     margin-top: -30px !important;
+  }
+  .space{
+    padding-top: 0;
   }
   .pc_only{
 		display: none !important;
