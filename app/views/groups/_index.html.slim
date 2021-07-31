@@ -13,7 +13,8 @@
       - groups.each do |group|
         tr
           td
-            = attachment_image_tag group, :group_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+            = link_to group do
+              = attachment_image_tag group, :group_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
           td
             = group.name
           td
@@ -32,15 +33,17 @@
         - groups.each do |group|
           .colum_index
             ul[style="list-style:none;display:flex;padding:0;margin-bottom:10px;"]
-              li
-                = attachment_image_tag group, :group_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin"
-              li.margin.line_height
-                = group.name
+              = link_to group do
+                li
+                  = attachment_image_tag group, :group_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin"
+              = link_to group do
+                li.margin.line_height
+                  = group.name
               li.margin.line_height
                 | (
                 = group.users.count
                 | )
-              li
+              /li
                 = link_to group, class: "blue margin line_height" do
                   i.fas.fa-sign-in-alt
               li

@@ -9,7 +9,11 @@
             | ユーザー
       .row
         .col-md-5.col-xs-12
-          = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+          - if @user == current_user
+            = link_to users_mypage_path do
+              = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+          - else
+            = attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpg", class: "img"
         .col-md-7.col-xs-12
           p
             |  名前:
@@ -132,31 +136,32 @@
                     = link_to '未処理', confirm_task_path(task), class: 'btn btn-outline-primary'
         .sp_only
           - @tasks.each do |task|
-            .colum_mypage
-              p
-                | 期限:
-                = task.date.strftime("%m/%d")
-              p
-                | タスク:
-                = task.name
-              p
-                | 詳細:
-                = truncate(task.body, length:25)
-              hr
-              ul[style="list-style:none;display:flex;padding:0;"]
-                li
-                  - if task.finished == false
-                    = link_to confirm_task_path(task), class: 'blue margin' do
-                      i.fas.fa-check-square
-                li
-                  = link_to task, class: "blue margin" do
-                    i.fas.fa-sign-in-alt
-                li
-                  = link_to edit_task_path(task), class: "green margin" do
-                    i.far.fa-edit
-                li
-                  = link_to task, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
-                    i.fas.fa-trash-alt
+            = link_to task do
+              .colum_mypage
+                p
+                  | 期限:
+                  = task.date.strftime("%m/%d")
+                p
+                  | タスク:
+                  = task.name
+                p
+                  | 詳細:
+                  = truncate(task.body, length:25)
+                hr
+                ul[style="list-style:none;display:flex;padding:0;"]
+                  li
+                    - if task.finished == false
+                      = link_to confirm_task_path(task), class: 'blue margin' do
+                        i.fas.fa-check-square
+                  /li
+                    = link_to task, class: "blue margin" do
+                      i.fas.fa-sign-in-alt
+                  li
+                    = link_to edit_task_path(task), class: "green margin" do
+                      i.far.fa-edit
+                  li
+                    = link_to task, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
+                      i.fas.fa-trash-alt
         = paginate @tasks
     -else
       .col-md-8.offset-md-1.col-xs-12.colum[style="text-align:center;"]
@@ -164,65 +169,66 @@
   .row
     - unless @review == nil
       - if @review.user == current_user
-        .col-12.colum
-          ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-            li.margin.line_height
-              = @review.created_at.strftime("%m/%d")
-            li.margin.line_height
+        = link_to @review do
+          .col-12.colum
+            ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
+              li.margin.line_height
+                = @review.created_at.strftime("%m/%d")
+              li.margin.line_height
+                b
+                  | 達成率:
+                = @review.rate
+                | %
+            p
               b
-                | 達成率:
-              = @review.rate
-              | %
-          p
-            b
-              | 振り返り:
-            br
-            = truncate(@review.review, length:100)
-          p
-            b
-              | 明日の目標:
-            br
-            = truncate(@review.plan, length:100)
-          p
-            b
-              | トピック:
-            = truncate(@review.title, length:20)
-            br
-            = truncate(@review.topic, length:100)
-          hr
-          ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-            li.margin.line_height.pc_only
-              - if @review.active == true
-                | 公開中
-              - else
-                | 非公開
-            li.margin.sp_only
-              - if @review.active == true
-                i.fas.fa-eye
-              - else
-                i.fas.fa-eye-slash
-            li
-              = link_to '詳細', @review, class: "btn btn-outline-primary margin pc_only"
-            li
-              = link_to @review, class: "blue margin sp_only" do
-                i.fas.fa-sign-in-alt
-            - if @review.written_by?(current_user)
+                | 振り返り:
+              br
+              = truncate(@review.review, length:100)
+            p
+              b
+                | 明日の目標:
+              br
+              = truncate(@review.plan, length:100)
+            p
+              b
+                | トピック:
+              = truncate(@review.title, length:20)
+              br
+              = truncate(@review.topic, length:100)
+            hr
+            ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
+              li.margin.line_height.pc_only
+                - if @review.active == true
+                  | 公開中
+                - else
+                  | 非公開
+              li.margin.sp_only
+                - if @review.active == true
+                  i.fas.fa-eye
+                - else
+                  i.fas.fa-eye-slash
               li
-                = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success margin pc_only"
-              li
-                = link_to edit_review_path(@review), class: "green margin sp_only" do
-                  i.far.fa-edit
-              li
-                = link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger margin pc_only"
-              li
-                = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin sp_only" do
-                  i.fas.fa-trash-alt
-            #likes_buttons.margin.space
-              = render partial: 'likes/like', locals: { review: @review }
-            p.space
-              = link_to @review do
-                i.far.fa-comment
-                = @review.comments.count
+                = link_to '詳細', @review, class: "btn btn-outline-primary margin pc_only"
+              /li
+                = link_to @review, class: "blue margin sp_only" do
+                  i.fas.fa-sign-in-alt
+              - if @review.written_by?(current_user)
+                li
+                  = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success margin pc_only"
+                li
+                  = link_to edit_review_path(@review), class: "green margin sp_only" do
+                    i.far.fa-edit
+                li
+                  = link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger margin pc_only"
+                li
+                  = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin sp_only" do
+                    i.fas.fa-trash-alt
+              #likes_buttons.margin.space
+                = render partial: 'likes/like', locals: { review: @review }
+              p.space
+                = link_to @review do
+                  i.far.fa-comment
+                  = @review.comments.count
   - unless @review == nil
     .row
     .row.colum

@@ -38,31 +38,32 @@
                 = link_to '処理済みにする', confirm_task_path(task), class: "btn btn-outline-primary"
   .sp_only
     - tasks.each do |task|
-      .colum_index
-        p
-          | 期限:
-          = task.date.strftime("%m/%d")
-        p
-          | タスク:
-          = task.name
-        p
-          | 詳細:
-          = truncate(task.body, length:25)
-        hr
-        ul[style="list-style:none;display:flex;padding:0;"]
-          li
-            - if task.finished == false
-              = link_to confirm_task_path(task), class: 'blue margin' do
-                i.fas.fa-check-square
-          li
-            = link_to task, class: "blue margin" do
-              i.fas.fa-sign-in-alt
-          li
-            = link_to edit_task_path(task), class: "green margin" do
-              i.far.fa-edit
-          li
-            = link_to task, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
-              i.fas.fa-trash-alt
+      = link_to task do
+        .colum_index
+          p
+            | 期限:
+            = task.date.strftime("%m/%d")
+          p
+            | タスク:
+            = task.name
+          p
+            | 詳細:
+            = truncate(task.body, length:25)
+          hr
+          ul[style="list-style:none;display:flex;padding:0;"]
+            li
+              - if task.finished == false
+                = link_to confirm_task_path(task), class: 'blue margin' do
+                  i.fas.fa-check-square
+            /li
+              = link_to task, class: "blue margin" do
+                i.fas.fa-sign-in-alt
+            li
+              = link_to edit_task_path(task), class: "green margin" do
+                i.far.fa-edit
+            li
+              = link_to task, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
+                i.fas.fa-trash-alt
   = paginate tasks
 - else
   p[style="padding:20px;color:blue;"]
