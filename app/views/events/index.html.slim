@@ -35,29 +35,30 @@
                   = link_to '削除', event, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger"
       .sp_only
         - @events.each do |event|
-          .colum_index
-            p
-              = l(event.start_time, format: :long)
-              | ～
-              = l(event.end_time, format: :long)
-            p
-              | イベント:
-              = event.title
-            - unless event.body == ""
+          = link_to event do
+            .colum_index
               p
-                | 詳細:
-                = event.body
-            hr
-            ul[style="list-style:none;display:flex;padding:0;"]
-              li
-                = link_to event, class: "blue margin" do
-                  i.fas.fa-sign-in-alt
-              li
-                = link_to edit_event_path(event), class: "green margin" do
-                  i.far.fa-edit
-              li
-                = link_to event, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
-                  i.fas.fa-trash-alt
+                = l(event.start_time, format: :long)
+                | ～
+                = l(event.end_time, format: :long)
+              p
+                | イベント:
+                = event.title
+              - unless event.body == ""
+                p
+                  | 詳細:
+                  = event.body
+              hr
+              ul[style="list-style:none;display:flex;padding:0;"]
+                /li
+                  = link_to event, class: "blue margin" do
+                    i.fas.fa-sign-in-alt
+                li
+                  = link_to edit_event_path(event), class: "green margin" do
+                    i.far.fa-edit
+                li
+                  = link_to event, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
+                    i.fas.fa-trash-alt
       = paginate @events
   .row
     .col-12

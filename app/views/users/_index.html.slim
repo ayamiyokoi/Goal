@@ -17,7 +17,8 @@
         - follows.each do |user|
           tr
             td
-              = attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+              = link_to user do
+                = attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
             td
               = link_to user.name, user_path(user.id, week_id: 0)
             td
@@ -36,7 +37,8 @@
       .colum_index
         ul[style="list-style:none;display:flex;padding:0;"]
           li.margin
-            = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+            = link_to user do
+              = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
           li.margin.line_height
             = link_to user.name, user_path(user.id, week_id: 0)
           - friend = Friend.find_by(friend_id: user.id, myself_id: current_user.id)
