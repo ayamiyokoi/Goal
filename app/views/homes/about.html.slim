@@ -8,13 +8,34 @@
           | GOALとは？
         p.ans
           | 会員登録したユーザーだけが使える、目標達成に近づくための振り返りが行えるサイトです。
+          |  <img class="pc_only" src="
+          = asset_path "review_index.jpg"
+          | " width="100%">
+          |  <img class="sp_only" src="
+          = asset_path "review_index_sp.jpg"
+          | " width="100%">
       .box
         p.que
-          | 目標を達成するために必要なことは何だろう？
+          | 目標を達成するために
+          br.sp_only
+          | 必要なことは何だろう？
         p.ans
           | 目標を設定し、毎日の成果の振り返ることです。
+          |  <img class="pc_only" src="
+          = asset_path "goal.jpg"
+          | " width="100%">
+          |  <img class="pc_only" src="
+          = asset_path "review.jpg"
+          | " width="100%">
+          |  <img class="sp_only" src="
+          = asset_path "goal_sp.jpg"
+          | " width="100%">
+          |  <img class="sp_only" src="
+          = asset_path "review_sp.jpg"
+          | " width="100%">
         p.use[data-turbolinks="false"]
           | GOALを使う！
+          br.sp_only
           = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
           | |
           = link_to 'ログイン', new_user_session_path, class: "about-link"
@@ -36,12 +57,15 @@
           | " width="100%">
         p.use[data-turbolinks="false"]
           | GOALを使う！
+          br.sp_only
           = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
           | |
           = link_to 'ログイン', new_user_session_path, class: "about-link"
       .box
         p.que
-          | 上司にうまく相談できない。/部下にうまくアドバイスできない。
+          | 上司にうまく相談できない。
+          br.sp_only
+          | 部下にうまくアドバイスできない。
         p.ans
           | 相手の状態を正確に把握するのは難しいですよね、、、。
           br
@@ -58,6 +82,7 @@
           | " width="100%">
         p.use[data-turbolinks="false"]
           | GOALを使う！
+          br.sp_only
           = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
           | |
           = link_to 'ログイン', new_user_session_path, class: "about-link"
@@ -76,6 +101,7 @@
           | " width="100%">
         p.use[data-turbolinks="false"]
           | GOALを使う！
+          br.sp_only
           = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
           | |
           = link_to 'ログイン', new_user_session_path, class: "about-link"
@@ -86,6 +112,7 @@
           | GOALではカレンダー機能を搭載しています。予定を立てやすく、見やすく。
         p.use[data-turbolinks="false"]
           | GOALを使う！
+          br.sp_only
           = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
           | |
           = link_to 'ログイン', new_user_session_path, class: "about-link"
@@ -94,6 +121,7 @@
           | 毎日の振り返りに使ってみませんか？
         p.use[data-turbolinks="false"]
           | GOALを使う！
+          br.sp_only
           = link_to "始める！(新規登録)", new_user_registration_path, class: "about-link"
           | |
           = link_to 'ログイン', new_user_session_path, class: "about-link"
