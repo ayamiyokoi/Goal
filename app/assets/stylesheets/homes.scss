@@ -48,12 +48,13 @@ div.top dl.active {
 }
 .about{
   font-size: 30px;
+  line-height: 30px;
 }
 .box{
   background-color: #e3f2fd;
   border-radius: 10px;
-  margin-bottom: 20px;
-  padding: 20px;
+  margin-bottom: 30px;
+  padding: 30px 20px 20px;
 }
 .about-link{
     color: blue !important;
@@ -69,11 +70,11 @@ div.top dl.active {
   padding-bottom: 5px;
 }
 .use{
-  padding: 10px;
+  padding: 10px 10px 10px 0;
   color: blue;
   display: inline-block;
+  margin-bottom: 0;
 }
-
 .sp_only{
   display: none !important;
 }
