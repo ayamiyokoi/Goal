@@ -24,11 +24,9 @@
             td
               = truncate(user.introduction, length:35)
             td
-              | フォロー数:
-              = user.followings.count
-            td
-              | フォロワー数:
               = user.followers.count
+            td
+              = user.followings.count
             - friend = Friend.find_by(friend_id: user.id, myself_id: current_user.id)
             td
               = link_to "友達から削除", friend_path(friend.id, params: {id: friend.id}), data: { confirm: '本当に削除しますか?' }, method: :delete, class: "btn btn-outline-danger"
