@@ -164,7 +164,7 @@
   .row
     - unless @review == nil
       - if @review.user == current_user
-        .col-12.sp_only.colum
+        .col-12.colum
           ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
             li.margin.line_height
               = @review.created_at.strftime("%m/%d")
@@ -173,8 +173,6 @@
                 | 達成率:
               = @review.rate
               | %
-            li
-              = pie_chart @rate, width: "50px", height: "50px", colors: ["blue",  "#e3f2fd"], legend: false
           p
             b
               | 振り返り:
@@ -193,69 +191,35 @@
             = truncate(@review.topic, length:100)
           hr
           ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-            li.margin
+            li.margin.line_height.pc_only
+              - if @review.active == true
+                | 公開中
+              - else
+                | 非公開
+            li.margin.sp_only
               - if @review.active == true
                 i.fas.fa-eye
               - else
                 i.fas.fa-eye-slash
             li
-              = link_to @review, class: "blue margin" do
+              = link_to '詳細', @review, class: "btn btn-outline-primary margin pc_only"
+            li
+              = link_to @review, class: "blue margin sp_only" do
                 i.fas.fa-sign-in-alt
             - if @review.written_by?(current_user)
               li
-                = link_to edit_review_path(@review), class: "green margin" do
+                = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success margin pc_only"
+              li
+                = link_to edit_review_path(@review), class: "green margin sp_only" do
                   i.far.fa-edit
               li
-                = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin" do
+                = link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger margin pc_only"
+              li
+                = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin sp_only" do
                   i.fas.fa-trash-alt
-            #likes_buttons.margin
-              = render partial: 'likes/like', locals: { review: @review}
-            p
-              = link_to @review do
-                i.far.fa-comment
-                = @review.comments.count
-        .col-12.pc_only.colum
-          ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-            li.margin.line_height
-              = @review.created_at.strftime("%m/%d")
-            li.margin.line_height
-              b
-                | 達成率:
-              = @review.rate
-              | %
-          p
-            b
-              | 振り返り:
-            br
-            = truncate(@review.review, length:100)
-          p
-            b
-              | 明日の目標:
-            br
-            = truncate(@review.plan, length:100)
-          p
-            b
-              | トピック:
-            = truncate(@review.title, length:20)
-            br
-            = truncate(@review.topic, length:100)
-          hr
-          ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-            li.margin.line_height
-              - if @review.active == true
-                | 公開中
-              - else
-                | 非公開
-            li
-              = link_to '詳細', @review, class: "btn btn-outline-primary margin"
-            - if @review.written_by?(current_user)
-              li
-                = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success margin"
-              li
-                = link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger margin"
-            #likes_buttons.margin.line_height
-              = render partial: 'likes/like', locals: { review: @review}
-            p.line_height
+            #likes_buttons.margin.space
+              = render partial: 'likes/like', locals: { review: @review }
+            p.space
               = link_to @review do
                 i.far.fa-comment
                 = @review.comments.count
