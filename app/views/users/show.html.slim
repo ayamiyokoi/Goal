@@ -169,7 +169,7 @@
   .row
     - unless @review == nil
       - if @review.user == current_user
-        = link_to @review do
+        = link_to @review, class: "edit_link" do
           .col-12.colum
             ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
               li.margin.line_height
