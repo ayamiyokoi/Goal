@@ -11,7 +11,7 @@
         | グループメンバー
       div
         - @group.users.each do |user|
-          div
+          div[style="margin: 20px 0;"]
             = attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img margin pc_only"
             = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin sp_only"
             = link_to user.name, user_path(user.id, week_id: 0), class: "margin edit_link"
