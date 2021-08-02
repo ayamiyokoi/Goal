@@ -35,7 +35,7 @@
                   = link_to '削除', event, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger"
       .sp_only
         - @events.each do |event|
-          = link_to event do
+          = link_to event, class: "edit_link" do
             .colum_index
               p
                 = l(event.start_time, format: :long)

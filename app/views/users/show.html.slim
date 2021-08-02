@@ -136,7 +136,7 @@
                     = link_to '未処理', confirm_task_path(task), class: 'btn btn-outline-primary'
         .sp_only
           - @tasks.each do |task|
-            = link_to task do
+            = link_to task, class: "edit_link" do
               .colum_mypage
                 p
                   | 期限:
