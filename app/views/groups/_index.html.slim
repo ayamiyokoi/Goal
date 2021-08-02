@@ -15,7 +15,7 @@
           td
             = link_to group do
               = attachment_image_tag group, :group_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-          td
+          td.edit_link
             = group.name
           td
             = group.users.count
