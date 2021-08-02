@@ -15,7 +15,7 @@
           td
             = link_to group do
               = attachment_image_tag group, :group_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
-          td.edit_link
+          td
             = group.name
           td
             = group.users.count
@@ -36,7 +36,7 @@
               = link_to group do
                 li
                   = attachment_image_tag group, :group_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin"
-              = link_to group do
+              = link_to group, class: "edit_link" do
                 li.margin.line_height
                   = group.name
               li.margin.line_height
