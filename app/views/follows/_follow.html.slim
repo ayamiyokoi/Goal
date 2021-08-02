@@ -19,7 +19,7 @@
             td
               = attachment_image_tag user, :profile_image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg", class: "img"
             td
-              = link_to user.name, user_path(user.id, week_id: 0), class: "edit_link"
+              = link_to user.name, user_path(user.id, week_id: 0)
             td
               = truncate(user.introduction, length:35)
             td
@@ -39,7 +39,7 @@
           li.margin
             = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
           li.margin.line_height
-            = link_to user.name, user_path(user.id, week_id: 0)
+            = link_to user.name, user_path(user.id, week_id: 0), class: "edit_link"
           li
             - unless current_user == user
               - if current_user.following?(user)

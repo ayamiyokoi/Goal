@@ -38,7 +38,7 @@
             = link_to user do
               = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
           li.margin.line_height
-            = link_to user.name, user_path(user.id, week_id: 0)
+            = link_to user.name, user_path(user.id, week_id: 0), class: "edit_link"
           - friend = Friend.find_by(friend_id: user.id, myself_id: current_user.id)
           li
             = link_to friend_path(friend.id, params: {id: friend.id}), data: { confirm: '本当に削除しますか?' }, method: :delete, class: "btn red" do
