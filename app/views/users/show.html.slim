@@ -182,75 +182,76 @@
         .col-md-8.offset-md-1.col-xs-12.colum[style="text-align:center;"]
           |タスクが未設定です
   .row
-    .col-12.colum
-      h4
-       | 振り返り
-       = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
-         i.fas.fa-plus
-         | 振り返りを作成
-      - unless @review == nil
-        - if @review.user == current_user
-            = link_to @review, class: "edit_link" do
-              ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-                li.margin.line_height
-                  = @review.created_at.strftime("%m/%d")
-                li.margin.line_height
-                  b
-                    | 達成率:
-                  = @review.rate
-                  | %
-              p
+    - if @user == current_user
+      .col-12.colum
+        h4
+          | 振り返り
+          = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
+            i.fas.fa-plus
+            | 振り返りを作成
+        - unless @review == nil
+          /- if @review.user == current_user
+          = link_to @review, class: "edit_link" do
+            ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
+              li.margin.line_height
+                = @review.created_at.strftime("%m/%d")
+              li.margin.line_height
                 b
-                  | 振り返り:
-                br
-                = truncate(@review.review, length:100)
-              p
-                b
-                  | 明日の目標:
-                br
-                = truncate(@review.plan, length:100)
-              p
-                b
-                  | トピック:
-                = truncate(@review.title, length:20)
-                br
-                = truncate(@review.topic, length:100)
-              hr
-              ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
-                li.margin.line_height.pc_only
-                  - if @review.active == true
-                    | 公開中
-                  - else
-                    | 非公開
-                li.margin.sp_only
-                  - if @review.active == true
-                    i.fas.fa-eye
-                  - else
-                    i.fas.fa-eye-slash
+                  | 達成率:
+                = @review.rate
+                | %
+            p
+              b
+                | 振り返り:
+              br
+              = truncate(@review.review, length:100)
+            p
+              b
+                | 明日の目標:
+              br
+              = truncate(@review.plan, length:100)
+            p
+              b
+                | トピック:
+              = truncate(@review.title, length:20)
+              br
+              = truncate(@review.topic, length:100)
+            hr
+            ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
+              li.margin.line_height.pc_only
+                - if @review.active == true
+                  | 公開中
+                - else
+                  | 非公開
+              li.margin.sp_only
+                - if @review.active == true
+                  i.fas.fa-eye
+                - else
+                  i.fas.fa-eye-slash
+              li
+                = link_to '詳細', @review, class: "btn btn-outline-primary margin pc_only"
+              /li
+                = link_to @review, class: "blue margin sp_only" do
+                  i.fas.fa-sign-in-alt
+              - if @review.written_by?(current_user)
                 li
-                  = link_to '詳細', @review, class: "btn btn-outline-primary margin pc_only"
-                /li
-                  = link_to @review, class: "blue margin sp_only" do
-                    i.fas.fa-sign-in-alt
-                - if @review.written_by?(current_user)
-                  li
-                    = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success margin pc_only"
-                  li
-                    = link_to edit_review_path(@review), class: "green margin sp_only" do
-                      i.far.fa-edit
-                  li
-                    = link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger margin pc_only"
-                  li
-                    = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin sp_only" do
-                      i.fas.fa-trash-alt
-                #likes_buttons.margin.space
-                  = render partial: 'likes/like', locals: { review: @review }
-                p.space
-                  = link_to @review do
-                    i.far.fa-comment
-                    = @review.comments.count
-      -else
-        | 振り返りがありません
+                  = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success margin pc_only"
+                li
+                  = link_to edit_review_path(@review), class: "green margin sp_only" do
+                    i.far.fa-edit
+                li
+                  = link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-outline-danger margin pc_only"
+                li
+                  = link_to @review, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red margin sp_only" do
+                    i.fas.fa-trash-alt
+              #likes_buttons.margin.space
+                = render partial: 'likes/like', locals: { review: @review }
+              p.space
+                = link_to @review do
+                  i.far.fa-comment
+                  = @review.comments.count
+        -else
+          | 振り返りがありません
 
   .row
   .row.colum
@@ -270,4 +271,4 @@
         = link_to '前週', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box_button margin"
         = link_to '次週', user_path(current_user.id, week_id: params[:week_id].to_i + 1), class: "btn btn-outline-primary box_button"
     - else
-        | 振り返りをすると達成率グラフが表示されます
+      | 振り返りをすると達成率グラフが表示されます
