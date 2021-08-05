@@ -76,8 +76,8 @@
                   td
                     = goal.name
                   - if goal.user_id == current_user.id
-                  td
-                    = link_to '未達成', edit_goal_path(goal), class: 'btn btn-outline-primary'
+                    td
+                      = link_to '未達成', edit_goal_path(goal), class: 'btn btn-outline-primary'
         .sp_only
           - @goals.each do |goal|
             .colum_mypage
@@ -87,21 +87,22 @@
               p
                 | 目標:
                 = goal.name
-              hr
-              ul[style="list-style:none;display:flex;padding:0;"]
-                li
-                  - if goal.achieved == false
-                    = link_to edit_goal_path(goal), class: 'blue margin' do
-                      i.fas.fa-check-square
-                  - else
-                    = link_to edit_goal_path(goal), class: 'blue margin' do
-                      i.fas.fa-undo-alt
-                li
-                  = link_to edit_goal_path(goal), class: "green margin" do
-                    i.far.fa-edit
-                li
-                  = link_to goal_path(goal), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
-                    i.fas.fa-trash-alt
+              - if goal.user_id == current_user.id
+                hr
+                ul[style="list-style:none;display:flex;padding:0;"]
+                  li
+                    - if goal.achieved == false
+                      = link_to edit_goal_path(goal), class: 'blue margin' do
+                        i.fas.fa-check-square
+                    - else
+                      = link_to edit_goal_path(goal), class: 'blue margin' do
+                        i.fas.fa-undo-alt
+                  li
+                    = link_to edit_goal_path(goal), class: "green margin" do
+                      i.far.fa-edit
+                  li
+                    = link_to goal_path(goal), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
+                      i.fas.fa-trash-alt
         = paginate @goals
       -else
         .col-md-5.offset-md-1.col-xs-12.colum[style="text-align:center;"]
@@ -147,8 +148,8 @@
                   td
                     = truncate(task.body, length:25)
                   - if task.user_id == current_user.id
-                  td
-                    = link_to '未処理', confirm_task_path(task), class: 'btn btn-outline-primary'
+                    td
+                      = link_to '未処理', confirm_task_path(task), class: 'btn btn-outline-primary'
         .sp_only
           - @tasks.each do |task|
             = link_to task, class: "edit_link" do
@@ -162,21 +163,22 @@
                 p
                   | 詳細:
                   = truncate(task.body, length:25)
-                hr
-                ul[style="list-style:none;display:flex;padding:0;"]
-                  li
-                    - if task.finished == false
-                      = link_to confirm_task_path(task), class: 'blue margin' do
-                        i.fas.fa-check-square
-                  /li
-                    = link_to task, class: "blue margin" do
-                      i.fas.fa-sign-in-alt
-                  li
-                    = link_to edit_task_path(task), class: "green margin" do
-                      i.far.fa-edit
-                  li
-                    = link_to task, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
-                      i.fas.fa-trash-alt
+                - if task.user_id == current_user.id
+                  hr
+                  ul[style="list-style:none;display:flex;padding:0;"]
+                    li
+                      - if task.finished == false
+                        = link_to confirm_task_path(task), class: 'blue margin' do
+                          i.fas.fa-check-square
+                    /li
+                      = link_to task, class: "blue margin" do
+                        i.fas.fa-sign-in-alt
+                    li
+                      = link_to edit_task_path(task), class: "green margin" do
+                        i.far.fa-edit
+                    li
+                      = link_to task, method: :delete, data: { confirm: '本当に削除しますか?' }, class: "red" do
+                        i.fas.fa-trash-alt
         = paginate @tasks
       -else
         .col-md-8.offset-md-1.col-xs-12.colum[style="text-align:center;"]
