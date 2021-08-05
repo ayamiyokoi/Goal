@@ -2,7 +2,9 @@
   h4
     | マイページ
     - if @user == current_user
-      = link_to '今日の振り返りを作成', new_review_path, class: "btn btn-outline-primary margin_left"
+      = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
+        i.fas.fa-plus
+        | 振り返りを作成
   .row
     .col-md-6.col-xs-12.colum
       .row
@@ -53,7 +55,9 @@
         h4
           |目標
           - if @user == current_user
-            = link_to '目標を作成', goals_path, class: "btn btn-outline-primary margin_left"
+            = link_to goals_path, class: "btn btn-outline-primary margin_left" do
+              i.fas.fa-plus
+              | 目標を作成
         .table.pc_only
           table
             thead
@@ -116,7 +120,9 @@
         h4
           | タスク
           - if @user == current_user
-            = link_to 'タスクを作成', tasks_path, class: "btn btn-outline-primary margin_left"
+            = link_to tasks_path, class: "btn btn-outline-primary margin_left" do
+              i.fas.fa-plus
+              | タスクを作成
         .table.pc_only
           table
             thead
@@ -174,13 +180,14 @@
         |タスクが未設定です
   .row
     - unless @review == nil
-      h4
-        | 振り返り
-        - if @user == current_user
-          = link_to '今日の振り返りを作成', new_review_path, class: "btn btn-outline-primary margin_left"
       - if @review.user == current_user
         = link_to @review, class: "edit_link" do
           .col-12.colum
+            h4
+             | 振り返り
+             = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
+               i.fas.fa-plus
+               | 振り返りを作成
             ul[style="list-style:none;display:flex;padding:0;margin-bottom:0;"]
               li.margin.line_height
                 = @review.created_at.strftime("%m/%d")
@@ -242,8 +249,9 @@
   - unless @review == nil
     .row
     .row.colum
-      h4
-        | 達成率グラフ
+      .col-12
+        h4
+          | 達成率グラフ
       .col-2.pc_only
         = link_to '前週', user_path(current_user.id, week_id: params[:week_id].to_i - 1), class: "btn btn-outline-primary box_button"
       .col-8.pc_only[style="margin-left: -100px;"]
