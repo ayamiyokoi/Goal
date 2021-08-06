@@ -43,10 +43,15 @@ class ReviewsController < ApplicationController
   def create
     # 今日振り返りしたかの確認
     review = Review.where(user_id: current_user.id, created_at: Time.current.at_beginning_of_day..Time.current.at_end_of_day)
+
     if review.exists?
       review.update(review_params)
-      format.html { redirect_to @review, notice: "振り返りの更新に成功しました。" }
-      format.json { render :show, status: :ok, location: @review }
+      redirect_to user_path(current_user.id)
+      flash[:notice] = "振り返りの更新に成功しました。"
+      # respond_to do |format|
+      #   format.html { redirect_to review, notice: "振り返りの更新に成功しました。" }
+      #   format.json { render :show, status: :ok, location: review }
+      # end
     else
 
       @review = Review.new(review_params)

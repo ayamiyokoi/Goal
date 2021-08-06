@@ -7,7 +7,7 @@ class Review < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  validates :rate, :presence => { :message => "を入力してください" }
+  validates :rate, :presence => { :message => "を入力してください" }, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100, :message => "を0～100で入力してください" }
   validates :review, :presence => { :message => "を入力してください" }
   validates :plan, :presence => { :message => "を入力してください" }
   validates :title, :presence => { :message => "を入力してください" }

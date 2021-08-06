@@ -22,7 +22,11 @@
       <% if user_signed_in? %>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <p style="padding: 12px 0 0 30px;">ようこそ<%= current_user.name %>さん</p>
+            <p style="padding: 16px 0 0 30px;">
+              <%= link_to user_path(current_user.id, week_id: 0), class: "nav-link" do %>
+                ようこそ<%= current_user.name %>さん
+              <% end %>
+            </p>
           </li>
         </ul>
 
