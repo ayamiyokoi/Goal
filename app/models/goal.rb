@@ -6,9 +6,9 @@ class Goal < ApplicationRecord
   validates :date, :presence => { :message => "を入力してください" }
 
   def self.stage_up?(current_user)
-    # 目標設定の個数が２のべき乗ごとにステージが上がる設定
-    # 自分の目標の数が２の自分のステージ乗より大きいなら
-    Goal.where(user_id: current_user.id).count > 2**current_user.stage
+    # 目標設定の個数の3倍ごとにステージが上がる設定
+    # 自分の目標の数が自分のステージの3倍より大きいなら
+    Goal.where(user_id: current_user.id).count > 3*current_user.stage
   end
 
   def self.goal_point(current_user)
