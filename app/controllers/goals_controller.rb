@@ -3,6 +3,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i(edit update destroy)
   LIMIT_PER_PAGE = 5
+  LEVEL_UP_POINT = 10
 
   def index
     # 自分の目標のみ表示、達成済、未達成で判別
@@ -31,8 +32,8 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
-      # 目標達成で5pt, タスク達成で2pt, 振り返り投稿で1pt、自分のレベルの3乗倍のポイントがたまるとレベルアップ
-      if Goal.goal_point(current_user) + Task.task_point(current_user) + Review.review_point(current_user) > 3**current_user.level
+      # 目標達成で5pt, タスク達成で2pt, 振り返り投稿で1pt、自分のレベルの10倍のポイントがたまるとレベルアップ
+      if Goal.goal_point(current_user) + Task.task_point(current_user) + Review.review_point(current_user) > LEVEL_UP_POINT*current_user.level
         # レベル+1
         current_user.upgrade_level
         flash[:notice] = "レベル「＋１」アップ 、現在のレベルは#{current_user.level}です。"
