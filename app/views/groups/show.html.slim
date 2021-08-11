@@ -12,8 +12,10 @@
       div
         - @group.users.each do |user|
           div[style="margin: 20px 0;"]
-            = attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img margin pc_only"
-            = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin sp_only"
+            = link_to user_path(user.id, week_id: 0) do
+              = attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpg", class: "img margin pc_only"
+            = link_to user_path(user.id, week_id: 0) do
+              = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img margin sp_only"
             = link_to user.name, user_path(user.id, week_id: 0), class: "margin edit_link"
             = truncate(user.introduction, length:15)
     = link_to '編集', edit_group_path(@group), class: "btn btn-outline-success margin"
