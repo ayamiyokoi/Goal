@@ -14,7 +14,7 @@
       - @users.each do |user|
         li[style="margin-right: 16px;"]
           = form.check_box :user_ids, {multiple: true}, user.id, nil
-          = attachment_image_tag user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img"
+          = attachment_image_tag user, :profile_image, size: '30x30', format: 'jpeg', fallback: "no_image.jpg", class: "img", style: "margin: 0 5px;"
           = user.name
 
   .actions
