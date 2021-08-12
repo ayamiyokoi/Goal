@@ -72,6 +72,14 @@ class User < ApplicationRecord
     self.level = level + 1
     save
   end
+  
+  # ゲストログイン機能
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+    end
+   end
 
   # SNS認証
   # def self.find_for_oauth(auth)

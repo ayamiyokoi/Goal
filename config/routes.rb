@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "/about" => "homes#about"
   get "/users/mypage" => "users#mypage"
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
   get 'friend_search' => 'users#friend_search'
   resources :friends, :only => [:create, :destroy]
   resources :users, :only => [:index, :show] do
