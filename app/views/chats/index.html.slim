@@ -9,5 +9,5 @@
           = render 'layouts/errors', model: @chat
         #chat
           = render partial: 'index', locals: { chats: @chats}
-        #posts
+        #posts[style="margin-top:10px;"]
           = render partial: 'form', locals: {group: @group, chat: @chat}
