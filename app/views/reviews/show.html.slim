@@ -8,7 +8,7 @@
             = attachment_image_tag @user, :profile_image, size: '40x40', format: 'jpeg', fallback: "no_image.jpg", class: "img sp_only"
         .col-md-10.col-xs-10
           h4
-            = link_to @user.name, user_path(@user.id, week_id: 0)
+            = @user.name
             |さんの
             br.sp_only
             = @review.created_at.strftime('%Y/%m/%d')
