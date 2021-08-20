@@ -49,6 +49,7 @@ class ReviewsController < ApplicationController
       review.update(review_params)
       redirect_to user_path(current_user.id)
       flash[:notice] = "振り返りの更新に成功しました。"
+      #TODO エラーメッセージ
       # respond_to do |format|
       #   format.html { redirect_to review, notice: "振り返りの更新に成功しました。" }
       #   format.json { render :show, status: :ok, location: review }
