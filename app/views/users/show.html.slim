@@ -28,18 +28,18 @@
             |  現在のステージ：
             = @user.stage
             - if @user == current_user
-              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="ステージとは？→ 目標設定の数によって上がる数です"]
+              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" title="ステージとは？→ 目標設定の数によって上がる数です"]
                 small
                   i.fas.fa-question-circle
-                  | click!
+                  | ステージ
           p
             |  現在のレベル：
             = @user.level
             - if @user == current_user
-              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です"]
+              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です"]
                 small
                   i.fas.fa-question-circle
-                  | click!
+                  | レベル
           p.introduction
             |  自己紹介：
             - unless @user.introduction == nil
