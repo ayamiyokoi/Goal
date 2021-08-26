@@ -57,9 +57,10 @@
         .col-12.show[style="display:flex;"]
           #likes_buttons[style="padding:5px 10px 0 0;"]
             = render partial: 'likes/like', locals: { review: @review}
-          p[style="padding:9px 10px 0 0;"]
+          p[style="padding:9px 1px 0 0;"]
             i.far.fa-comment
-            = @review.comments.count
+            #comments_count[style="padding:5px 10px 0 0;"]
+              = render partial: 'comments/comment', locals: { review: @review}
           -if @review.user_id == current_user.id
             = link_to '編集', edit_review_path(@review), class: "btn btn-outline-success"
     .col-md-4.offset-md-1.colum.col-xs-12
