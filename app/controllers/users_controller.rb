@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   LIMIT_PER_PAGE_10 = 10
 
   def show
+    @review_today = Review.where(user_id: current_user.id, created_at: Time.current.at_beginning_of_day..Time.current.at_end_of_day)
     @goals = Goal.where(user_id: params[:id]).where(achieved: false).order(date: "ASC").page(params[:page]).per(LIMIT_PER_PAGE_3)
     @tasks = Task.where(user_id: params[:id]).where(finished: false).order(date: "ASC").page(params[:page]).per(LIMIT_PER_PAGE_3)
     @user = User.find(params[:id])

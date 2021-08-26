@@ -27,4 +27,7 @@
         #reviews_all.tab-pane
           = render 'index', reviews: @reviews_all
       p
-        = link_to '今日の振り返りを作成', new_review_path, class: "btn btn-outline-primary"
+        - if @review_today.exists?
+          = link_to '今日の振り返りを編集', edit_review_path(@review_today.pluck(:id)), class: "btn btn-outline-primary"
+        - else
+          = link_to '今日の振り返りを作成', new_review_path, class: "btn btn-outline-primary"

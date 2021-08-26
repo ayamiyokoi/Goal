@@ -2,9 +2,11 @@
   h4
     | マイページ
     - if @user == current_user
-      = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
-        i.fas.fa-plus
-        | 振り返りを作成
+      - if @review_today.exists?
+      - else
+        = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
+          i.fas.fa-plus
+          | 振り返りを作成
   .row
     .col-md-6.col-xs-12.colum
       .row
@@ -26,18 +28,18 @@
             |  現在のステージ：
             = @user.stage
             - if @user == current_user
-              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="ステージとは？→ 目標設定の数によって上がる数です"]
+              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" title="ステージとは？→ 目標設定の数によって上がる数です"]
                 small
                   i.fas.fa-question-circle
-                  | click!
+                  | ステージ
           p
             |  現在のレベル：
             = @user.level
             - if @user == current_user
-              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" data-trigger="click" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です"]
+              button.btn.btn-outline-primary.tip[type="button" data-toggle="tooltip" data-placement="right" data-html="true" title="レベルとは？→ 目標達成、タスク達成、振り返り作成の数によって上がる数です"]
                 small
                   i.fas.fa-question-circle
-                  | click!
+                  | レベル
           p.introduction
             |  自己紹介：
             - unless @user.introduction == nil
@@ -191,9 +193,11 @@
       .col-12.colum
         h4
           | 振り返り
-          = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
-            i.fas.fa-plus
-            | 振り返りを作成
+          - if @review_today.exists?
+          - else
+            = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
+              i.fas.fa-plus
+              | 振り返りを作成
         - unless @review == nil
           /- if @review.user == current_user
           = link_to @review, class: "edit_link" do
