@@ -2,9 +2,11 @@
   h4
     | マイページ
     - if @user == current_user
-      = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
-        i.fas.fa-plus
-        | 振り返りを作成
+      - if @review_today.exists?
+      - else
+        = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
+          i.fas.fa-plus
+          | 振り返りを作成
   .row
     .col-md-6.col-xs-12.colum
       .row
@@ -191,9 +193,11 @@
       .col-12.colum
         h4
           | 振り返り
-          = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
-            i.fas.fa-plus
-            | 振り返りを作成
+          - if @review_today.exists?
+          - else
+            = link_to new_review_path, class: "btn btn-outline-primary margin_left" do
+              i.fas.fa-plus
+              | 振り返りを作成
         - unless @review == nil
           /- if @review.user == current_user
           = link_to @review, class: "edit_link" do

@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
   # GET /reviews or /reviews.json
   def index
     # 自分がフォローしている人のReview(公開中)
+    @review_today = Review.where(user_id: current_user.id, created_at: Time.current.at_beginning_of_day..Time.current.at_end_of_day)
     @reviews_follow = Review.where(user_id: current_user.followings.pluck(:id), active: true).includes(:user).order(created_at: "DESC").page(params[:page]).per(LIMIT_PER_PAGE)
   end
 
