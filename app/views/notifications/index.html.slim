@@ -10,6 +10,7 @@
       hr
     - if @notifications.exists?
       = render 'notifications/notification', notifications: @notifications
+      = paginate @notifications
     - else
       p
         |  | 通知はありません
